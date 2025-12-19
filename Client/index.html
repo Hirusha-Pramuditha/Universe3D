@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universe3D - 3D Immersive Experiences by TeamExploreX</title>
+    <meta name="description" content="Create stunning 3D walkarounds and interactive campus experiences with Universe3D">
+    <meta property="og:title" content="Universe3D - Immersive 3D Experiences">
+    <meta property="og:description" content="Built with cutting-edge Three.js technology by TeamExploreX">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo"><a href="#">Universe3D</a></div>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                 <!-- <a href="documentation/documentation.html" class="nav-link">Documentation</a> -->
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <button class="nav-btn" data-modal-contact>Get Demo</button>
+            <button class="nav-toggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div id="three-container" class="hero-3d-container"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Explore Digital<br><span class="gradient-text">Universes</span><br>With Immersive 3D</h1>
+                <p>Create stunning 3D walkarounds and interactive campus experiences. Built with cutting-edge Three.js technology by TeamExploreX.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" data-modal-demo data-analytics="hero_demo_click">Try Interactive Demo</button>
+                    <button class="btn btn-secondary" data-modal-video data-analytics="hero_video_click">Watch Demo Video</button>
+                </div>
+            </div>
+            <div class="hero-scroll animate-bounce">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Powerful Features</h2>
+                <p>Everything you need for immersive campus exploration</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" data-animate>
+                    <div class="feature-card-content">
+                        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                        <h3>3D Building Maps</h3>
+                        <p>Interactive, navigable floor plans with real-time rendering and LOD optimization.</p>
+                    </div>
+                </div>
+
+                <div class="feature-card" data-animate>
+                    <div class="feature-card-content">
+                        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.856-1.487M15 10a3 3 0 11-6 0 3 3 0 016 0zM9 20H4v-2a6 6 0 0112 0v2H9z" />
+                        </svg>
+                        <h3>Avatar Navigation</h3>
+                        <p>Customizable avatars with outfit validation and dress-code demonstrations.</p>
+                    </div>
+                </div>
+
+                <div class="feature-card" data-animate>
+                    <div class="feature-card-content">
+                        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                        <h3>Location Search</h3>
+                        <p>Instant search with auto-suggest and wayfinding to any room or person.</p>
+                    </div>
+                </div>
+
+                <div class="feature-card" data-animate>
+                    <div class="feature-card-content">
+                        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        <h3>Gamified Activities</h3>
+                        <p>Quizzes, mini-games, and interactive onboarding to boost engagement.</p>
+                    </div>
+                </div>
+
+                <div class="feature-card" data-animate>
+                    <div class="feature-card-content">
+                        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 8.048M12 4.354L7.325 8.677a4 4 0 000 5.646L12 19M12 4.354l4.675 4.323a4 4 0 010 5.646L12 19" />
+                        </svg>
+                        <h3>Staff Directory</h3>
+                        <p>Integrated hierarchy, department mapping, and real-time updates via API.</p>
+                    </div>
+                </div>
+
+                <div class="feature-card" data-animate>
+                    <div class="feature-card-content">
+                        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                        <h3>Enterprise Admin</h3>
+                        <p>Role-based access control, SSO integration, and advanced analytics dashboard.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <!-- <section class="gallery" id="gallery">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Professional Gallery</h2>
+                <p>Explore our collection of immersive 3D experiences</p>
+            </div>
+            <div class="gallery-container">
+                <div class="gallery-item large" data-animate>
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1000&h=600&fit=crop" alt="Modern Campus" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Modern Campus Experience</h3>
+                        <p>State-of-the-art 3D campus with interactive navigation</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-animate>
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop" alt="Enterprise Suite" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Enterprise Suite</h3>
+                        <p>Complete digital transformation</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-animate>
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop" alt="Virtual Workspace" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Virtual Workspace</h3>
+                        <p>Collaborative 3D environment</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-animate>
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop" alt="Interactive Learning" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Interactive Learning</h3>
+                        <p>Educational 3D platform</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item large" data-animate>
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1000&h=600&fit=crop" alt="Corporate Headquarters" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Corporate Headquarters</h3>
+                        <p>Premium digital showroom experience</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-animate>
+                    <div class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=600&fit=crop" alt="Smart Building" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Smart Building</h3>
+                        <p>IoT integrated environment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Tech Stack Rail -->
+    <section class="tech-rail" id="tech">
+        <div class="section-container">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Powered by Modern Technology</h2>
+        </div>
+        <div class="tech-rail-content">
+            <div class="tech-item">
+                <span class="tech-label">React</span>
+            </div>
+            <div class="tech-item">
+                <span class="tech-label">Three.js</span>
+            </div>
+            <!-- <div class="tech-item">
+                <span class="tech-label">react-three-fiber</span>
+            </div> -->
+            <div class="tech-item">
+                <span class="tech-label">GLTF/GLB</span>
+            </div>
+            <div class="tech-item">
+                <span class="tech-label">Blender</span>
+            </div>
+            <div class="tech-item">
+                <span class="tech-label">Node.js</span>
+            </div>
+            <div class="tech-item">
+                <span class="tech-label">WebGL</span>
+            </div>
+            <!-- <div class="tech-item">
+                <span class="tech-label">AWS CDN</span>
+            </div> -->
+            <div class="tech-item">
+                <span class="tech-label">Tailwind CSS</span>
+            </div>
+            <div class="tech-item">
+                <span class="tech-label">Vite</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Simple, Transparent Pricing</h2>
+                <p>Choose the plan that fits your needs</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card" data-animate>
+                    <h3>Starter</h3>
+                    <p class="pricing-badge">Contact our team for pricing</p>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature"><div class="pricing-dot"></div><span>One building (up to 3 floors)</span></li>
+                        <li class="pricing-feature"><div class="pricing-dot"></div><span>GLTF/GLB model integration</span></li>
+                        <li class="pricing-feature"><div class="pricing-dot"></div><span>Basic avatar navigation</span></li>
+                        <li class="pricing-feature"><div class="pricing-dot"></div><span>Clickable info hotspots</span></li>
+                        <li class="pricing-feature"><div class="pricing-dot"></div><span>Single admin account</span></li>
+                        <li class="pricing-feature"><div class="pricing-dot"></div><span>30-day deployment support</span></li>
+                    </ul>
+                    <button class="pricing-btn" data-modal-contact>LKR 50,000</button>
+                </div>
+
+                <div class="pricing-card highlighted" data-animate>
+                    <h3>Professional</h3>
+                    <p class="pricing-badge">Contact our team for pricing</p>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature"><div class="pricing-dot"></div><span>Up to 3 buildings</span></li>
+                        <li class="pricing-feature"><div class="pricing-dot"></div><span>Avatar customization</span></li>
+                        <li class="pricing-feature"><div class="pricing-dot"></div><span>Location search & routing</span></li>
+                        <li class="pricing-feature"><div class="pricing-dot"></div><span>Interactive quizzes</span></li>
+                        <li class="pricing-feature"><div class="pricing-dot"></div><span>Multiple admin roles</span></li>
+                        <li class="pricing-feature"><div class="pricing-dot"></div><span>Performance optimization</span></li>
+                        <li class="pricing-feature"><div class="pricing-dot"></div><span>Analytics & sessions</span></li>
+                    </ul>
+                    <button class="pricing-btn" data-modal-contact>LKR 100,000</button>
+                </div>
+
+                <div class="pricing-card" data-animate>
+                    <h3>Enterprise</h3>
+                    <p class="pricing-badge">Contact our team for pricing</p>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature"><div class="pricing-dot"></div><span>Full campus digital twin</span></li>
+                        <li class="pricing-feature"><div class="pricing-dot"></div><span>Multiplayer sessions</span></li>
+                        <li class="pricing-feature"><div class="pricing-dot"></div><span>Advanced admin CMS</span></li>
+                        <li class="pricing-feature"><div class="pricing-dot"></div><span>API & SIS integration</span></li>
+                        <li class="pricing-feature"><div class="pricing-dot"></div><span>Custom gamification</span></li>
+                        <li class="pricing-feature"><div class="pricing-dot"></div><span>Dedicated SLA</span></li>
+                        <li class="pricing-feature"><div class="pricing-dot"></div><span>White-glove onboarding</span></li>
+                    </ul>
+                    <button class="pricing-btn" data-modal-contact>LKR 200,00</button>
+                </div>
+            </div>
+
+            <div class="pricing-cta" data-animate>
+                <p>Need a custom solution?</p>
+                <button class="btn btn-primary" data-modal-contact data-analytics="pricing_contact_click">Contact Our Team →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta" id="contact">
+        <div class="footer-cta-container">
+            <div class="footer-cta-text">
+                <h3>Ready to explore new digital dimensions?</h3>
+                <p>Let TeamExploreX bring your vision to life with Universe3D</p>
+            </div>
+            <div class="footer-cta-buttons">
+                <button class="btn btn-primary" data-modal-contact data-analytics="footer_demo_click">Schedule Demo</button>
+                <button class="btn btn-secondary" data-modal-contact>Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="section-container">
+            <div class="footer-content">
+                <div class="footer-section footer-brand">
+                    <div class="footer-logo">Universe3D</div>
+                    <p class="footer-description">Created by TeamExploreX - Bringing immersive 3D experiences to the world. Transform how people explore digital spaces.</p>
+                    <div class="footer-socials">
+                        <a href="#" class="social-link" title="Twitter">𝕏</a>
+                        <a href="#" class="social-link" title="LinkedIn">in</a>
+                        <a href="#" class="social-link" title="GitHub">⚙️</a>
+                        <a href="#" class="social-link" title="Discord">◆</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#">Roadmap</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Docs</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Community</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2024 Universe3D by TeamExploreX. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Demo Modal -->
+    <div id="demoModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('demoModal')">×</button>
+            <div class="modal-header">
+                <h2>Interactive Demo</h2>
+            </div>
+            <div class="demo-viewer">
+                <svg class="demo-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p>3D Interactive Demo Viewer (Place your demo content here)</p>
+            </div>
+            <p style="color: #94a3b8; font-size: 0.9rem; text-align: center; margin-top: 1.5rem;">Explore our immersive 3D campus experience with interactive navigation and real-time rendering.</p>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('videoModal')">×</button>
+            <div class="modal-header">
+                <h2>Demo Video</h2>
+            </div>
+            <div class="demo-viewer">
+                <svg class="demo-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p>Demo Video Player (Embed your video URL here)</p>
+            </div>
+            <p style="color: #94a3b8; font-size: 0.9rem; text-align: center; margin-top: 1.5rem;">Watch how Universe3D transforms digital spaces with immersive 3D experiences.</p>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('contactModal')">×</button>
+            <div class="modal-header">
+                <h2>Get in Touch</h2>
+                <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 0.5rem;">Our team will respond within 24 hours</p>
+            </div>
+            <form class="modal-form" onsubmit="handleContactSubmit(event)">
+                <input type="text" class="modal-input" placeholder="Full Name" required>
+                <input type="email" class="modal-input" placeholder="Email Address" required>
+                <input type="tel" class="modal-input" placeholder="Phone Number">
+                <select class="modal-select" required>
+                    <option value="">Select Your Interest</option>
+                    <option value="demo">Interactive Demo</option>
+                    <option value="starter">Starter Plan</option>
+                    <option value="professional">Professional Plan</option>
+                    <option value="enterprise">Enterprise Plan</option>
+                    <option value="custom">Custom Solution</option>
+                </select>
+                <textarea class="modal-textarea" placeholder="Tell us about your project..." rows="4"></textarea>
+                <button type="submit" class="modal-submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
