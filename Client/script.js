@@ -29,6 +29,41 @@ document.addEventListener('DOMContentLoaded', function() {
 // === Button Event Listeners ===
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile Navigation Toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (navToggle && navLinks) {
+        navToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navLinks.classList.toggle('active');
+            
+            // Animate hamburger icon
+            if (navLinks.classList.contains('active')) {
+                navToggle.innerHTML = '✕';
+            } else {
+                navToggle.innerHTML = '☰';
+            }
+        });
+        
+        // Close menu when clicking a nav link
+        const navLinksItems = navLinks.querySelectorAll('.nav-link');
+        navLinksItems.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                navToggle.innerHTML = '☰';
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('nav')) {
+                navLinks.classList.remove('active');
+                navToggle.innerHTML = '☰';
+            }
+        });
+    }
+
     // Demo button listeners
     const demoButtons = document.querySelectorAll('[data-modal-demo]');
     demoButtons.forEach(btn => {
