@@ -33,9 +33,9 @@ function Team() {
 
   const teamMembers = [
     { name: 'Shihara Sasangi', role: 'Co-founder | Team Leader', image: '/TeamMembers/teammember1.jpg' , link: "https://www.linkedin.com/in/shihara-sasangi-067353270" },
-    { name: 'Achintha Ishara', role: 'Co-founder', image: '/TeamMembers/Ishara Gamage.jpg' , link: "https://www.linkedin.com/in/ishara-achintha-2b1240292"},
-    { name: 'Hirusha Pramuditha', role: 'Co-founder', image: '/TeamMembers/Hirusha Pramuditha.jpg' , link: "https://www.linkedin.com/in/hirusha-pramuditha-878943294" },
-    { name: 'Vibhath Adhithya', role: 'Co-founder', image: '/TeamMembers/Vibhath Adithya.jpg' , link: "https://www.linkedin.com/in/vibhath-adithya-086a43293"},
+    { name: 'Achintha Ishara', role: 'Co-founder', image: '/TeamMembers/teammember2.jpg' , link: "https://www.linkedin.com/in/ishara-achintha-2b1240292"},
+    { name: 'Hirusha Pramuditha', role: 'Co-founder', image: '/TeamMembers/teammember2.jpg' , link: "https://www.linkedin.com/in/hirusha-pramuditha-878943294" },
+    { name: 'Vibhath Adhithya', role: 'Co-founder', image: '/TeamMembers/teammember2.jpg' , link: "https://www.linkedin.com/in/vibhath-adithya-086a43293"},
     { name: 'Chaninthu Sesanda', role: 'Co-founder', image: '/TeamMembers/teammember2.jpg' , link: "https://www.linkedin.com/in/chanithu-sesada-63774b305"},
     { name: 'Danindu Walisinghe', role: 'Co-founder', image: '/TeamMembers/teammember2.jpg' , link: "https://www.linkedin.com/in/danidu-walisingha-181026216"}
   ]
