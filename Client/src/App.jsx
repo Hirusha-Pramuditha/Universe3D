@@ -8,15 +8,25 @@ import Pricing from './components/Pricing'
 import Team from './components/Team'
 import FooterCTA from './components/FooterCTA'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
 import DemoModal from './components/modals/DemoModal'
 import VideoModal from './components/modals/VideoModal'
 import ContactModal from './components/modals/ContactModal'
+import PricingModal from './components/modals/PricingModal'
+import AuthModal from './components/modals/AuthModal'
 
 function App() {
   const [activeModal, setActiveModal] = useState(null)
+  const [pricingData, setPricingData] = useState({ planName: '', planPrice: '' })
 
   const openModal = (modalName) => {
     setActiveModal(modalName)
+    document.body.style.overflow = 'hidden'
+  }
+
+  const openPricingModal = (planName, planPrice) => {
+    setPricingData({ planName, planPrice })
+    setActiveModal('pricing')
     document.body.style.overflow = 'hidden'
   }
 
@@ -32,17 +42,19 @@ function App() {
       <AboutUs />
       <Features />
       <TechRail />
-      <Pricing openModal={openModal} />
+      <Pricing openPricingModal={openPricingModal} />
       <FooterCTA openModal={openModal} />
       <Team />
       <Footer />
+      <ScrollToTop />
       
       {activeModal === 'demo' && <DemoModal closeModal={closeModal} />}
       {activeModal === 'video' && <VideoModal closeModal={closeModal} />}
       {activeModal === 'contact' && <ContactModal closeModal={closeModal} />}
+      {activeModal === 'pricing' && <PricingModal closeModal={closeModal} planName={pricingData.planName} planPrice={pricingData.planPrice} />}
+      {activeModal === 'auth' && <AuthModal closeModal={closeModal} />}
     </>
   )
 }
 
 export default App
-

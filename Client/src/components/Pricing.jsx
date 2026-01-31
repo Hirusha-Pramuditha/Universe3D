@@ -1,40 +1,46 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
+import useScrollReveal from '../hooks/useScrollRevealBidirectional'
 
-function Pricing({ openModal }) {
-  const observerRef = useRef(null)
+function PricingCard({ plan, openPricingModal, delay }) {
+  const { ref, visible } = useScrollReveal()
+  return (
+    <div
+      ref={ref}
+      className={`pricing-card reveal-scale ${plan.highlighted ? 'highlighted' : ''} ${visible ? 'visible' : ''}`}
+      style={{ '--delay': `${delay}ms` }}
+    >
+      {plan.highlighted && <span className="pricing-badge-tag">Most Popular</span>}
+      <h3>{plan.name}</h3>
+      <p className="pricing-sub">Contact our team for pricing</p>
+      <ul className="pricing-features">
+        {plan.features.map((f, i) => (
+          <li key={i} className="pricing-feature">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="check-icon">
+              <circle cx="9" cy="9" r="9" fill="#2563eb" fillOpacity="0.1" />
+              <path d="M5.5 9.5l2.5 2.5 4.5-5" stroke="#2563eb" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span>{f}</span>
+          </li>
+        ))}
+      </ul>
+      <button 
+        className={`pricing-btn ${plan.highlighted ? 'pricing-btn-primary' : ''}`} 
+        onClick={() => openPricingModal(plan.name, plan.price)}
+      >
+        {plan.price}
+      </button>
+    </div>
+  )
+}
 
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    }
-
-    observerRef.current = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animation = 'slideUp 0.6s ease-out forwards'
-          observerRef.current.unobserve(entry.target)
-        }
-      })
-    }, observerOptions)
-
-    const elements = document.querySelectorAll('[data-animate]')
-    elements.forEach(el => {
-      el.style.opacity = '0'
-      observerRef.current.observe(el)
-    })
-
-    return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect()
-      }
-    }
-  }, [])
+function Pricing({ openPricingModal }) {
+  const { ref: headerRef, visible: headerVis } = useScrollReveal()
+  const { ref: ctaRef, visible: ctaVis }       = useScrollReveal()
 
   const plans = [
     {
       name: 'Starter',
-      price: 'LKR 50,000',
+      price: 'LKR 200,000',
       features: [
         'One building (up to 3 floors)',
         'GLTF/GLB model integration',
@@ -46,7 +52,7 @@ function Pricing({ openModal }) {
     },
     {
       name: 'Professional',
-      price: 'LKR 100,000',
+      price: 'LKR 450,000',
       highlighted: true,
       features: [
         'Up to 3 buildings',
@@ -60,7 +66,7 @@ function Pricing({ openModal }) {
     },
     {
       name: 'Enterprise',
-      price: 'LKR 200,000',
+      price: 'LKR 600,000',
       features: [
         'Full campus digital twin',
         'Multiplayer sessions',
@@ -76,39 +82,19 @@ function Pricing({ openModal }) {
   return (
     <section className="pricing" id="pricing">
       <div className="section-container">
-        <div className="section-header">
+        <div ref={headerRef} className={`section-header reveal-up ${headerVis ? 'visible' : ''}`}>
+          <p className="section-eyebrow">Pricing</p>
           <h2>Simple, Transparent Pricing</h2>
-          <p>Choose the plan that fits your needs</p>
+          <p className="section-sub">Choose the plan that fits your needs</p>
         </div>
         <div className="pricing-grid">
-          {plans.map((plan, index) => (
-            <div 
-              key={index} 
-              className={`pricing-card ${plan.highlighted ? 'highlighted' : ''}`}
-              data-animate
-            >
-              <h3>{plan.name}</h3>
-              <p className="pricing-badge">Contact our team for pricing</p>
-              <ul className="pricing-features">
-                {plan.features.map((feature, idx) => (
-                  <li key={idx} className="pricing-feature">
-                    <div className="pricing-dot"></div>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <button className="pricing-btn" onClick={() => openModal('contact')}>
-                {plan.price}
-              </button>
-            </div>
+          {plans.map((plan, i) => (
+            <PricingCard key={i} plan={plan} openPricingModal={openPricingModal} delay={i * 130} />
           ))}
         </div>
-
-        <div className="pricing-cta" data-animate>
+        <div ref={ctaRef} className={`pricing-cta reveal-up ${ctaVis ? 'visible' : ''}`}>
           <p>Need a custom solution?</p>
-          <button className="btn btn-primary" onClick={() => openModal('contact')}>
-            Contact Our Team →
-          </button>
+          <button className="btn btn-primary" onClick={() => openPricingModal('Custom', 'Contact for quote')}>Contact Our Team →</button>
         </div>
       </div>
     </section>
@@ -116,4 +102,3 @@ function Pricing({ openModal }) {
 }
 
 export default Pricing
-

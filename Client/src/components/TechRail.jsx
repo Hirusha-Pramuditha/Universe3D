@@ -1,53 +1,49 @@
 import React, { useEffect, useRef } from 'react'
+import useScrollReveal from '../hooks/useScrollReveal'
 
 function TechRail() {
   const railRef = useRef(null)
+  const { ref: titleRef, visible: titleVis } = useScrollReveal()
 
   useEffect(() => {
-    const techRail = railRef.current
-    if (!techRail) return
+    const rail = railRef.current
+    if (!rail) return
+    const items = Array.from(rail.querySelectorAll('.tech-item'))
+    if (!items.length) return
 
-    const items = Array.from(techRail.querySelectorAll('.tech-item'))
-    if (items.length === 0) return
-
-    // Clone items multiple times for seamless infinite loop
-    const cloneCount = 3
-    for (let i = 0; i < cloneCount; i++) {
-      items.forEach(item => {
-        const clone = item.cloneNode(true)
-        techRail.appendChild(clone)
-      })
+    // duplicate for seamless loop
+    for (let i = 0; i < 3; i++) {
+      items.forEach(item => rail.appendChild(item.cloneNode(true)))
     }
 
-    // Pause animation on hover
-    const handleMouseEnter = () => {
-      techRail.style.animationPlayState = 'paused'
-    }
-
-    const handleMouseLeave = () => {
-      techRail.style.animationPlayState = 'running'
-    }
-
-    techRail.addEventListener('mouseenter', handleMouseEnter)
-    techRail.addEventListener('mouseleave', handleMouseLeave)
+    const pause  = () => { rail.style.animationPlayState = 'paused' }
+    const resume = () => { rail.style.animationPlayState = 'running' }
+    rail.addEventListener('mouseenter', pause)
+    rail.addEventListener('mouseleave', resume)
 
     return () => {
-      techRail.removeEventListener('mouseenter', handleMouseEnter)
-      techRail.removeEventListener('mouseleave', handleMouseLeave)
+      rail.removeEventListener('mouseenter', pause)
+      rail.removeEventListener('mouseleave', resume)
     }
   }, [])
 
-  const techItems = ['React', 'Three.js', 'GLTF/GLB', 'Blender', 'Node.js', 'WebGL', 'Tailwind CSS', 'Vite']
+  const techItems = ['React', 'Three.js', 'GLTF / GLB', 'Blender', 'Node.js', 'WebGL', 'Tailwind CSS', 'Vite']
 
   return (
     <section className="tech-rail" id="tech">
       <div className="section-container">
-        <h2 style={{ textAlign: 'center', marginBottom: '3rem' }}>Powered by Modern Technology</h2>
+        <div ref={titleRef} className={`tech-rail-header reveal-up ${titleVis ? 'visible' : ''}`}>
+          <p className="section-eyebrow">Technology Stack</p>
+          <h2>Powered by Modern Technology</h2>
+        </div>
       </div>
-      <div ref={railRef} className="tech-rail-content">
-        {techItems.map((tech, index) => (
-          <div key={index} className="tech-item">
-            <span className="tech-label">{tech}</span>
+      <div ref={railRef} className="tech-rail-track">
+        {techItems.map((t, i) => (
+          <div key={i} className="tech-item">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <circle cx="8" cy="8" r="3" fill="#6366f1" opacity="0.7" />
+            </svg>
+            <span className="tech-label">{t}</span>
           </div>
         ))}
       </div>
@@ -56,4 +52,3 @@ function TechRail() {
 }
 
 export default TechRail
-
