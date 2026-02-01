@@ -48,8 +48,8 @@ function Team() {
     <section className="team-section" id="team">
       <div className="section-container">
         <div ref={headerRef} className={`section-header reveal-up ${headerVis ? 'visible' : ''}`}>
-          <p className="section-eyebrow">The Team</p>
-          <h2>Meet the Team</h2>
+          <p className="section-eyebrow">Meet Our Team</p>
+          <h2>Team ExploreX</h2>
           <p className="section-sub">The brilliant minds behind Universe3D</p>
         </div>
         <div className="team-grid">
