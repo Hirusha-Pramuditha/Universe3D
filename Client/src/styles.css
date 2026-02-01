@@ -1573,8 +1573,8 @@ footer {
 .game-video-wrap {
   position: relative;
   z-index: 1;
-  width: 300px;
-  height: 300px;
+  width: 265px;
+  height: 265px;
   border-radius: 26px;
   overflow: hidden;
   background: var(--white);
