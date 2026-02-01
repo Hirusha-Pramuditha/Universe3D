@@ -134,10 +134,10 @@ function Game() {
           <div className="game-progress-wrap">
             <div className="game-progress-head">
               <span className="game-progress-label">Build Progress</span>
-              <span className="game-progress-pct">38%</span>
+              <span className="game-progress-pct">45%</span>
             </div>
             <div className="game-progress-track">
-              <div className="game-progress-fill" style={{ width: '38%' }} />
+              <div className="game-progress-fill" style={{ width: '45%' }} />
             </div>
           </div>
 
