@@ -14,10 +14,17 @@ import VideoModal from './components/modals/VideoModal'
 import ContactModal from './components/modals/ContactModal'
 import PricingModal from './components/modals/PricingModal'
 import AuthModal from './components/modals/AuthModal'
+import Game from './pages/Game'
 
 function App() {
   const [activeModal, setActiveModal] = useState(null)
   const [pricingData, setPricingData] = useState({ planName: '', planPrice: '' })
+
+  // Simple client-side routing
+  const path = window.location.pathname
+  if (path === '/game') {
+    return <Game />
+  }
 
   const openModal = (modalName) => {
     setActiveModal(modalName)

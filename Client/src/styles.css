@@ -1438,3 +1438,328 @@ footer {
   .team-image { height: 220px; }
   .features-grid { grid-template-columns: 1fr; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   GAME PAGE — Under Development (Light Theme · Single Viewport)
+   ═══════════════════════════════════════════════════════════ */
+
+.game-page {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #f0f4f8;
+  overflow: hidden;
+  font-family: 'Inter', system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Particle canvas — fixed full bleed */
+.game-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ─── Top Header Bar ─── */
+.game-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 2.2rem;
+  flex-shrink: 0;
+  opacity: 0;
+  transform: translateY(-12px);
+  transition: opacity 0.55s cubic-bezier(.4,0,.2,1) 0.08s,
+              transform 0.55s cubic-bezier(.4,0,.2,1) 0.08s;
+}
+.game-header.visible { opacity: 1; transform: translateY(0); }
+
+.game-logo {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.game-logo span { color: var(--blue-600); }
+
+.game-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--gray-500);
+  text-decoration: none;
+  padding: 0.4rem 0.82rem;
+  border-radius: 100px;
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  transition: color 0.25s, border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+.game-back-btn:hover {
+  color: var(--blue-700);
+  border-color: var(--blue-300);
+  box-shadow: var(--shadow-md);
+  transform: translateX(-2px);
+}
+
+/* ─── Two-Column Body ─── */
+.game-body {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  padding: 0 2.2rem 1.8rem;
+  min-height: 0; /* let flex shrink properly */
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s cubic-bezier(.4,0,.2,1) 0.18s,
+              transform 0.6s cubic-bezier(.4,0,.2,1) 0.18s;
+}
+.game-body.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── LEFT: Visual Column ─── */
+.game-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 320px;
+  height: 320px;
+}
+
+/* Concentric pulsing rings */
+.game-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  pointer-events: none;
+}
+.game-ring-1 {
+  width: 300px; height: 300px;
+  border-color: rgba(37, 99, 235, 0.07);
+  animation: ringPulse 5.5s ease-in-out infinite;
+}
+.game-ring-2 {
+  width: 225px; height: 225px;
+  border-color: rgba(37, 99, 235, 0.11);
+  animation: ringPulse 5.5s ease-in-out 0.7s infinite;
+}
+.game-ring-3 {
+  width: 150px; height: 150px;
+  border-color: rgba(37, 99, 235, 0.17);
+  animation: ringPulse 5.5s ease-in-out 1.4s infinite;
+}
+@keyframes ringPulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.055); }
+}
+
+/* Video card */
+.game-video-wrap {
+  position: relative;
+  z-index: 1;
+  width: 200px;
+  height: 200px;
+  border-radius: 26px;
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: 0 10px 44px rgba(37, 99, 235, 0.13), 0 2px 6px rgba(0,0,0,0.05);
+  border: 1px solid rgba(37, 99, 235, 0.1);
+}
+.game-video-wrap dotlottie-wc {
+  display: block;
+  width: 100%; height: 100%;
+}
+.game-video-glow {
+  position: absolute;
+  bottom: -28px; left: 50%;
+  transform: translateX(-50%);
+  width: 180px; height: 50px;
+  background: radial-gradient(ellipse, rgba(37,99,235,0.16) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ─── RIGHT: Content Column ─── */
+.game-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+  max-width: 420px;
+  width: 100%;
+}
+
+/* Status badge */
+.game-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.48rem;
+  background: var(--white);
+  border: 1px solid rgba(37, 99, 235, 0.14);
+  border-radius: 100px;
+  padding: 0.34rem 0.85rem 0.34rem 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--blue-700);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-sm);
+  align-self: flex-start;
+  margin-bottom: 1rem;
+}
+.game-status-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--blue-600);
+  box-shadow: 0 0 0 2.5px rgba(37,99,235,0.18);
+  animation: dotPing 2s ease-in-out infinite;
+}
+@keyframes dotPing {
+  0%, 100% { box-shadow: 0 0 0 2.5px rgba(37,99,235,0.18); }
+  50%      { box-shadow: 0 0 0 5.5px rgba(37,99,235,0); }
+}
+
+/* Title */
+.game-title {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(1.75rem, 3.2vw, 2.3rem);
+  font-weight: 700;
+  color: var(--gray-900);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.7rem;
+}
+.game-title-accent { color: var(--blue-600); }
+.game-title-sub {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--gray-400);
+  letter-spacing: 0;
+  margin-top: 0.22rem;
+}
+
+/* Description */
+.game-desc {
+  font-size: 0.84rem;
+  color: var(--gray-500);
+  line-height: 1.7;
+  margin-bottom: 1.3rem;
+}
+
+/* Progress block */
+.game-progress-wrap { margin-bottom: 1.3rem; }
+.game-progress-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.42rem;
+}
+.game-progress-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gray-500);
+  letter-spacing: 0.02em;
+}
+.game-progress-pct {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--blue-700);
+}
+.game-progress-track {
+  width: 100%;
+  height: 5px;
+  background: var(--gray-200);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.game-progress-fill {
+  height: 100%;
+  border-radius: 100px;
+  background: linear-gradient(90deg, var(--blue-600), var(--blue-400));
+  box-shadow: 0 1px 6px rgba(37,99,235,0.3);
+  transition: width 1.1s cubic-bezier(.4,0,.2,1);
+}
+
+/* Info pills */
+.game-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.4rem;
+}
+.game-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.73rem;
+  font-weight: 500;
+  color: var(--gray-500);
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 100px;
+  padding: 0.3rem 0.68rem;
+  box-shadow: var(--shadow-sm);
+}
+.game-pill svg { color: var(--blue-500); flex-shrink: 0; }
+
+/* Credit line */
+.game-credit {
+  font-size: 0.7rem;
+  color: var(--gray-400);
+  letter-spacing: 0.01em;
+}
+.game-credit strong {
+  color: var(--gray-600);
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GAME PAGE — Responsive Breakpoints
+   ═══════════════════════════════════════════════════════════ */
+
+/* Tablet — shrink the gap & visual */
+@media (max-width: 900px) {
+  .game-body { gap: 3rem; padding: 0 1.8rem 1.5rem; }
+  .game-visual { width: 260px; height: 260px; }
+  .game-ring-1 { width: 248px; height: 248px; }
+  .game-ring-2 { width: 186px; height: 186px; }
+  .game-ring-3 { width: 124px; height: 124px; }
+  .game-video-wrap { width: 165px; height: 165px; }
+}
+
+/* Mobile — stack into single column, centered */
+@media (max-width: 620px) {
+  .game-header { padding: 1rem 1.2rem; }
+  .game-body {
+    flex-direction: column;
+    gap: 1.6rem;
+    padding: 0 1.2rem 1.2rem;
+    justify-content: center;
+  }
+  .game-visual { width: 200px; height: 200px; }
+  .game-ring-1 { width: 190px; height: 190px; }
+  .game-ring-2 { width: 143px; height: 143px; }
+  .game-ring-3 { width: 95px;  height: 95px; }
+  .game-video-wrap { width: 130px; height: 130px; border-radius: 20px; }
+  .game-content { align-items: center; text-align: center; max-width: 100%; }
+  .game-status-badge { align-self: center; }
+  .game-pills { justify-content: center; }
+  .game-credit { text-align: center; }
+}
