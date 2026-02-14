@@ -53,15 +53,57 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTeleport, cu
     navigate('/')
   }
 
+  // Building spawn points (x/z) for fast travel
+  const BUILDING_SPAWNS = {
+    'spencer': { x: -10, z: -10 },
+    'ramakrishna': { x: -10, z: -10 }
+  }
+
+  // Specific spawn points for each floor of GP Square
+  // Specific spawn points for each floor of GP Square
+  // Adjust these coordinates to change where the player lands when using Up/Down buttons
+  const GP_LEVEL_UP_DOWN_COORDINATES = {
+    1: { x: -7, y: 0, z: -5 },  // Ground Floor
+    2: { x: -9, y: 7, z: -5 },  // Floor 1
+    3: { x: -9, y: 10, z: -5 },   // Floor 2
+    4: { x: -9, y: 12, z: -5 },  // Floor 3
+    5: { x: -9, y: 16, z: -5 },  // Floor 4
+    6: { x: -9, y: 20, z: -5 },  // Floor 5
+    7: { x: -9, y: 24, z: -3.5 },  // Floor 6
+    8: { x: -9, y: 28, z: -3.5 },  // Floor 7
+  }
+
+  const getSpawnCoordinates = (floor) => {
+    if (selectedBuilding === 'gp-square') {
+      // Use the explicit list for GP Square
+      return GP_LEVEL_UP_DOWN_COORDINATES[floor] || { x: -18, y: (floor - 1) * 4, z: -4 }
+    }
+    // Default logic for other buildings
+    const spawn = BUILDING_SPAWNS[selectedBuilding] || { x: 0, z: 0 }
+    return { x: spawn.x, y: (floor - 1) * 4, z: spawn.z }
+  }
+
   const handleFloorUp = () => {
     if (currentFloor < buildingInfo.floors) {
-      setCurrentFloor(currentFloor + 1)
+      const nextFloor = currentFloor + 1
+      const spawn = getSpawnCoordinates(nextFloor)
+      onTeleport?.({
+        name: `Floor ${nextFloor}`,
+        floor: nextFloor,
+        coordinates: spawn
+      })
     }
   }
 
   const handleFloorDown = () => {
-    if (currentFloor > 0) {
-      setCurrentFloor(currentFloor - 1)
+    if (currentFloor > 1) {
+      const prevFloor = currentFloor - 1
+      const spawn = getSpawnCoordinates(prevFloor)
+      onTeleport?.({
+        name: `Floor ${prevFloor}`,
+        floor: prevFloor,
+        coordinates: spawn
+      })
     }
   }
 

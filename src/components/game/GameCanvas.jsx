@@ -43,6 +43,13 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange }) {
       playerState.current.currentY = y
       playerState.current.targetY = y
 
+      // Stop movement to ensure exact positioning
+      playerState.current.moveForward = false
+      playerState.current.moveBackward = false
+      playerState.current.moveLeft = false
+      playerState.current.moveRight = false
+      playerState.current.sprint = false
+
       console.log(`Teleported to ${teleportTarget.name} at (${x}, ${y}, ${z})`)
     }
   }, [teleportTarget])
@@ -81,7 +88,7 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange }) {
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8)
     directionalLight.position.set(50, 100, 50)
-    directionalLight.castShadow = false
+    directionalLight.castShadow = true
     directionalLight.shadow.mapSize.width = 2048
     directionalLight.shadow.mapSize.height = 2048
     scene.add(directionalLight)
