@@ -1,12 +1,51 @@
 import React, { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import '../../styles/GameCanvas.css'
 
-function GameCanvas({ selectedBuilding }) {
+function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange }) {
   const containerRef = useRef(null)
   const [isLoading, setIsLoading] = useState(true)
   const [loadingProgress, setLoadingProgress] = useState(0)
   const [modelError, setModelError] = useState(false)
+
+  // ─── Input State ───
+  const [isLocked, setIsLocked] = useState(false)
+
+  // ─── Mouse State (Pointer Lock) ───
+  const inputState = useRef({
+    isLocked: false
+  })
+
+  // ─── Player Reference ───
+  const playerRef = useRef(null)
+
+  // ─── Player State (Ref for persistence) ───
+  const playerState = useRef({
+    moveForward: false,
+    moveBackward: false,
+    moveLeft: false,
+    moveRight: false,
+    sprint: false,
+    speed: 0.12,
+    sprintMultiplier: 2,
+    currentY: 0,
+    targetY: 0
+  })
+
+  // ─── Handle Teleportation ───
+  useEffect(() => {
+    if (teleportTarget && playerRef.current) {
+      const { x, y, z } = teleportTarget.coordinates
+      playerRef.current.position.set(x, y, z)
+
+      // Update physics state to prevent snapping back
+      playerState.current.currentY = y
+      playerState.current.targetY = y
+
+      console.log(`Teleported to ${teleportTarget.name} at (${x}, ${y}, ${z})`)
+    }
+  }, [teleportTarget])
 
   useEffect(() => {
     if (!containerRef.current) return
@@ -14,7 +53,7 @@ function GameCanvas({ selectedBuilding }) {
     // ─── Core Variables ───
     let animationId
     let collidableMeshes = []
-    
+
     // ─── Scene Setup ───
     const scene = new THREE.Scene()
     scene.background = new THREE.Color(0x87CEEB)
@@ -53,7 +92,7 @@ function GameCanvas({ selectedBuilding }) {
 
     // ─── Ground Plane (backup floor) ───
     const groundGeometry = new THREE.PlaneGeometry(1000, 1000)
-    const groundMaterial = new THREE.MeshStandardMaterial({ 
+    const groundMaterial = new THREE.MeshStandardMaterial({
       color: 0x7cba6d,
       roughness: 0.9
     })
@@ -65,10 +104,11 @@ function GameCanvas({ selectedBuilding }) {
 
     // ─── Create Player Character ───
     const player = new THREE.Group()
-    
+    playerRef.current = player // Store ref for teleportation
+
     // Body
     const bodyGeometry = new THREE.CapsuleGeometry(0.2, 0.5, 3, 7)
-    const bodyMaterial = new THREE.MeshStandardMaterial({ 
+    const bodyMaterial = new THREE.MeshStandardMaterial({
       color: 0x3b82f6,
       roughness: 0.5
     })
@@ -79,7 +119,7 @@ function GameCanvas({ selectedBuilding }) {
 
     // Head
     const headGeometry = new THREE.SphereGeometry(0.15, 16, 16)
-    const headMaterial = new THREE.MeshStandardMaterial({ 
+    const headMaterial = new THREE.MeshStandardMaterial({
       color: 0xffd699,
       roughness: 0.6
     })
@@ -107,11 +147,13 @@ function GameCanvas({ selectedBuilding }) {
     player.add(indicator)
 
     // Set initial position
-    player.position.set(30, 0, 30)
+    player.position.set(-70, 50, -4)
     scene.add(player)
 
     // ─── Player State ───
-    const playerState = {
+    // Using ref defined at top level to persist state
+    // Reset state on building change
+    playerState.current = {
       moveForward: false,
       moveBackward: false,
       moveLeft: false,
@@ -134,14 +176,12 @@ function GameCanvas({ selectedBuilding }) {
       maxRotationX: 0.8,
     };
 
-    // ─── Mouse State ───
-    let isMouseDown = false
-    let lastMouseX = 0
-    let lastMouseY = 0
+    // ─── Input State ───
+    // MOVED TO TOP LEVEL
 
     // ─── Raycaster for Collision ───
     const raycaster = new THREE.Raycaster()
-    
+
     // ─── Simple Wall Collision Check ───
     function checkWallCollision(position, direction, distance) {
       // Cast ray from player chest height
@@ -150,12 +190,12 @@ function GameCanvas({ selectedBuilding }) {
         position.y + 1.0, // Chest height
         position.z
       )
-      
+
       raycaster.set(origin, direction.normalize())
       raycaster.far = distance
-      
+
       const intersects = raycaster.intersectObjects(collidableMeshes, true)
-      
+
       // Filter out floors (normals pointing up)
       for (const hit of intersects) {
         if (hit.face) {
@@ -180,12 +220,12 @@ function GameCanvas({ selectedBuilding }) {
         position.z
       )
       const direction = new THREE.Vector3(0, -1, 0)
-      
+
       raycaster.set(origin, direction)
       raycaster.far = 10
-      
+
       const intersects = raycaster.intersectObjects(collidableMeshes, true)
-      
+
       if (intersects.length > 0) {
         // Find the highest floor below us (not ceiling above)
         for (const hit of intersects) {
@@ -205,7 +245,7 @@ function GameCanvas({ selectedBuilding }) {
       modelPath,
       (gltf) => {
         const model = gltf.scene
-        
+
         model.traverse((child) => {
           if (child.isMesh) {
             child.castShadow = true
@@ -217,17 +257,17 @@ function GameCanvas({ selectedBuilding }) {
         // Position model
         const box = new THREE.Box3().setFromObject(model)
         const center = box.getCenter(new THREE.Vector3())
-        
+
         model.position.x = -center.x
         model.position.z = -center.z
         model.position.y = -box.min.y // Place on ground
 
         scene.add(model)
-        
+
         // Set player start position
-        player.position.set(-11.5293, -1.81704, -6.13487)
-        playerState.currentY = 0
-        playerState.targetY = 0
+        player.position.set(-15, 0, -4)
+        playerState.current.currentY = 0
+        playerState.current.targetY = 0
 
         setIsLoading(false)
         setModelError(false)
@@ -242,7 +282,7 @@ function GameCanvas({ selectedBuilding }) {
         console.error('Error loading model:', error)
         setModelError(true)
         setIsLoading(false)
-        
+
         // Create placeholder
         createPlaceholder()
       }
@@ -266,28 +306,26 @@ function GameCanvas({ selectedBuilding }) {
     }
 
     // ─── Event Handlers ───
-    const onMouseDown = (e) => {
-      isMouseDown = true
-      lastMouseX = e.clientX
-      lastMouseY = e.clientY
-      renderer.domElement.style.cursor = 'grabbing'
+    const onClick = () => {
+      if (!inputState.current.isLocked) {
+        renderer.domElement.requestPointerLock()
+      }
     }
 
-    const onMouseUp = () => {
-      isMouseDown = false
-      renderer.domElement.style.cursor = 'grab'
+    const onPointerLockChange = () => {
+      const locked = document.pointerLockElement === renderer.domElement
+      inputState.current.isLocked = locked
+      setIsLocked(locked)
     }
 
     const onMouseMove = (e) => {
-      if (!isMouseDown) return
-      
-      const deltaX = e.clientX - lastMouseX
-      const deltaY = e.clientY - lastMouseY
-      lastMouseX = e.clientX
-      lastMouseY = e.clientY
+      if (!inputState.current.isLocked) return
 
-      cameraSettings.rotationY -= deltaX * 0.005
-      cameraSettings.rotationX += deltaY * 0.005
+      const deltaX = e.movementX || 0
+      const deltaY = e.movementY || 0
+
+      cameraSettings.rotationY -= deltaX * 0.002
+      cameraSettings.rotationX += deltaY * 0.002 // Natural look (Mouse Up -> Look Up)
       cameraSettings.rotationX = Math.max(
         cameraSettings.minRotationX,
         Math.min(cameraSettings.maxRotationX, cameraSettings.rotationX)
@@ -308,50 +346,62 @@ function GameCanvas({ selectedBuilding }) {
         return;
       }
 
+      // Handle Control key for toggling cursor
+      if (e.key === 'Control') {
+        if (inputState.current.isLocked) {
+          document.exitPointerLock()
+        } else {
+          renderer.domElement.requestPointerLock()
+        }
+        return
+      }
+
+      // Only allow movement if locked
+      if (!inputState.current.isLocked) return
+
       switch (e.code) {
         case "KeyW":
         case "ArrowUp":
-          playerState.moveForward = true;
+          playerState.current.moveForward = true;
           break;
         case "KeyS":
         case "ArrowDown":
-          playerState.moveBackward = true;
+          playerState.current.moveBackward = true;
           break;
         case "KeyA":
         case "ArrowLeft":
-          playerState.moveLeft = true;
+          playerState.current.moveLeft = true;
           break;
         case "KeyD":
         case "ArrowRight":
-          playerState.moveRight = true;
+          playerState.current.moveRight = true;
           break;
         case "ShiftLeft":
         case "ShiftRight":
-          playerState.sprint = true;
+          playerState.current.sprint = true;
           break;
       }
     };
 
     const onKeyUp = (e) => {
       switch (e.code) {
-        case 'KeyW': case 'ArrowUp': playerState.moveForward = false; break
-        case 'KeyS': case 'ArrowDown': playerState.moveBackward = false; break
-        case 'KeyA': case 'ArrowLeft': playerState.moveLeft = false; break
-        case 'KeyD': case 'ArrowRight': playerState.moveRight = false; break
-        case 'ShiftLeft': case 'ShiftRight': playerState.sprint = false; break
+        case 'KeyW': case 'ArrowUp': playerState.current.moveForward = false; break
+        case 'KeyS': case 'ArrowDown': playerState.current.moveBackward = false; break
+        case 'KeyA': case 'ArrowLeft': playerState.current.moveLeft = false; break
+        case 'KeyD': case 'ArrowRight': playerState.current.moveRight = false; break
+        case 'ShiftLeft': case 'ShiftRight': playerState.current.sprint = false; break
       }
     }
 
     // Add listeners
+    // Add listeners
     window.addEventListener('keydown', onKeyDown)
     window.addEventListener('keyup', onKeyUp)
-    renderer.domElement.addEventListener('mousedown', onMouseDown)
-    renderer.domElement.addEventListener('mouseup', onMouseUp)
-    renderer.domElement.addEventListener('mouseleave', onMouseUp)
+    document.addEventListener('pointerlockchange', onPointerLockChange)
+    renderer.domElement.addEventListener('click', onClick)
     renderer.domElement.addEventListener('mousemove', onMouseMove)
     renderer.domElement.addEventListener('wheel', onWheel, { passive: true })
     renderer.domElement.addEventListener('contextmenu', e => e.preventDefault())
-    renderer.domElement.style.cursor = 'grab'
 
     // ─── Animation Loop ───
     const animate = () => {
@@ -359,31 +409,31 @@ function GameCanvas({ selectedBuilding }) {
 
       // ─── Calculate Movement Direction ───
       const moveDirection = new THREE.Vector3()
-      
+
       const forward = new THREE.Vector3(
         -Math.sin(cameraSettings.rotationY),
         0,
         -Math.cos(cameraSettings.rotationY)
       )
-      
+
       const right = new THREE.Vector3(
         Math.cos(cameraSettings.rotationY),
         0,
         -Math.sin(cameraSettings.rotationY)
       )
 
-      if (playerState.moveForward) moveDirection.add(forward)
-      if (playerState.moveBackward) moveDirection.sub(forward)
-      if (playerState.moveLeft) moveDirection.sub(right)
-      if (playerState.moveRight) moveDirection.add(right)
+      if (playerState.current.moveForward) moveDirection.add(forward)
+      if (playerState.current.moveBackward) moveDirection.sub(forward)
+      if (playerState.current.moveLeft) moveDirection.sub(right)
+      if (playerState.current.moveRight) moveDirection.add(right)
 
       // ─── Apply Movement with Collision ───
       if (moveDirection.length() > 0) {
         moveDirection.normalize()
-        
-        const speed = playerState.sprint 
-          ? playerState.speed * playerState.sprintMultiplier 
-          : playerState.speed
+
+        const speed = playerState.current.sprint
+          ? playerState.current.speed * playerState.current.sprintMultiplier
+          : playerState.current.speed
 
         const collisionDist = 0.6
 
@@ -410,17 +460,31 @@ function GameCanvas({ selectedBuilding }) {
       // ─── Ground Detection (Simplified) ───
       if (collidableMeshes.length > 0) {
         const groundY = getGroundHeight(player.position)
-        playerState.targetY = groundY
-        
+        playerState.current.targetY = groundY
+
         // Smooth height transition (prevents flying)
-        const heightDiff = playerState.targetY - playerState.currentY
-        
+        const heightDiff = playerState.current.targetY - playerState.current.currentY
+
         // Only allow gradual changes (max 0.3 per frame for stairs)
         if (Math.abs(heightDiff) < 2) {
-          playerState.currentY += heightDiff * 0.15
+          playerState.current.currentY += heightDiff * 0.15
         }
-        
-        player.position.y = playerState.currentY
+
+        player.position.y = playerState.current.currentY
+
+        // ─── Update Floor UI ───
+        // Calculate floor based on height (approx 4 units per floor)
+        // Floor 1 = Ground (y=0 to y=3.49)
+        // Floor 2 = First (y=3.5 to y=7.49) (Threshold y=3.5)
+        // Adjusted to 4 units per floor based on user feedback
+        const detectedFloor = Math.max(1, Math.floor((player.position.y + 0.5) / 4) + 1)
+
+        // We can use a ref to throttle this update so we don't spam the parent
+        if (playerRef.current.detectedFloor !== detectedFloor) {
+          playerRef.current.detectedFloor = detectedFloor
+          onFloorChange?.(detectedFloor)
+          console.log(`Floor changed to ${detectedFloor}`)
+        }
       }
 
       // ─── Update Camera ───
@@ -465,10 +529,13 @@ function GameCanvas({ selectedBuilding }) {
       window.removeEventListener('resize', handleResize)
       window.removeEventListener('keydown', onKeyDown)
       window.removeEventListener('keyup', onKeyUp)
-      renderer.domElement.removeEventListener('mousedown', onMouseDown)
-      renderer.domElement.removeEventListener('mouseup', onMouseUp)
-      renderer.domElement.removeEventListener('mouseleave', onMouseUp)
-      renderer.domElement.removeEventListener('mousemove', onMouseMove)
+      document.removeEventListener('pointerlockchange', onPointerLockChange)
+      if (renderer.domElement) {
+        renderer.domElement.removeEventListener('click', onClick)
+        renderer.domElement.removeEventListener('mousemove', onMouseMove)
+        renderer.domElement.removeEventListener('wheel', onWheel)
+        renderer.domElement.removeEventListener('contextmenu', e => e.preventDefault())
+      }
       renderer.dispose()
       if (containerRef.current?.contains(renderer.domElement)) {
         containerRef.current.removeChild(renderer.domElement)
@@ -479,7 +546,7 @@ function GameCanvas({ selectedBuilding }) {
   return (
     <>
       <div ref={containerRef} className="game-canvas" />
-      
+
       {isLoading && (
         <div className="model-loading-overlay">
           <div className="model-loading-content">

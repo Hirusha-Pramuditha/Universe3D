@@ -11,11 +11,11 @@ const BUILDING_INFO = {
   'ramakrishna': { name: 'Ramakrishna Building', floors: 5 }
 }
 
-function GameUI({ playerNickname, selectedBuilding, onBackToMenu }) {
+function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTeleport, currentFloor, setCurrentFloor }) {
   const navigate = useNavigate()
   const [showControls, setShowControls] = useState(false)
   const [showMenu, setShowMenu] = useState(false)
-  const [currentFloor, setCurrentFloor] = useState(0)
+  // currentFloor is now passed as a prop
   const [isMinimapExpanded, setIsMinimapExpanded] = useState(false)
   const [missions, setMissions] = useState(MISSIONS[selectedBuilding] || [])
   const [showSearch, setShowSearch] = useState(false)
@@ -66,10 +66,10 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu }) {
   }
 
   const handleBackToMenu = () => {
-  // Go back to main menu (building selection)
-  setShowMenu(false)
-  onBackToMenu?.()
-}
+    // Go back to main menu (building selection)
+    setShowMenu(false)
+    onBackToMenu?.()
+  }
 
   return (
     <div className="game-ui">
@@ -102,7 +102,7 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu }) {
             <circle cx="12" cy="10" r="3" />
           </svg>
           <span>
-            {buildingInfo.name} - {currentFloor === 0 ? 'Ground Floor' : `Floor ${currentFloor}`}
+            {buildingInfo.name} - {currentFloor === 1 ? 'Ground Floor' : `Floor ${currentFloor - 1}`}
           </span>
         </div>
 
@@ -263,8 +263,8 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu }) {
         currentFloor={currentFloor}
         onTeleport={(location) => {
           console.log("Teleporting to:", location);
-          // TODO: Implement actual teleportation in GameCanvas
           setCurrentFloor(location.floor);
+          onTeleport?.(location);
         }}
       />
 
@@ -291,12 +291,12 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu }) {
             ▲
           </button>
           <span>
-            {currentFloor === 0 ? 'Ground' : `Floor ${currentFloor}`} / {buildingInfo.floors}
+            {currentFloor === 1 ? 'Ground' : `Floor ${currentFloor - 1}`}
           </span>
           <button
             className="floor-btn"
             onClick={handleFloorDown}
-            disabled={currentFloor <= 0}
+            disabled={currentFloor <= 1}
           >
             ▼
           </button>

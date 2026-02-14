@@ -29,7 +29,9 @@ function GamePage() {
   const [screenState, setScreenState] = useState('loading')
   const [playerNickname, setPlayerNickname] = useState('')
   const [selectedBuilding, setSelectedBuilding] = useState(null)
-  
+  const [teleportTarget, setTeleportTarget] = useState(null)
+  const [currentFloor, setCurrentFloor] = useState(1)
+
   const [isMuted, setIsMuted] = useState(false)
   const audioRef = useRef(null)
 
@@ -37,39 +39,39 @@ function GamePage() {
 
   // Centralized audio management - plays across loading and menu screens
   useEffect(() => {
-  audioRef.current = new Audio('/audio/loading-music.mp3')
-  audioRef.current.loop = true
-  audioRef.current.volume = 0.15
+    audioRef.current = new Audio('/audio/loading-music.mp3')
+    audioRef.current.loop = true
+    audioRef.current.volume = 0.15
 
-  const playAudio = () => {
-    if (audioRef.current) {
-      audioRef.current.play().catch(() => {})
+    const playAudio = () => {
+      if (audioRef.current) {
+        audioRef.current.play().catch(() => { })
+      }
     }
-  }
 
-  // Try to play on any user interaction
-  const handleInteraction = () => {
-    playAudio()
-    // Remove all listeners after first successful play
-    document.removeEventListener('click', handleInteraction)
-    document.removeEventListener('touchstart', handleInteraction)
-    document.removeEventListener('keydown', handleInteraction)
-  }
-
-  // Add multiple interaction listeners
-  document.addEventListener('click', handleInteraction)
-  document.addEventListener('touchstart', handleInteraction)
-  document.addEventListener('keydown', handleInteraction)
-
-  return () => {
-    document.removeEventListener('click', handleInteraction)
-    document.removeEventListener('touchstart', handleInteraction)
-    document.removeEventListener('keydown', handleInteraction)
-    if (audioRef.current) {
-      audioRef.current.pause()
-      audioRef.current = null
+    // Try to play on any user interaction
+    const handleInteraction = () => {
+      playAudio()
+      // Remove all listeners after first successful play
+      document.removeEventListener('click', handleInteraction)
+      document.removeEventListener('touchstart', handleInteraction)
+      document.removeEventListener('keydown', handleInteraction)
     }
-  }
+
+    // Add multiple interaction listeners
+    document.addEventListener('click', handleInteraction)
+    document.addEventListener('touchstart', handleInteraction)
+    document.addEventListener('keydown', handleInteraction)
+
+    return () => {
+      document.removeEventListener('click', handleInteraction)
+      document.removeEventListener('touchstart', handleInteraction)
+      document.removeEventListener('keydown', handleInteraction)
+      if (audioRef.current) {
+        audioRef.current.pause()
+        audioRef.current = null
+      }
+    }
   }, [])
 
   // Handle mute toggle
@@ -84,10 +86,10 @@ function GamePage() {
     // Store nickname
     setPlayerNickname(nickname)
     sessionStorage.setItem('universe3d_player_nickname', nickname)
-    
+
     // Transition to main menu
     setScreenState('menu')
-    
+
     console.log(`Player "${nickname}" ready to select building!`)
   }
 
@@ -95,10 +97,10 @@ function GamePage() {
   const handleStartGame = (buildingId) => {
     setSelectedBuilding(buildingId)
     sessionStorage.setItem('universe3d_selected_building', buildingId)
-    
+
     // Stop music when entering game
     if (audioRef.current) {
-    audioRef.current.pause()
+      audioRef.current.pause()
     }
 
     // Transition to game
@@ -111,6 +113,15 @@ function GamePage() {
     sessionStorage.removeItem('universe3d_player_nickname')
     sessionStorage.removeItem('universe3d_selected_building')
     navigate('/')
+  }
+
+  // Handle teleportation
+  const handleTeleport = (location) => {
+    setTeleportTarget(location)
+  }
+
+  const handleFloorChange = (floor) => {
+    setCurrentFloor(floor)
   }
 
   // Player context value
@@ -149,11 +160,18 @@ function GamePage() {
         {/* Game - Playing */}
         {screenState === "playing" && (
           <div className="game-container visible">
-            <GameCanvas selectedBuilding={selectedBuilding} />
+            <GameCanvas
+              selectedBuilding={selectedBuilding}
+              teleportTarget={teleportTarget}
+              onFloorChange={handleFloorChange}
+            />
             <GameUI
               playerNickname={playerNickname}
               selectedBuilding={selectedBuilding}
               onBackToMenu={() => setScreenState("menu")}
+              onTeleport={handleTeleport}
+              currentFloor={currentFloor}
+              setCurrentFloor={setCurrentFloor}
             />
           </div>
         )}
