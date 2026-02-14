@@ -1,0 +1,31 @@
+/* ============================================================
+   UNIVERSE 3D — Game Page Base
+   Full-screen page shell · canvas wrapper · visibility toggle
+   ============================================================ */
+
+.game-page {
+  position: fixed;
+  inset: 0;
+  background: #0a0e1a;
+  overflow: hidden;
+}
+
+.game-container {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.5s ease;
+}
+
+.game-container.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.game-container.visible {
+  opacity: 1;
+}
+
+.game-canvas {
+  width: 100%;
+  height: 100%;
+}
