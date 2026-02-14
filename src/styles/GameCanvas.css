@@ -1,0 +1,74 @@
+/* Custom Game Cursor */
+.game-canvas {
+    cursor: url('/game-cursor.svg') 4 4, auto;
+}
+
+/* Hide standard cursor when locked (handled by pointer lock API, but good fallback) */
+.game-canvas:active {
+    cursor: none;
+}
+
+/* Simulated Mouse Icon */
+.click-to-start-content span::before {
+    content: '';
+    display: block;
+    width: 14px;
+    height: 20px;
+    border: 2px solid #60a5fa;
+    border-radius: 10px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.click-to-start-content span::after {
+    content: '';
+    display: block;
+    width: 2px;
+    height: 4px;
+    background: #60a5fa;
+    position: absolute;
+    margin-left: 6px;
+    margin-top: -6px;
+    /* Center inside the mouse icon */
+    border-radius: 1px;
+    animation: scrollWheel 1.5s infinite;
+}
+
+@keyframes scrollWheel {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(4px);
+        opacity: 0;
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Hover Effect on Overlay */
+.click-to-start-overlay:hover .click-to-start-content {
+    border-color: rgba(59, 130, 246, 0.5);
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.6),
+        0 0 20px rgba(59, 130, 246, 0.2);
+    transform: scale(1.02);
+}
+
+.click-to-start-overlay:hover .click-to-start-content span {
+    background: rgba(30, 41, 59, 0.8);
+    color: #e2e8f0;
+    border-color: rgba(59, 130, 246, 0.4);
+}

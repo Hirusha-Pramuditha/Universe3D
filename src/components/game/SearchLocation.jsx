@@ -3,40 +3,40 @@ import React, { useState, useEffect, useRef } from 'react'
 // Location data for each building
 const LOCATIONS = {
   'gp-square': [
-    { id: 'gp-reception', name: 'Main Reception', floor: 1, type: 'Service', keywords: ['reception', 'help', 'info', 'entrance'] },
-    { id: 'gp-library', name: 'Library', floor: 2, type: 'Facility', keywords: ['books', 'study', 'reading'] },
-    { id: 'gp-lab01', name: 'Computer Lab 01', floor: 3, type: 'Lab', keywords: ['computer', 'pc', 'lab'] },
-    { id: 'gp-lab02', name: 'Computer Lab 02', floor: 3, type: 'Lab', keywords: ['computer', 'pc', 'lab'] },
-    { id: 'gp-lab03', name: 'Network Lab', floor: 4, type: 'Lab', keywords: ['network', 'cisco', 'lab'] },
-    { id: 'gp-cafeteria', name: 'Cafeteria', floor: 1, type: 'Facility', keywords: ['food', 'eat', 'canteen', 'lunch'] },
-    { id: 'gp-sru', name: 'Student Resource Unit (SRU)', floor: 2, type: 'Service', keywords: ['student', 'help', 'support', 'sru'] },
-    { id: 'gp-lecturehall-a', name: 'Lecture Hall A', floor: 1, type: 'Academic', keywords: ['lecture', 'class', 'hall'] },
-    { id: 'gp-lecturehall-b', name: 'Lecture Hall B', floor: 1, type: 'Academic', keywords: ['lecture', 'class', 'hall'] },
-    { id: 'gp-staffroom', name: 'Academic Staff Room', floor: 5, type: 'Office', keywords: ['staff', 'lecturer', 'teacher'] },
-    { id: 'gp-admin', name: 'Administration Office', floor: 2, type: 'Office', keywords: ['admin', 'office', 'management'] },
-    { id: 'gp-exam', name: 'Examination Unit', floor: 2, type: 'Service', keywords: ['exam', 'test', 'results'] },
-    { id: 'gp-washroom-m1', name: 'Washroom (Male)', floor: 1, type: 'Facility', keywords: ['toilet', 'washroom', 'bathroom', 'male'] },
-    { id: 'gp-washroom-f1', name: 'Washroom (Female)', floor: 1, type: 'Facility', keywords: ['toilet', 'washroom', 'bathroom', 'female'] },
-    { id: 'gp-elevator', name: 'Main Elevator', floor: 1, type: 'Facility', keywords: ['elevator', 'lift'] },
-    { id: 'gp-stairs', name: 'Main Staircase', floor: 1, type: 'Facility', keywords: ['stairs', 'staircase'] },
-    { id: 'gp-emergency', name: 'Emergency Exit', floor: 1, type: 'Safety', keywords: ['emergency', 'exit', 'fire'] },
+    { id: 'gp-reception', name: 'Main Reception', floor: 1, type: 'Service', keywords: ['reception', 'help', 'info', 'entrance'], coordinates: {x: -6, y: 0, z: -5 } },
+    { id: 'gp-library', name: 'Library', floor: 2, type: 'Facility', keywords: ['books', 'study', 'reading'], coordinates: { x: -5, y: 4, z: -4 } },
+    { id: 'gp-lab01', name: 'Computer Lab 01', floor: 3, type: 'Lab', keywords: ['computer', 'pc', 'lab'], coordinates: { x: -9, y: 10, z: -5 } },
+    { id: 'gp-lab02', name: 'Computer Lab 02', floor: 3, type: 'Lab', keywords: ['computer', 'pc', 'lab'], coordinates: { x: -9, y: 10, z: -5 } },
+    { id: 'gp-lab03', name: 'Network Lab', floor: 4, type: 'Lab', keywords: ['network', 'cisco', 'lab'], coordinates: { x: -5, y: 12, z: -4 } },
+    { id: 'gp-cafeteria', name: 'Cafeteria', floor: 1, type: 'Facility', keywords: ['food', 'eat', 'canteen', 'lunch'], coordinates: { x: 0, y: 0, z: -4 } },
+    { id: 'gp-sru', name: 'Student Resource Unit (SRU)', floor: 2, type: 'Service', keywords: ['student', 'help', 'support', 'sru'], coordinates: { x: -5, y: 4, z: -4 } },
+    { id: 'gp-lecturehall-a', name: 'Lecture Hall A', floor: 1, type: 'Academic', keywords: ['lecture', 'class', 'hall'], coordinates: { x: -15, y: 0, z: -4 } },
+    { id: 'gp-lecturehall-b', name: 'Lecture Hall B', floor: 1, type: 'Academic', keywords: ['lecture', 'class', 'hall'], coordinates: { x: -15, y: 0, z: -4 } },
+    { id: 'gp-staffroom', name: 'Academic Staff Room', floor: 5, type: 'Office', keywords: ['staff', 'lecturer', 'teacher'], coordinates: { x: -5, y: 16, z: -4 } },
+    { id: 'gp-admin', name: 'Administration Office', floor: 2, type: 'Office', keywords: ['admin', 'office', 'management'], coordinates: { x: -5, y: 4, z: -4 } },
+    { id: 'gp-exam', name: 'Examination Unit', floor: 2, type: 'Service', keywords: ['exam', 'test', 'results'], coordinates: { x: -5, y: 4, z: -4 } },
+    { id: 'gp-washroom-m1', name: 'Washroom (Male)', floor: 1, type: 'Facility', keywords: ['toilet', 'washroom', 'bathroom', 'male'], coordinates: { x: -15, y: 0, z: -4 } },
+    { id: 'gp-washroom-f1', name: 'Washroom (Female)', floor: 1, type: 'Facility', keywords: ['toilet', 'washroom', 'bathroom', 'female'], coordinates: { x: -15, y: 0, z: -4 } },
+    { id: 'gp-elevator', name: 'Main Elevator', floor: 1, type: 'Facility', keywords: ['elevator', 'lift'], coordinates: { x: -15, y: 0, z: -4 } },
+    { id: 'gp-stairs', name: 'Main Staircase', floor: 1, type: 'Facility', keywords: ['stairs', 'staircase'], coordinates: { x: -15, y: 0, z: -4 } },
+    { id: 'gp-emergency', name: 'Emergency Exit', floor: 1, type: 'Safety', keywords: ['emergency', 'exit', 'fire'], coordinates: { x: -15, y: 0, z: -4 } },
   ],
   'spencer': [
-    { id: 'sp-reception', name: 'Reception', floor: 1, type: 'Service', keywords: ['reception', 'help', 'entrance'] },
-    { id: 'sp-tutorial1', name: 'Tutorial Room 1', floor: 2, type: 'Academic', keywords: ['tutorial', 'class'] },
-    { id: 'sp-tutorial2', name: 'Tutorial Room 2', floor: 2, type: 'Academic', keywords: ['tutorial', 'class'] },
-    { id: 'sp-tutorial3', name: 'Tutorial Room 3', floor: 3, type: 'Academic', keywords: ['tutorial', 'class'] },
-    { id: 'sp-studyarea', name: 'Study Area', floor: 4, type: 'Facility', keywords: ['study', 'quiet', 'reading'] },
-    { id: 'sp-meetingroom', name: 'Meeting Room', floor: 5, type: 'Office', keywords: ['meeting', 'conference'] },
-    { id: 'sp-computerlab', name: 'Computer Lab', floor: 6, type: 'Lab', keywords: ['computer', 'pc', 'lab'] },
-    { id: 'sp-elevator', name: 'Elevator', floor: 1, type: 'Facility', keywords: ['elevator', 'lift'] },
+    { id: 'sp-reception', name: 'Reception', floor: 1, type: 'Service', keywords: ['reception', 'help', 'entrance'], coordinates: { x: -10, y: 0, z: -10 } },
+    { id: 'sp-tutorial1', name: 'Tutorial Room 1', floor: 2, type: 'Academic', keywords: ['tutorial', 'class'], coordinates: { x: -10, y: 4, z: -10 } },
+    { id: 'sp-tutorial2', name: 'Tutorial Room 2', floor: 2, type: 'Academic', keywords: ['tutorial', 'class'], coordinates: { x: -10, y: 4, z: -10 } },
+    { id: 'sp-tutorial3', name: 'Tutorial Room 3', floor: 3, type: 'Academic', keywords: ['tutorial', 'class'], coordinates: { x: -10, y: 8, z: -10 } },
+    { id: 'sp-studyarea', name: 'Study Area', floor: 4, type: 'Facility', keywords: ['study', 'quiet', 'reading'], coordinates: { x: -10, y: 12, z: -10 } },
+    { id: 'sp-meetingroom', name: 'Meeting Room', floor: 5, type: 'Office', keywords: ['meeting', 'conference'], coordinates: { x: -10, y: 16, z: -10 } },
+    { id: 'sp-computerlab', name: 'Computer Lab', floor: 6, type: 'Lab', keywords: ['computer', 'pc', 'lab'], coordinates: { x: -10, y: 20, z: -10 } },
+    { id: 'sp-elevator', name: 'Elevator', floor: 1, type: 'Facility', keywords: ['elevator', 'lift'], coordinates: { x: -10, y: 0, z: -10 } },
   ],
   'ramakrishna': [
-    { id: 'rk-reception', name: 'Reception', floor: 1, type: 'Service', keywords: ['reception', 'help', 'entrance'] },
-    { id: 'rk-classroom1', name: 'Classroom 1', floor: 2, type: 'Academic', keywords: ['class', 'room'] },
-    { id: 'rk-classroom2', name: 'Classroom 2', floor: 2, type: 'Academic', keywords: ['class', 'room'] },
-    { id: 'rk-staffarea', name: 'Staff Area', floor: 3, type: 'Office', keywords: ['staff', 'office'] },
-    { id: 'rk-storage', name: 'Storage Room', floor: 1, type: 'Facility', keywords: ['storage', 'store'] },
+    { id: 'rk-reception', name: 'Reception', floor: 1, type: 'Service', keywords: ['reception', 'help', 'entrance'], coordinates: { x: -10, y: 0, z: -10 } },
+    { id: 'rk-classroom1', name: 'Classroom 1', floor: 2, type: 'Academic', keywords: ['class', 'room'], coordinates: { x: -10, y: 4, z: -10 } },
+    { id: 'rk-classroom2', name: 'Classroom 2', floor: 2, type: 'Academic', keywords: ['class', 'room'], coordinates: { x: -10, y: 4, z: -10 } },
+    { id: 'rk-staffarea', name: 'Staff Area', floor: 3, type: 'Office', keywords: ['staff', 'office'], coordinates: { x: -10, y: 8, z: -10 } },
+    { id: 'rk-storage', name: 'Storage Room', floor: 1, type: 'Facility', keywords: ['storage', 'store'], coordinates: { x: -10, y: 0, z: -10 } },
   ],
 }
 
@@ -63,14 +63,14 @@ function SearchLocation({ isOpen, onClose, selectedBuilding, currentFloor, onTel
   const filteredLocations = searchQuery.trim() === ''
     ? locations.slice(0, 6) // Show first 6 when no search
     : locations.filter(loc => {
-        const query = searchQuery.toLowerCase()
-        return (
-          loc.name.toLowerCase().includes(query) ||
-          loc.type.toLowerCase().includes(query) ||
-          loc.keywords.some(kw => kw.includes(query)) ||
-          `floor ${loc.floor}`.includes(query)
-        )
-      })
+      const query = searchQuery.toLowerCase()
+      return (
+        loc.name.toLowerCase().includes(query) ||
+        loc.type.toLowerCase().includes(query) ||
+        loc.keywords.some(kw => kw.includes(query)) ||
+        (loc.floor === 1 ? 'ground floor' : `floor ${loc.floor - 1}`).includes(query)
+      )
+    })
 
   // Focus input when opened
   useEffect(() => {
@@ -89,7 +89,7 @@ function SearchLocation({ isOpen, onClose, selectedBuilding, currentFloor, onTel
       switch (e.key) {
         case 'ArrowDown':
           e.preventDefault()
-          setSelectedIndex(prev => 
+          setSelectedIndex(prev =>
             prev < filteredLocations.length - 1 ? prev + 1 : prev
           )
           break
@@ -129,7 +129,7 @@ function SearchLocation({ isOpen, onClose, selectedBuilding, currentFloor, onTel
       const filtered = prev.filter(l => l.id !== location.id)
       return [location, ...filtered].slice(0, 3)
     })
-    
+
     onTeleport?.(location)
     onClose()
   }
@@ -212,15 +212,15 @@ function SearchLocation({ isOpen, onClose, selectedBuilding, currentFloor, onTel
             </svg>
             {searchQuery ? `Results for "${searchQuery}"` : 'All Locations'}
           </div>
-          
+
           {filteredLocations.length > 0 ? (
             <div className="search-results" ref={resultsRef}>
               {filteredLocations.map((location, index) => (
                 <SearchResultItem
                   key={location.id}
                   location={location}
-                  isSelected={recentSearches.length > 0 && searchQuery === '' 
-                    ? false 
+                  isSelected={recentSearches.length > 0 && searchQuery === ''
+                    ? false
                     : index === selectedIndex}
                   currentFloor={currentFloor}
                   onClick={() => handleTeleport(location)}
@@ -263,7 +263,7 @@ function SearchResultItem({ location, isSelected, currentFloor, onClick, onMouse
   const floorDiff = Math.abs(location.floor - currentFloor)
 
   return (
-    <div 
+    <div
       className={`search-result-item ${isSelected ? 'selected' : ''}`}
       onClick={onClick}
       onMouseEnter={onMouseEnter}
@@ -271,14 +271,14 @@ function SearchResultItem({ location, isSelected, currentFloor, onClick, onMouse
       <div className="result-icon" style={{ background: `${typeConfig.color}20`, color: typeConfig.color }}>
         {typeConfig.icon}
       </div>
-      
+
       <div className="result-info">
         <div className="result-name">{location.name}</div>
         <div className="result-meta">
           <span className="result-type" style={{ color: typeConfig.color }}>{location.type}</span>
           <span className="result-divider">•</span>
           <span className={`result-floor ${isCurrentFloor ? 'current' : ''}`}>
-            Floor {location.floor}
+            {location.floor === 1 ? 'Ground Floor' : `Floor ${location.floor - 1}`}
             {isCurrentFloor && <span className="floor-badge">Current</span>}
           </span>
         </div>
