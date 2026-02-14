@@ -15,7 +15,7 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu }) {
   const navigate = useNavigate()
   const [showControls, setShowControls] = useState(false)
   const [showMenu, setShowMenu] = useState(false)
-  const [currentFloor, setCurrentFloor] = useState(1)
+  const [currentFloor, setCurrentFloor] = useState(0)
   const [isMinimapExpanded, setIsMinimapExpanded] = useState(false)
   const [missions, setMissions] = useState(MISSIONS[selectedBuilding] || [])
   const [showSearch, setShowSearch] = useState(false)
@@ -60,7 +60,7 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu }) {
   }
 
   const handleFloorDown = () => {
-    if (currentFloor > 1) {
+    if (currentFloor > 0) {
       setCurrentFloor(currentFloor - 1)
     }
   }
@@ -102,7 +102,7 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu }) {
             <circle cx="12" cy="10" r="3" />
           </svg>
           <span>
-            {buildingInfo.name} - Floor {currentFloor}
+            {buildingInfo.name} - {currentFloor === 0 ? 'Ground Floor' : `Floor ${currentFloor}`}
           </span>
         </div>
 
@@ -291,12 +291,12 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu }) {
             ▲
           </button>
           <span>
-            Floor {currentFloor} / {buildingInfo.floors}
+            {currentFloor === 0 ? 'Ground' : `Floor ${currentFloor}`} / {buildingInfo.floors}
           </span>
           <button
             className="floor-btn"
             onClick={handleFloorDown}
-            disabled={currentFloor <= 1}
+            disabled={currentFloor <= 0}
           >
             ▼
           </button>

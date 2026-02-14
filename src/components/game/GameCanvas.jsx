@@ -4,10 +4,6 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 function GameCanvas({ selectedBuilding }) {
   const containerRef = useRef(null)
-  const sceneRef = useRef(null)
-  const rendererRef = useRef(null)
-  const cameraRef = useRef(null)
-  const animationIdRef = useRef(null)
   const [isLoading, setIsLoading] = useState(true)
   const [loadingProgress, setLoadingProgress] = useState(0)
   const [modelError, setModelError] = useState(false)
@@ -15,30 +11,22 @@ function GameCanvas({ selectedBuilding }) {
   useEffect(() => {
     if (!containerRef.current) return
 
-    // Cleanup previous scene if exists
-    if (rendererRef.current) {
-      cancelAnimationFrame(animationIdRef.current)
-      rendererRef.current.dispose()
-      if (containerRef.current.contains(rendererRef.current.domElement)) {
-        containerRef.current.removeChild(rendererRef.current.domElement)
-      }
-    }
-
+    // ─── Core Variables ───
+    let animationId
+    let collidableMeshes = []
+    
     // ─── Scene Setup ───
     const scene = new THREE.Scene()
-    scene.background = new THREE.Color(0x87CEEB) // Sky blue
+    scene.background = new THREE.Color(0x87CEEB)
     scene.fog = new THREE.Fog(0x87CEEB, 100, 500)
-    sceneRef.current = scene
 
-    // ─── Camera ───
+    // ─── Camera (Third Person) ───
     const camera = new THREE.PerspectiveCamera(
-      75,
+      60,
       window.innerWidth / window.innerHeight,
       0.1,
       1000
     )
-    camera.position.set(0, 30, 80)
-    cameraRef.current = camera
 
     // ─── Renderer ───
     const renderer = new THREE.WebGLRenderer({ antialias: true })
@@ -46,32 +34,24 @@ function GameCanvas({ selectedBuilding }) {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.shadowMap.enabled = true
     renderer.shadowMap.type = THREE.PCFSoftShadowMap
-    renderer.toneMapping = THREE.ACESFilmicToneMapping
-    renderer.toneMappingExposure = 1.2
     containerRef.current.appendChild(renderer.domElement)
-    rendererRef.current = renderer
 
     // ─── Lighting ───
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6)
     scene.add(ambientLight)
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1)
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8)
     directionalLight.position.set(50, 100, 50)
     directionalLight.castShadow = true
-    directionalLight.shadow.camera.near = 0.1
-    directionalLight.shadow.camera.far = 300
-    directionalLight.shadow.camera.left = -150
-    directionalLight.shadow.camera.right = 150
-    directionalLight.shadow.camera.top = 150
-    directionalLight.shadow.camera.bottom = -150
-    directionalLight.shadow.mapSize.width = 4096
-    directionalLight.shadow.mapSize.height = 4096
+    directionalLight.shadow.mapSize.width = 2048
+    directionalLight.shadow.mapSize.height = 2048
     scene.add(directionalLight)
+    scene.add(directionalLight.target)
 
-    const hemiLight = new THREE.HemisphereLight(0x87CEEB, 0x90EE90, 0.4)
+    const hemiLight = new THREE.HemisphereLight(0x87CEEB, 0x7cba6d, 0.4)
     scene.add(hemiLight)
 
-    // ─── Ground Plane ───
+    // ─── Ground Plane (backup floor) ───
     const groundGeometry = new THREE.PlaneGeometry(1000, 1000)
     const groundMaterial = new THREE.MeshStandardMaterial({ 
       color: 0x7cba6d,
@@ -79,15 +59,143 @@ function GameCanvas({ selectedBuilding }) {
     })
     const ground = new THREE.Mesh(groundGeometry, groundMaterial)
     ground.rotation.x = -Math.PI / 2
+    ground.position.y = -0.1 // Slightly below 0
     ground.receiveShadow = true
     scene.add(ground)
 
-    // ─── Grid Helper (optional, for debugging) ───
-    const gridHelper = new THREE.GridHelper(200, 50, 0x4A9FD4, 0x7EC8E3)
-    gridHelper.position.y = 0.05
-    gridHelper.material.opacity = 0.3
-    gridHelper.material.transparent = true
-    scene.add(gridHelper)
+    // ─── Create Player Character ───
+    const player = new THREE.Group()
+    
+    // Body
+    const bodyGeometry = new THREE.CapsuleGeometry(0.2, 0.5, 3, 7)
+    const bodyMaterial = new THREE.MeshStandardMaterial({ 
+      color: 0x3b82f6,
+      roughness: 0.5
+    })
+    const body = new THREE.Mesh(bodyGeometry, bodyMaterial)
+    body.position.y = 0.55
+    body.castShadow = true
+    player.add(body)
+
+    // Head
+    const headGeometry = new THREE.SphereGeometry(0.15, 16, 16)
+    const headMaterial = new THREE.MeshStandardMaterial({ 
+      color: 0xffd699,
+      roughness: 0.6
+    })
+    const head = new THREE.Mesh(headGeometry, headMaterial)
+    head.position.y = 1.1
+    head.castShadow = true
+    player.add(head)
+
+    // Eyes
+    const eyeGeometry = new THREE.SphereGeometry(0.06, 8, 8)
+    const eyeMaterial = new THREE.MeshStandardMaterial({ color: 0x222222 })
+    const leftEye = new THREE.Mesh(eyeGeometry, eyeMaterial)
+    leftEye.position.set(-0.05, 1.15, 0.12)
+    player.add(leftEye)
+    const rightEye = new THREE.Mesh(eyeGeometry, eyeMaterial)
+    rightEye.position.set(0.05, 1.15, 0.12)
+    player.add(rightEye)
+
+    // Direction indicator
+    const indicatorGeometry = new THREE.ConeGeometry(0.08, 0.15, 8)
+    const indicatorMaterial = new THREE.MeshStandardMaterial({ color: 0x22c55e })
+    const indicator = new THREE.Mesh(indicatorGeometry, indicatorMaterial)
+    indicator.rotation.x = Math.PI / 2
+    indicator.position.set(0, 0.55, 0.3)
+    player.add(indicator)
+
+    // Set initial position
+    player.position.set(30, 0, 30)
+    scene.add(player)
+
+    // ─── Player State ───
+    const playerState = {
+      moveForward: false,
+      moveBackward: false,
+      moveLeft: false,
+      moveRight: false,
+      sprint: false,
+      speed: 0.12,
+      sprintMultiplier: 2,
+      currentY: 0,        // Current ground height
+      targetY: 0          // Target ground height (for smooth transitions)
+    }
+
+    // ─── Camera Settings ───
+    const cameraSettings = {
+      distance: 2, // Closer to player
+      height: 1, // Lower height (indoor friendly)
+      smoothness: 0.1,
+      rotationY: 0,
+      rotationX: 0.2,
+      minRotationX: -0.2,
+      maxRotationX: 0.8,
+    };
+
+    // ─── Mouse State ───
+    let isMouseDown = false
+    let lastMouseX = 0
+    let lastMouseY = 0
+
+    // ─── Raycaster for Collision ───
+    const raycaster = new THREE.Raycaster()
+    
+    // ─── Simple Wall Collision Check ───
+    function checkWallCollision(position, direction, distance) {
+      // Cast ray from player chest height
+      const origin = new THREE.Vector3(
+        position.x,
+        position.y + 1.0, // Chest height
+        position.z
+      )
+      
+      raycaster.set(origin, direction.normalize())
+      raycaster.far = distance
+      
+      const intersects = raycaster.intersectObjects(collidableMeshes, true)
+      
+      // Filter out floors (normals pointing up)
+      for (const hit of intersects) {
+        if (hit.face) {
+          const normal = hit.face.normal.clone()
+          // Transform normal to world space
+          normal.transformDirection(hit.object.matrixWorld)
+          // If normal is mostly horizontal, it's a wall
+          if (Math.abs(normal.y) < 0.5) {
+            return true // Wall hit
+          }
+        }
+      }
+      return false
+    }
+
+    // ─── Ground Height Detection ───
+    function getGroundHeight(position) {
+      // Cast ray downward from above player
+      const origin = new THREE.Vector3(
+        position.x,
+        position.y + 5, // Start from above
+        position.z
+      )
+      const direction = new THREE.Vector3(0, -1, 0)
+      
+      raycaster.set(origin, direction)
+      raycaster.far = 10
+      
+      const intersects = raycaster.intersectObjects(collidableMeshes, true)
+      
+      if (intersects.length > 0) {
+        // Find the highest floor below us (not ceiling above)
+        for (const hit of intersects) {
+          if (hit.point.y <= position.y + 1.5) { // Allow stepping up 1.5m max
+            return hit.point.y
+          }
+        }
+      }
+      return 0 // Default ground
+    }
 
     // ─── Load Building Model ───
     const loader = new GLTFLoader()
@@ -98,38 +206,36 @@ function GameCanvas({ selectedBuilding }) {
       (gltf) => {
         const model = gltf.scene
         
-        // Enable shadows for all meshes
         model.traverse((child) => {
           if (child.isMesh) {
             child.castShadow = true
             child.receiveShadow = true
+            collidableMeshes.push(child)
           }
         })
 
-        // Center and position the model
+        // Position model
         const box = new THREE.Box3().setFromObject(model)
         const center = box.getCenter(new THREE.Vector3())
-        const size = box.getSize(new THREE.Vector3())
         
         model.position.x = -center.x
         model.position.z = -center.z
-        model.position.y = 0
+        model.position.y = -box.min.y // Place on ground
 
         scene.add(model)
         
-        // Position camera based on model size
-        const maxDim = Math.max(size.x, size.y, size.z)
-        camera.position.set(maxDim * 0.8, maxDim * 0.5, maxDim * 0.8)
-        camera.lookAt(0, size.y / 3, 0)
+        // Set player start position
+        player.position.set(-11.5293, -1.81704, -6.13487)
+        playerState.currentY = 0
+        playerState.targetY = 0
 
         setIsLoading(false)
         setModelError(false)
-        console.log('Model loaded:', selectedBuilding)
+        console.log('Model loaded with', collidableMeshes.length, 'meshes')
       },
       (progress) => {
         if (progress.total > 0) {
-          const percent = (progress.loaded / progress.total) * 100
-          setLoadingProgress(percent)
+          setLoadingProgress((progress.loaded / progress.total) * 100)
         }
       },
       (error) => {
@@ -137,59 +243,33 @@ function GameCanvas({ selectedBuilding }) {
         setModelError(true)
         setIsLoading(false)
         
-        // Create placeholder building if model fails to load
-        createPlaceholderBuilding(scene)
+        // Create placeholder
+        createPlaceholder()
       }
     )
 
-    // ─── Placeholder Building (fallback) ───
-    function createPlaceholderBuilding(scene) {
-      const buildingConfigs = [
-        { pos: [-10, 0, -10], size: [6, 12, 6], color: 0x4A9FD4 },
-        { pos: [10, 0, -10], size: [8, 18, 8], color: 0x5BA8DC },
-        { pos: [-10, 0, 10], size: [5, 8, 5], color: 0x58A4D4 },
-        { pos: [10, 0, 10], size: [6, 10, 6], color: 0x4A9FD4 },
-        { pos: [0, 0, 0], size: [10, 20, 10], color: 0x7EC8E3 }
+    // ─── Placeholder Building ───
+    function createPlaceholder() {
+      const configs = [
+        { pos: [0, 10, 0], size: [20, 20, 20], color: 0x7EC8E3 }
       ]
-
-      buildingConfigs.forEach((config) => {
-        const geometry = new THREE.BoxGeometry(...config.size)
-        const material = new THREE.MeshStandardMaterial({
-          color: config.color,
-          roughness: 0.3,
-          metalness: 0.1
-        })
-        const building = new THREE.Mesh(geometry, material)
-        building.position.set(config.pos[0], config.size[1] / 2, config.pos[2])
-        building.castShadow = true
-        building.receiveShadow = true
-        scene.add(building)
+      configs.forEach(c => {
+        const geo = new THREE.BoxGeometry(...c.size)
+        const mat = new THREE.MeshStandardMaterial({ color: c.color })
+        const mesh = new THREE.Mesh(geo, mat)
+        mesh.position.set(...c.pos)
+        mesh.castShadow = true
+        mesh.receiveShadow = true
+        scene.add(mesh)
+        collidableMeshes.push(mesh)
       })
     }
-
-    // ─── Drone Controls State ───
-    const droneState = {
-      moveForward: false,
-      moveBackward: false,
-      moveLeft: false,
-      moveRight: false,
-      moveUp: false,
-      moveDown: false,
-      speed: 0.8,
-      rotationSpeed: 0.02
-    }
-
-    // Mouse look state
-    let isMouseDown = false
-    let mouseX = 0
-    let mouseY = 0
-    const euler = new THREE.Euler(0, 0, 0, 'YXZ')
 
     // ─── Event Handlers ───
     const onMouseDown = (e) => {
       isMouseDown = true
-      mouseX = e.clientX
-      mouseY = e.clientY
+      lastMouseX = e.clientX
+      lastMouseY = e.clientY
       renderer.domElement.style.cursor = 'grabbing'
     }
 
@@ -200,97 +280,69 @@ function GameCanvas({ selectedBuilding }) {
 
     const onMouseMove = (e) => {
       if (!isMouseDown) return
-
-      const deltaX = e.clientX - mouseX
-      const deltaY = e.clientY - mouseY
-      mouseX = e.clientX
-      mouseY = e.clientY
-
-      euler.setFromQuaternion(camera.quaternion)
-      euler.y -= deltaX * 0.003
-      euler.x -= deltaY * 0.003
-      euler.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, euler.x))
-      camera.quaternion.setFromEuler(euler)
-    }
-
-    const onKeyDown = (e) => {
-      // Prevent default for game controls
-      if (['KeyW', 'KeyA', 'KeyS', 'KeyD', 'Space', 'ShiftLeft', 'ShiftRight', 'KeyQ', 'KeyE', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.code)) {
-        e.preventDefault()
-      }
       
-      switch (e.code) {
-        case 'KeyW':
-        case 'ArrowUp':
-          droneState.moveForward = true
-          break
-        case 'KeyS':
-        case 'ArrowDown':
-          droneState.moveBackward = true
-          break
-        case 'KeyA':
-        case 'ArrowLeft':
-          droneState.moveLeft = true
-          break
-        case 'KeyD':
-        case 'ArrowRight':
-          droneState.moveRight = true
-          break
-        case 'Space':
-          droneState.moveUp = true
-          break
-        case 'ShiftLeft':
-        case 'ShiftRight':
-          droneState.moveDown = true
-          break
-        case 'KeyQ':
-          euler.setFromQuaternion(camera.quaternion)
-          euler.y += droneState.rotationSpeed * 2
-          camera.quaternion.setFromEuler(euler)
-          break
-        case 'KeyE':
-          euler.setFromQuaternion(camera.quaternion)
-          euler.y -= droneState.rotationSpeed * 2
-          camera.quaternion.setFromEuler(euler)
-          break
-      }
-    }
+      const deltaX = e.clientX - lastMouseX
+      const deltaY = e.clientY - lastMouseY
+      lastMouseX = e.clientX
+      lastMouseY = e.clientY
 
-    const onKeyUp = (e) => {
-      switch (e.code) {
-        case 'KeyW':
-        case 'ArrowUp':
-          droneState.moveForward = false
-          break
-        case 'KeyS':
-        case 'ArrowDown':
-          droneState.moveBackward = false
-          break
-        case 'KeyA':
-        case 'ArrowLeft':
-          droneState.moveLeft = false
-          break
-        case 'KeyD':
-        case 'ArrowRight':
-          droneState.moveRight = false
-          break
-        case 'Space':
-          droneState.moveUp = false
-          break
-        case 'ShiftLeft':
-        case 'ShiftRight':
-          droneState.moveDown = false
-          break
-      }
+      cameraSettings.rotationY -= deltaX * 0.005
+      cameraSettings.rotationX += deltaY * 0.005
+      cameraSettings.rotationX = Math.max(
+        cameraSettings.minRotationX,
+        Math.min(cameraSettings.maxRotationX, cameraSettings.rotationX)
+      )
     }
 
     const onWheel = (e) => {
-      droneState.speed = Math.max(0.2, Math.min(3, droneState.speed - e.deltaY * 0.001))
+      cameraSettings.distance += e.deltaY * 0.01
+      cameraSettings.distance = Math.max(3, Math.min(15, cameraSettings.distance))
     }
 
-    const onContextMenu = (e) => e.preventDefault()
+    const onKeyDown = (e) => {
+      // Block movement when typing in input fields
+      if (
+        document.activeElement.tagName === "INPUT" ||
+        document.activeElement.tagName === "TEXTAREA"
+      ) {
+        return;
+      }
 
-    // Add event listeners
+      switch (e.code) {
+        case "KeyW":
+        case "ArrowUp":
+          playerState.moveForward = true;
+          break;
+        case "KeyS":
+        case "ArrowDown":
+          playerState.moveBackward = true;
+          break;
+        case "KeyA":
+        case "ArrowLeft":
+          playerState.moveLeft = true;
+          break;
+        case "KeyD":
+        case "ArrowRight":
+          playerState.moveRight = true;
+          break;
+        case "ShiftLeft":
+        case "ShiftRight":
+          playerState.sprint = true;
+          break;
+      }
+    };
+
+    const onKeyUp = (e) => {
+      switch (e.code) {
+        case 'KeyW': case 'ArrowUp': playerState.moveForward = false; break
+        case 'KeyS': case 'ArrowDown': playerState.moveBackward = false; break
+        case 'KeyA': case 'ArrowLeft': playerState.moveLeft = false; break
+        case 'KeyD': case 'ArrowRight': playerState.moveRight = false; break
+        case 'ShiftLeft': case 'ShiftRight': playerState.sprint = false; break
+      }
+    }
+
+    // Add listeners
     window.addEventListener('keydown', onKeyDown)
     window.addEventListener('keyup', onKeyUp)
     renderer.domElement.addEventListener('mousedown', onMouseDown)
@@ -298,39 +350,102 @@ function GameCanvas({ selectedBuilding }) {
     renderer.domElement.addEventListener('mouseleave', onMouseUp)
     renderer.domElement.addEventListener('mousemove', onMouseMove)
     renderer.domElement.addEventListener('wheel', onWheel, { passive: true })
-    renderer.domElement.addEventListener('contextmenu', onContextMenu)
+    renderer.domElement.addEventListener('contextmenu', e => e.preventDefault())
     renderer.domElement.style.cursor = 'grab'
 
     // ─── Animation Loop ───
-    const direction = new THREE.Vector3()
-    const right = new THREE.Vector3()
-
     const animate = () => {
-      animationIdRef.current = requestAnimationFrame(animate)
+      animationId = requestAnimationFrame(animate)
 
-      // Get camera direction
-      camera.getWorldDirection(direction)
-      right.crossVectors(camera.up, direction).normalize().negate()
+      // ─── Calculate Movement Direction ───
+      const moveDirection = new THREE.Vector3()
+      
+      const forward = new THREE.Vector3(
+        -Math.sin(cameraSettings.rotationY),
+        0,
+        -Math.cos(cameraSettings.rotationY)
+      )
+      
+      const right = new THREE.Vector3(
+        Math.cos(cameraSettings.rotationY),
+        0,
+        -Math.sin(cameraSettings.rotationY)
+      )
 
-      // Apply drone movement
-      if (droneState.moveForward) {
-        camera.position.addScaledVector(direction, droneState.speed)
+      if (playerState.moveForward) moveDirection.add(forward)
+      if (playerState.moveBackward) moveDirection.sub(forward)
+      if (playerState.moveLeft) moveDirection.sub(right)
+      if (playerState.moveRight) moveDirection.add(right)
+
+      // ─── Apply Movement with Collision ───
+      if (moveDirection.length() > 0) {
+        moveDirection.normalize()
+        
+        const speed = playerState.sprint 
+          ? playerState.speed * playerState.sprintMultiplier 
+          : playerState.speed
+
+        const collisionDist = 0.6
+
+        // Check X movement
+        const dirX = new THREE.Vector3(moveDirection.x, 0, 0).normalize()
+        if (moveDirection.x !== 0 && !checkWallCollision(player.position, dirX, collisionDist)) {
+          player.position.x += moveDirection.x * speed
+        }
+
+        // Check Z movement
+        const dirZ = new THREE.Vector3(0, 0, moveDirection.z).normalize()
+        if (moveDirection.z !== 0 && !checkWallCollision(player.position, dirZ, collisionDist)) {
+          player.position.z += moveDirection.z * speed
+        }
+
+        // Rotate player to face movement direction
+        const targetRotation = Math.atan2(moveDirection.x, moveDirection.z)
+        let rotDiff = targetRotation - player.rotation.y
+        while (rotDiff > Math.PI) rotDiff -= Math.PI * 2
+        while (rotDiff < -Math.PI) rotDiff += Math.PI * 2
+        player.rotation.y += rotDiff * 0.15
       }
-      if (droneState.moveBackward) {
-        camera.position.addScaledVector(direction, -droneState.speed)
+
+      // ─── Ground Detection (Simplified) ───
+      if (collidableMeshes.length > 0) {
+        const groundY = getGroundHeight(player.position)
+        playerState.targetY = groundY
+        
+        // Smooth height transition (prevents flying)
+        const heightDiff = playerState.targetY - playerState.currentY
+        
+        // Only allow gradual changes (max 0.3 per frame for stairs)
+        if (Math.abs(heightDiff) < 2) {
+          playerState.currentY += heightDiff * 0.15
+        }
+        
+        player.position.y = playerState.currentY
       }
-      if (droneState.moveLeft) {
-        camera.position.addScaledVector(right, -droneState.speed)
-      }
-      if (droneState.moveRight) {
-        camera.position.addScaledVector(right, droneState.speed)
-      }
-      if (droneState.moveUp) {
-        camera.position.y += droneState.speed
-      }
-      if (droneState.moveDown) {
-        camera.position.y = Math.max(2, camera.position.y - droneState.speed)
-      }
+
+      // ─── Update Camera ───
+      const cameraOffset = new THREE.Vector3(
+        Math.sin(cameraSettings.rotationY) * cameraSettings.distance,
+        cameraSettings.height + cameraSettings.rotationX * 2,
+        Math.cos(cameraSettings.rotationY) * cameraSettings.distance
+      )
+
+      const cameraTarget = new THREE.Vector3(
+        player.position.x,
+        player.position.y + 0.5, // Lower target for smaller character
+        player.position.z,
+      );
+
+      camera.position.lerp(cameraTarget.clone().add(cameraOffset), cameraSettings.smoothness)
+      camera.lookAt(cameraTarget)
+
+      // Update light
+      directionalLight.position.set(
+        player.position.x + 30,
+        50,
+        player.position.z + 30
+      )
+      directionalLight.target.position.copy(player.position)
 
       renderer.render(scene, camera)
     }
@@ -346,7 +461,7 @@ function GameCanvas({ selectedBuilding }) {
 
     // ─── Cleanup ───
     return () => {
-      cancelAnimationFrame(animationIdRef.current)
+      cancelAnimationFrame(animationId)
       window.removeEventListener('resize', handleResize)
       window.removeEventListener('keydown', onKeyDown)
       window.removeEventListener('keyup', onKeyUp)
@@ -354,8 +469,6 @@ function GameCanvas({ selectedBuilding }) {
       renderer.domElement.removeEventListener('mouseup', onMouseUp)
       renderer.domElement.removeEventListener('mouseleave', onMouseUp)
       renderer.domElement.removeEventListener('mousemove', onMouseMove)
-      renderer.domElement.removeEventListener('wheel', onWheel)
-      renderer.domElement.removeEventListener('contextmenu', onContextMenu)
       renderer.dispose()
       if (containerRef.current?.contains(renderer.domElement)) {
         containerRef.current.removeChild(renderer.domElement)
@@ -367,24 +480,19 @@ function GameCanvas({ selectedBuilding }) {
     <>
       <div ref={containerRef} className="game-canvas" />
       
-      {/* Loading overlay */}
       {isLoading && (
         <div className="model-loading-overlay">
           <div className="model-loading-content">
             <div className="model-loading-spinner"></div>
-            <p>Loading {selectedBuilding ? selectedBuilding.replace('-', ' ').toUpperCase() : 'Building'}...</p>
+            <p>Loading {selectedBuilding?.replace('-', ' ').toUpperCase() || 'Building'}...</p>
             <div className="model-loading-bar">
-              <div 
-                className="model-loading-fill" 
-                style={{ width: `${loadingProgress}%` }}
-              ></div>
+              <div className="model-loading-fill" style={{ width: `${loadingProgress}%` }}></div>
             </div>
             <span className="model-loading-percent">{loadingProgress.toFixed(0)}%</span>
           </div>
         </div>
       )}
 
-      {/* Error message if model failed */}
       {modelError && !isLoading && (
         <div className="model-error-toast">
           <span>⚠️ Model not found. Using placeholder.</span>
