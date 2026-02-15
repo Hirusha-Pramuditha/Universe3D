@@ -6,8 +6,8 @@ import SearchLocation from './SearchLocation'
 
 // Building data for display names
 const BUILDING_INFO = {
-  'gp-square': { name: 'GP Square', floors: 8 },
   'spencer': { name: 'Spencer Building (SP)', floors: 13 },
+  'gp-square': { name: 'GP Square', floors: 8 },
   'ramakrishna': { name: 'Ramakrishna Building', floors: 5 }
 }
 
