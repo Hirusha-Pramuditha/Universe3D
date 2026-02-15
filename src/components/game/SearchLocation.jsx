@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react'
 const LOCATIONS = {
   'gp-square': [
     { id: 'gp-reception', name: 'Main Reception', floor: 1, type: 'Service', keywords: ['reception', 'help', 'info', 'entrance'], coordinates: {x: -6, y: 0, z: -5 } },
-    { id: 'gp-library', name: 'Library', floor: 2, type: 'Facility', keywords: ['books', 'study', 'reading'], coordinates: { x: -5, y: 4, z: -4 } },
+    { id: 'gp-library', name: 'Library', floor: 2, type: 'Facility', keywords: ['books', 'study', 'reading'], coordinates: { x: -5, y: 7, z: -4 } },
     { id: 'gp-lab01', name: 'Computer Lab 01', floor: 3, type: 'Lab', keywords: ['computer', 'pc', 'lab'], coordinates: { x: -9, y: 10, z: -5 } },
     { id: 'gp-lab02', name: 'Computer Lab 02', floor: 3, type: 'Lab', keywords: ['computer', 'pc', 'lab'], coordinates: { x: -9, y: 10, z: -5 } },
     { id: 'gp-lab03', name: 'Network Lab', floor: 4, type: 'Lab', keywords: ['network', 'cisco', 'lab'], coordinates: { x: -5, y: 12, z: -4 } },
