@@ -1,6 +1,9 @@
 /* Custom Game Cursor */
 .game-canvas {
     cursor: url('/game-cursor.svg') 4 4, auto;
+    width: 100%;
+    height: 100vh;
+    display: block;
 }
 
 /* Hide standard cursor when locked (handled by pointer lock API, but good fallback) */
@@ -8,7 +11,109 @@
     cursor: none;
 }
 
-/* Simulated Mouse Icon */
+/* Loading Screen */
+.model-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+    backdrop-filter: blur(8px);
+}
+
+.model-loading-content {
+    background: rgba(30, 41, 59, 0.8);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    text-align: center;
+    color: white;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    min-width: 300px;
+}
+
+.model-loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(59, 130, 246, 0.3);
+    border-radius: 50%;
+    border-top-color: #60a5fa;
+    animation: spin 1s linear infinite;
+}
+
+.model-loading-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.model-loading-fill {
+    height: 100%;
+    background: #60a5fa;
+    transition: width 0.3s ease-out;
+    box-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+}
+
+.model-loading-percent {
+    font-family: monospace;
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+.loading-hint {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+.model-error-toast {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(239, 68, 68, 0.9);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    z-index: 60;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translate(-50%, 20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+/* Simulated Mouse Icon (Start Overlay) */
 .click-to-start-content span::before {
     content: '';
     display: block;

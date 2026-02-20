@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import MissionPanel from './MissionPanel'
-import MISSIONS from '../../data/missions'
 import SearchLocation from './SearchLocation'
+import Feedback from './Feedback'
 
 // Building data for display names
 const BUILDING_INFO = {
@@ -11,13 +11,14 @@ const BUILDING_INFO = {
   'ramakrishna': { name: 'Ramakrishna Building', floors: 5 }
 }
 
-function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTeleport, currentFloor, setCurrentFloor }) {
+function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTeleport, currentFloor, setCurrentFloor, missions, onMissionUpdate }) {
   const navigate = useNavigate()
   const [showControls, setShowControls] = useState(false)
   const [showMenu, setShowMenu] = useState(false)
+  const [showFeedback, setShowFeedback] = useState(false)
   // currentFloor is now passed as a prop
   const [isMinimapExpanded, setIsMinimapExpanded] = useState(false)
-  const [missions, setMissions] = useState(MISSIONS[selectedBuilding] || [])
+  // missions and onMissionUpdate are passed as props
   const [showSearch, setShowSearch] = useState(false)
 
   // Get building info based on selection
@@ -47,6 +48,11 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTeleport, cu
   }, [])
 
   const handleExitGame = () => {
+    setShowFeedback(true)
+  }
+
+  const handleFeedbackComplete = () => {
+    setShowFeedback(false)
     // Clear session data when exiting
     sessionStorage.removeItem('universe3d_player_nickname')
     sessionStorage.removeItem('universe3d_selected_building')
@@ -165,7 +171,7 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTeleport, cu
         </div>
 
         {/* Mission Panel - Under top bar on right side */}
-        <MissionPanel missions={missions} buildingName={buildingInfo.name} />
+        <MissionPanel missions={missions} onMissionUpdate={onMissionUpdate} buildingName={buildingInfo.name} />
       </div>
 
       {/* Control Hints */}
@@ -344,6 +350,13 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTeleport, cu
           </button>
         </div>
       </div>
+      {/* Feedback Modal */}
+      {showFeedback && (
+        <Feedback
+          onComplete={handleFeedbackComplete}
+          onClose={() => setShowFeedback(false)}
+        />
+      )}
     </div>
   );
 }

@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 
+import Feedback from './Feedback'
+
 // Building data
 const BUILDINGS = [
   {
@@ -28,27 +30,28 @@ const BUILDINGS = [
 function MainMenu({ onStartGame, onExit, playerNickname, isMuted, onToggleMute }) {
   const [selectedBuilding, setSelectedBuilding] = useState(null)
   const [hoveredCard, setHoveredCard] = useState(null)
-  
+  const [showFeedback, setShowFeedback] = useState(false)
+
   const clickSoundRef = useRef(null)
   const startSoundRef = useRef(null)
 
   // Initialize sound effects
-useEffect(() => {
-  // Pre-load audio files
-  clickSoundRef.current = new Audio('/audio/card-click.mp3')
-  clickSoundRef.current.volume = 0.5
-  clickSoundRef.current.load()
-  
-  startSoundRef.current = new Audio('/audio/start-game.mp3')
-  startSoundRef.current.volume = 0.6
-  startSoundRef.current.load()
-}, [])
+  useEffect(() => {
+    // Pre-load audio files
+    clickSoundRef.current = new Audio('/audio/card-click.mp3')
+    clickSoundRef.current.volume = 0.5
+    clickSoundRef.current.load()
+
+    startSoundRef.current = new Audio('/audio/start-game.mp3')
+    startSoundRef.current.volume = 0.6
+    startSoundRef.current.load()
+  }, [])
 
   const handleBuildingSelect = (buildingId) => {
     // Play click sound
     if (clickSoundRef.current && !isMuted) {
       clickSoundRef.current.currentTime = 0
-      clickSoundRef.current.play().catch(() => {})
+      clickSoundRef.current.play().catch(() => { })
     }
     setSelectedBuilding(buildingId)
   }
@@ -58,13 +61,18 @@ useEffect(() => {
       // Play start game sound
       if (startSoundRef.current && !isMuted) {
         startSoundRef.current.currentTime = 0
-        startSoundRef.current.play().catch(() => {})
+        startSoundRef.current.play().catch(() => { })
       }
       onStartGame?.(selectedBuilding)
     }
   }
 
   const handleExit = () => {
+    setShowFeedback(true)
+  }
+
+  const handleFeedbackComplete = () => {
+    setShowFeedback(false)
     onExit?.()
   }
 
@@ -73,7 +81,7 @@ useEffect(() => {
       {/* Background */}
       <div className="mm-background">
         <div className="mm-gradient"></div>
-        
+
         {/* Light rays */}
         <div className="mm-rays">
           <div className="mm-ray mm-ray-1"></div>
@@ -160,8 +168,8 @@ useEffect(() => {
       </div>
 
       {/* Corner buttons */}
-      <button 
-        className="mm-corner-btn mm-exit-btn" 
+      <button
+        className="mm-corner-btn mm-exit-btn"
         onClick={handleExit}
         title="Exit to Home"
       >
@@ -172,8 +180,8 @@ useEffect(() => {
         </svg>
       </button>
 
-      <button 
-        className="mm-corner-btn mm-audio-btn" 
+      <button
+        className="mm-corner-btn mm-audio-btn"
         onClick={onToggleMute}
         title={isMuted ? 'Unmute' : 'Mute'}
       >
@@ -216,8 +224,8 @@ useEffect(() => {
               <div className="mm-card-glow"></div>
               <div className="mm-card-inner">
                 <div className="mm-card-image">
-                  <img 
-                    src={building.image} 
+                  <img
+                    src={building.image}
                     alt={building.name}
                     onError={(e) => {
                       e.target.style.display = 'none'
@@ -250,7 +258,7 @@ useEffect(() => {
         </p>
 
         {/* Start Game button */}
-        <button 
+        <button
           className={`mm-start-btn ${selectedBuilding ? 'active' : 'disabled'}`}
           onClick={handleStartGame}
           disabled={!selectedBuilding}
@@ -266,6 +274,14 @@ useEffect(() => {
           <path d="M12 2L15 8L22 9L17 14L18 21L12 18L6 21L7 14L2 9L9 8L12 2Z" />
         </svg>
       </div>
+
+      {/* Feedback Modal */}
+      {showFeedback && (
+        <Feedback
+          onComplete={handleFeedbackComplete}
+          onClose={() => setShowFeedback(false)}
+        />
+      )}
     </div>
   )
 }

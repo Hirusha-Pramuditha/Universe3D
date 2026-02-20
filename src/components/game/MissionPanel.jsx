@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function MissionPanel({ missions, buildingName }) {
+function MissionPanel({ missions, onMissionUpdate }) {
   const [isExpanded, setIsExpanded] = useState(false)
 
   const completedCount = missions.filter(m => m.completed).length
@@ -20,11 +20,11 @@ function MissionPanel({ missions, buildingName }) {
         </div>
         <div className="mission-header-right">
           <span className="mission-progress-text">{completedCount}/{totalCount}</span>
-          <svg 
+          <svg
             className={`mission-chevron ${isExpanded ? 'rotated' : ''}`}
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="currentColor" 
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
             strokeWidth="2"
           >
             <polyline points="6 9 12 15 18 9" />
@@ -34,8 +34,8 @@ function MissionPanel({ missions, buildingName }) {
 
       {/* Progress Bar - Always visible */}
       <div className="mission-progress-bar">
-        <div 
-          className="mission-progress-fill" 
+        <div
+          className="mission-progress-fill"
           style={{ width: `${progressPercent}%` }}
         ></div>
       </div>
@@ -44,8 +44,8 @@ function MissionPanel({ missions, buildingName }) {
       {isExpanded && (
         <div className="mission-list">
           {missions.map((mission) => (
-            <div 
-              key={mission.id} 
+            <div
+              key={mission.id}
               className={`mission-item ${mission.completed ? 'completed' : ''}`}
             >
               <div className="mission-checkbox">

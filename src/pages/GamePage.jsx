@@ -11,6 +11,7 @@ import LoadingScreen from '../components/game/LoadingScreen'
 import MainMenu from '../components/game/MainMenu'
 import GameCanvas from '../components/game/GameCanvas'
 import GameUI from '../components/game/GameUI'
+import MISSIONS from '../data/missions'
 
 // Create context to share player data across game components
 export const PlayerContext = createContext(null)
@@ -31,6 +32,23 @@ function GamePage() {
   const [selectedBuilding, setSelectedBuilding] = useState(null)
   const [teleportTarget, setTeleportTarget] = useState(null)
   const [currentFloor, setCurrentFloor] = useState(1)
+
+  // Missions state with localStorage persistence
+  const [missions, setMissions] = useState(() => {
+    const saved = localStorage.getItem('universe3d_missions')
+    const savedVersion = localStorage.getItem('universe3d_missions_version')
+    const CURRENT_VERSION = '1.1'
+    if (saved && savedVersion === CURRENT_VERSION) {
+      return JSON.parse(saved)
+    }
+    return MISSIONS
+  })
+
+  // Save missions to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('universe3d_missions', JSON.stringify(missions))
+    localStorage.setItem('universe3d_missions_version', '1.1')
+  }, [missions])
 
   const [isMuted, setIsMuted] = useState(false)
   const audioRef = useRef(null)
@@ -164,6 +182,8 @@ function GamePage() {
               selectedBuilding={selectedBuilding}
               teleportTarget={teleportTarget}
               onFloorChange={handleFloorChange}
+              missions={missions}
+              setMissions={setMissions}
             />
             <GameUI
               playerNickname={playerNickname}
@@ -172,6 +192,8 @@ function GamePage() {
               onTeleport={handleTeleport}
               currentFloor={currentFloor}
               setCurrentFloor={setCurrentFloor}
+              missions={missions}
+              onMissionUpdate={setMissions}
             />
           </div>
         )}
