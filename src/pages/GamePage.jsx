@@ -33,22 +33,8 @@ function GamePage() {
   const [teleportTarget, setTeleportTarget] = useState(null)
   const [currentFloor, setCurrentFloor] = useState(1)
 
-  // Missions state with localStorage persistence
-  const [missions, setMissions] = useState(() => {
-    const saved = localStorage.getItem('universe3d_missions')
-    const savedVersion = localStorage.getItem('universe3d_missions_version')
-    const CURRENT_VERSION = '1.1'
-    if (saved && savedVersion === CURRENT_VERSION) {
-      return JSON.parse(saved)
-    }
-    return MISSIONS
-  })
-
-  // Save missions to localStorage whenever they change
-  useEffect(() => {
-    localStorage.setItem('universe3d_missions', JSON.stringify(missions))
-    localStorage.setItem('universe3d_missions_version', '1.1')
-  }, [missions])
+  // Missions state initialized directly from data
+  const [missions, setMissions] = useState(MISSIONS)
 
   const [isMuted, setIsMuted] = useState(false)
   const audioRef = useRef(null)
