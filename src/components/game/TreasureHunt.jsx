@@ -32,8 +32,8 @@ const TreasureHunt = ({ scene, playerRef }) => {
     const keys = useRef({ e: false });
 
     // Constants
-    const KEY_POS = new THREE.Vector3(-3.7, 22.5, -11.9); // Example location for Key
-    const CHEST_POS = new THREE.Vector3(3.3, 29.4, 2.1); // Example location for Chest
+    const KEY_POS = new THREE.Vector3(-3.7, 22.5, -11.9); // location for Key
+    const CHEST_POS = new THREE.Vector3(10.2, 29.5, 2.0); // location for Chest
 
     // ─── Input Handling ───
     useEffect(() => {
@@ -112,7 +112,6 @@ const TreasureHunt = ({ scene, playerRef }) => {
             chest.scale.set(0.4, 0.4, 0.4); // Made smaller as requested
             if (playerRef.current) {
                 chest.lookAt(playerRef.current.position.x, CHEST_POS.y, playerRef.current.position.z);
-                chest.rotation.y += Math.PI; // Rotate 180 degrees to flip it
             }
 
             // --- Materials (Stylized) ---
