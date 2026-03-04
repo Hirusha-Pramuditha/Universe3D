@@ -1,6 +1,18 @@
 {
     "gp-square": [
         {
+            "id": "Disciplinary Safety Coordinator",
+            "name": "Disciplinary Safety Coordinator",
+            "position": {
+                "x": 1.432,
+                "y": 4.55,
+                "z": -2.99
+            },
+            "rotation": {
+                "y": 270
+            }
+        },
+        {
             "id": "1LA",
             "name": "1LA",
             "position": {
@@ -274,6 +286,30 @@
             },
             "rotation": {
                 "y": 270
+            }
+        },
+        {
+            "id": "Auditorium",
+            "name": "Auditorium",
+            "position": {
+                "x": -4.6,
+                "y": 31.25,
+                "z": -5.909
+            },
+            "rotation": {
+                "y": 0
+            }
+        },
+        {
+            "id": "Medical Room",
+            "name": "Medical Room",
+            "position": {
+                "x": -9.51,
+                "y": 31.25,
+                "z": -0.75
+            },
+            "rotation": {
+                "y": 180
             }
         }
     ],
