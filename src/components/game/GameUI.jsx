@@ -59,10 +59,10 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTeleport, cu
     navigate('/')
   }
 
-  // Building spawn points (x/z) for fast travel
+  // Building spawn points (x/z) for fast travel and floor navigation
   const BUILDING_SPAWNS = {
-    'spencer': { x: -10, z: -10 },
-    'ramakrishna': { x: -10, z: -10 }
+    'spencer': { x: -10, z: -10 }, // Edit Spencer spawn here
+    'ramakrishna': { x: 5, z: 5 }  // Edit Ramakrishna spawn here
   }
 
   // Specific spawn points for each floor of GP Square

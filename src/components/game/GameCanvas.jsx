@@ -350,10 +350,18 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
     ground.position.y = -0.1
     scene.add(ground)
 
+    // ─── Building Initial Spawn Points ───
+    const buildingSpawns = {
+      'gp-square': { x: -15, y: 0, z: -4 },
+      'spencer': { x: -10, y: 0, z: -10 }, // Edit Spencer spawn here
+      'ramakrishna': { x: 5, y: 0, z: 5 }  // Edit Ramakrishna spawn here
+    }
+    const spawnPos = buildingSpawns[selectedBuilding] || { x: 0, y: 0, z: 0 }
+
     // ─── Create Player Group ───
     const player = new THREE.Group()
     playerRef.current = player
-    player.position.set(-70, 50, -4)
+    player.position.set(spawnPos.x, spawnPos.y, spawnPos.z)
     scene.add(player)
 
     // ─── Initialize Notice Board System ───
@@ -606,9 +614,10 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
 
         scene.add(model)
 
-        player.position.set(-15, 0, -4)
-        playerState.current.currentY = 0
-        playerState.current.targetY = 0
+        // Reset player state to the spawn location
+        player.position.set(spawnPos.x, spawnPos.y, spawnPos.z)
+        playerState.current.currentY = spawnPos.y
+        playerState.current.targetY = spawnPos.y
 
         // ─── Load Door Labels ───
         loadDoorLabels(selectedBuilding)
