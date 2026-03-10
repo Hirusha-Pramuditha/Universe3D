@@ -466,7 +466,7 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
         const character = gltf.scene
 
         // Scale character if needed
-        character.scale.set(1, 1, 1)
+        character.scale.set(0.8, 0.85, 0.8)
         character.position.set(0, 0, 0)
 
         // Disable shadows on character
