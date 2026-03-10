@@ -34,8 +34,6 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
   const [isLocked, setIsLocked] = useState(false)
   const noticeBoardSystemRef = useRef(null)
 
-  // ─── Position Tracker (Temporary) ───
-  const [playerPosition, setPlayerPosition] = useState({ x: 0, y: 0, z: 0 })
 
   // ─── Mouse State (Pointer Lock) ───
   const inputState = useRef({
@@ -617,7 +615,7 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
 
         // ─── Load Door Labels ───
         loadDoorLabels(selectedBuilding)
-        
+
         // Start polling for door updates every 2 seconds
         const doorPollingInterval = setInterval(() => {
           loadDoorLabels(selectedBuilding)
@@ -866,12 +864,6 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
 
           player.position.y = playerState.current.currentY
 
-          // ─── Update Position Tracker ───
-          setPlayerPosition({
-            x: player.position.x.toFixed(2),
-            y: player.position.y.toFixed(2),
-            z: player.position.z.toFixed(2)
-          })
 
           // ─── Update Floor UI ───
           const detectedFloor = Math.max(0, Math.floor((player.position.y + 0.5) / 4) + 1)
@@ -1039,42 +1031,6 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
     <>
       <div ref={containerRef} className="game-canvas" />
 
-      {/* ─── Position Tracker (TEMPORARY) ─── */}
-      <div style={{
-        position: 'fixed',
-        top: '80px',
-        left: '20px',
-        background: 'rgba(0, 0, 0, 0.85)',
-        color: '#00ff00',
-        padding: '15px 20px',
-        borderRadius: '10px',
-        fontFamily: 'monospace',
-        fontSize: '14px',
-        zIndex: 1000,
-        border: '2px solid #00ff00',
-        minWidth: '180px',
-        boxShadow: '0 4px 20px rgba(0, 255, 0, 0.3)'
-      }}>
-        <div style={{
-          marginBottom: '10px',
-          color: '#fff',
-          fontWeight: 'bold',
-          fontSize: '13px',
-          borderBottom: '1px solid #333',
-          paddingBottom: '8px'
-        }}>
-          📍 Position Tracker
-        </div>
-        <div style={{ marginBottom: '4px' }}>
-          X: <span style={{ color: '#ff6b6b', fontWeight: 'bold' }}>{playerPosition.x}</span>
-        </div>
-        <div style={{ marginBottom: '4px' }}>
-          Y: <span style={{ color: '#4ecdc4', fontWeight: 'bold' }}>{playerPosition.y}</span>
-        </div>
-        <div style={{ marginBottom: '10px' }}>
-          Z: <span style={{ color: '#ffe66d', fontWeight: 'bold' }}>{playerPosition.z}</span>
-        </div>
-      </div>
 
       {showInfoModal && currentMission && (
         <MissionInfoModal
