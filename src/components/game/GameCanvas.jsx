@@ -63,24 +63,34 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
   // ─── Handle Teleportation ───
   useEffect(() => {
     if (teleportTarget && playerRef.current) {
-      const { x, y, z } = teleportTarget.coordinates
-      playerRef.current.position.set(x, y, z)
+      if (teleportTarget.walk) {
+        // Set auto-walk target instead of instant teleportation
+        playerState.current.autoWalkTarget = teleportTarget.coordinates
+        console.log(`Auto-walking to ${teleportTarget.name} at (${teleportTarget.coordinates.x}, ${teleportTarget.coordinates.y}, ${teleportTarget.coordinates.z})`)
+      } else {
+        // Instant teleportation (existing logic)
+        const { x, y, z } = teleportTarget.coordinates
+        playerRef.current.position.set(x, y, z)
 
-      playerState.current.currentY = y
-      playerState.current.targetY = y
+        playerState.current.currentY = y
+        playerState.current.targetY = y
 
-      if (teleportTarget.rotationY !== undefined) {
-        teleportCameraRotationY.current = teleportTarget.rotationY
-        playerRef.current.rotation.y = teleportTarget.rotationY
+        if (teleportTarget.rotationY !== undefined) {
+          teleportCameraRotationY.current = teleportTarget.rotationY
+          playerRef.current.rotation.y = teleportTarget.rotationY
+        }
+
+        playerState.current.moveForward = false
+        playerState.current.moveBackward = false
+        playerState.current.moveLeft = false
+        playerState.current.moveRight = false
+        playerState.current.sprint = false
+
+        // Clear any existing walk target just to be sure
+        playerState.current.autoWalkTarget = null
+
+        console.log(`Teleported to ${teleportTarget.name} at (${x}, ${y}, ${z})`)
       }
-
-      playerState.current.moveForward = false
-      playerState.current.moveBackward = false
-      playerState.current.moveLeft = false
-      playerState.current.moveRight = false
-      playerState.current.sprint = false
-
-      console.log(`Teleported to ${teleportTarget.name} at (${x}, ${y}, ${z})`)
     }
   }, [teleportTarget])
 
@@ -387,7 +397,8 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
       sprintMultiplier: 2.5,
       currentY: 0,
       targetY: 0,
-      isOnStairs: false
+      isOnStairs: false,
+      autoWalkTarget: null
     }
 
     // ─── Camera Settings ───
@@ -817,6 +828,43 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
         if (playerState.current.moveBackward) moveDirection.sub(forward)
         if (playerState.current.moveLeft) moveDirection.sub(right)
         if (playerState.current.moveRight) moveDirection.add(right)
+
+        // Reset auto walk if player provides manual input
+        if (
+          playerState.current.moveForward ||
+          playerState.current.moveBackward ||
+          playerState.current.moveLeft ||
+          playerState.current.moveRight
+        ) {
+          if (playerState.current.autoWalkTarget) {
+            playerState.current.autoWalkTarget = null
+            console.log("Auto-walk cancelled by manual movement")
+          }
+        }
+
+        // Apply auto-walk if target exists and no manual movement is happening
+        if (playerState.current.autoWalkTarget) {
+          const target = new THREE.Vector3(
+            playerState.current.autoWalkTarget.x,
+            player.position.y, // Ignore Y for horizontal distance calculation
+            playerState.current.autoWalkTarget.z
+          )
+
+          const distToTarget = player.position.distanceTo(target)
+
+          if (distToTarget < 0.5) {
+            // Reached destination
+            playerState.current.autoWalkTarget = null
+            console.log("Auto-walk destination reached")
+          } else {
+            // Walk towards destination
+            const directionToTarget = target.clone().sub(player.position).normalize()
+            moveDirection.copy(directionToTarget)
+
+            // Force walking state
+            playerState.current.sprint = false
+          }
+        }
 
         // ─── Determine Animation State ───
         const isMoving = moveDirection.length() > 0

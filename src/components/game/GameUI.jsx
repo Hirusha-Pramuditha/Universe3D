@@ -303,16 +303,21 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTeleport, cu
         </div>
       )}
 
-      {/* Search Location Modal */}
       <SearchLocation
         isOpen={showSearch}
         onClose={() => setShowSearch(false)}
         selectedBuilding={selectedBuilding}
         currentFloor={currentFloor}
         onTeleport={(location) => {
-          console.log("Teleporting to:", location);
-          setCurrentFloor(location.floor);
-          onTeleport?.(location);
+          console.log("Navigating to:", location);
+          // Only force instant floor change if it is actually on a different floor
+          if (location.floor !== currentFloor) {
+            setCurrentFloor(location.floor);
+            onTeleport?.(location);
+          } else {
+            // Trigger auto-walk instead of instant teleport
+            onTeleport?.({ ...location, walk: true });
+          }
         }}
       />
 
