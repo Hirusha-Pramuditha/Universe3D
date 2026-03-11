@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import MissionPanel from './MissionPanel'
 import SearchLocation from './SearchLocation'
 import Feedback from './Feedback'
+import NavigationMessage from './NavigationMessage'
 
 // Building data for display names
 const BUILDING_INFO = {
@@ -20,6 +21,17 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTeleport, cu
   const [isMinimapExpanded, setIsMinimapExpanded] = useState(false)
   // missions and onMissionUpdate are passed as props
   const [showSearch, setShowSearch] = useState(false)
+  const [navigationMessage, setNavigationMessage] = useState(null)
+  const [navigationSide, setNavigationSide] = useState(null)
+
+  // Listen for manual walk interruptions
+  useEffect(() => {
+    const handleWalkInterrupt = () => {
+      setNavigationMessage(null);
+    };
+    window.addEventListener('autowalk_interrupt', handleWalkInterrupt);
+    return () => window.removeEventListener('autowalk_interrupt', handleWalkInterrupt);
+  }, []);
 
   // Get building info based on selection
   const buildingInfo = BUILDING_INFO[selectedBuilding] || { name: 'Unknown Building', floors: 1 }
@@ -121,6 +133,7 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTeleport, cu
 
   return (
     <div className="game-ui">
+      <NavigationMessage message={navigationMessage} side={navigationSide} />
       {/* Top Bar */}
       <div className="game-ui-top">
         <button
@@ -315,6 +328,11 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTeleport, cu
             // Find the nearest stairs/elevator on the current floor (we use the spawn point)
             const currentFloorStairs = getSpawnCoordinates(currentFloor);
             
+            // Calculate relative side
+            let side = 'ahead';
+            if (location.coordinates.x > currentFloorStairs.x) side = 'left';
+            else if (location.coordinates.x < currentFloorStairs.x) side = 'right';
+            
             // Generate path for each intermediate floor
             const floorPath = [];
             const dir = location.floor > currentFloor ? 1 : -1;
@@ -336,10 +354,24 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTeleport, cu
                 finalLocation: location
               }
             });
+            
+            setNavigationMessage(`Navigating to ${location.name || 'Location'}. Location is on ${location.floor || 'current'} floor.`);
           } else {
             // Trigger auto-walk instead of instant teleport
+            let side = 'ahead';
+            const playerPos = getSpawnCoordinates(currentFloor); // Approximate using spawn, or calculate from center
+            if (location?.coordinates?.x > playerPos.x) side = 'left';
+            else if (location?.coordinates?.x < playerPos.x) side = 'right';
+            
             onTeleport?.({ ...location, walk: true });
+            
+            setNavigationMessage(`Navigating to ${location.name || 'Location'}. Location is on ${location.floor || 'current'} floor.`);
           }
+          
+          // Clear message after 8 seconds
+          setTimeout(() => {
+              setNavigationMessage(null);
+          }, 8000);
         }}
       />
 

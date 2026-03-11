@@ -841,6 +841,7 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
           if (playerState.current.autoWalkTarget) {
             playerState.current.autoWalkTarget = null
             playerState.current.crossFloorTarget = null
+            window.dispatchEvent(new CustomEvent('autowalk_interrupt'));
             console.log("Auto-walk cancelled by manual movement")
           }
         }
