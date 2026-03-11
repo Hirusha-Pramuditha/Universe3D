@@ -1227,13 +1227,28 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
 
       {isLoading && (
         <div className="model-loading-overlay">
-          <div className="model-loading-content">
-            <div className="model-loading-spinner"></div>
-            <p>Loading {selectedBuilding?.replace('-', ' ').toUpperCase() || 'Building'}...</p>
-            <div className="model-loading-bar">
-              <div className="model-loading-fill" style={{ width: `${loadingProgress}%` }}></div>
+          <div className="model-loading-glass">
+            <div className="model-loading-spinner-wrapper">
+              <div className="spinner-ring outer-ring"></div>
+              <div className="spinner-ring inner-ring"></div>
+              <div className="model-loading-percent">{loadingProgress.toFixed(0)}%</div>
             </div>
-            <span className="model-loading-percent">{loadingProgress.toFixed(0)}%</span>
+            
+            <div className="model-loading-info">
+              <h2 className="loading-title">Loading Environment</h2>
+              <p className="loading-subtitle">{selectedBuilding?.replace('-', ' ').toUpperCase() || 'Building'}</p>
+            </div>
+            
+            <div className="model-loading-bar-container">
+              <div className="model-loading-bar-track">
+                <div 
+                  className="model-loading-bar-fill" 
+                  style={{ width: `${loadingProgress}%` }}
+                >
+                  <div className="glow-edge"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
