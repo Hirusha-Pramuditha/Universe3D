@@ -57,6 +57,9 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
     targetY: 0
   })
 
+  const teleportCameraRotationY = useRef(null)
+  const cameraSettingsRef = useRef(null)
+
   // ─── Handle Teleportation ───
   useEffect(() => {
     if (teleportTarget && playerRef.current) {
@@ -65,6 +68,11 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
 
       playerState.current.currentY = y
       playerState.current.targetY = y
+
+      if (teleportTarget.rotationY !== undefined) {
+        teleportCameraRotationY.current = teleportTarget.rotationY
+        playerRef.current.rotation.y = teleportTarget.rotationY
+      }
 
       playerState.current.moveForward = false
       playerState.current.moveBackward = false
@@ -383,15 +391,18 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
     }
 
     // ─── Camera Settings ───
-    const cameraSettings = {
-      distance: 1.9,
-      height: 1.3,
-      smoothness: 0.5,
-      rotationY: 0,
-      rotationX: 0.1,
-      minRotationX: -0.4,
-      maxRotationX: 0.4,
+    if (!cameraSettingsRef.current) {
+      cameraSettingsRef.current = {
+        distance: 1.9,
+        height: 1.3,
+        smoothness: 0.5,
+        rotationY: teleportCameraRotationY.current !== null ? teleportCameraRotationY.current : 0,
+        rotationX: 0.1,
+        minRotationX: -0.4,
+        maxRotationX: 0.4,
+      }
     }
+    const cameraSettings = cameraSettingsRef.current
 
     // ─── Raycaster for Collision ───
     const raycaster = new THREE.Raycaster()
@@ -772,6 +783,11 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
     const animate = () => {
       animationId = requestAnimationFrame(animate)
 
+      if (teleportCameraRotationY.current !== null) {
+        cameraSettings.rotationY = teleportCameraRotationY.current
+        teleportCameraRotationY.current = null
+      }
+
       // Update animation mixer
       const delta = clock.getDelta()
       if (mixer) {
@@ -912,8 +928,12 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
           )
         }
 
-        // Smooth camera movement
-        camera.position.lerp(finalCameraPosition, cameraSettings.smoothness)
+        // Smooth camera movement, but jump instantly if teleported
+        if (teleportCameraRotationY.current !== null) {
+          camera.position.copy(finalCameraPosition)
+        } else {
+          camera.position.lerp(finalCameraPosition, cameraSettings.smoothness)
+        }
         camera.lookAt(cameraTarget)
 
         // Update light position (no shadows)
