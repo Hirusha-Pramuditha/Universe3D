@@ -1002,6 +1002,15 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
           while (rotDiff > Math.PI) rotDiff -= Math.PI * 2
           while (rotDiff < -Math.PI) rotDiff += Math.PI * 2
           player.rotation.y += rotDiff * 0.15
+
+          // Navigate camera behind player when auto-walking
+          if (playerState.current.autoWalkTarget) {
+            const targetCameraRot = player.rotation.y + Math.PI;
+            let camRotDiff = targetCameraRot - cameraSettings.rotationY;
+            while (camRotDiff > Math.PI) camRotDiff -= Math.PI * 2;
+            while (camRotDiff < -Math.PI) camRotDiff += Math.PI * 2;
+            cameraSettings.rotationY += camRotDiff * 0.05;
+          }
         }
 
         // ─── Ground Detection ───
