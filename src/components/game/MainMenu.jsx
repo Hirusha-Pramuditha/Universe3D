@@ -5,18 +5,18 @@ import Feedback from './Feedback'
 // Building data
 const BUILDINGS = [
   {
-    id: 'gp-square',
-    name: 'GP Square',
-    floors: 8,
-    image: '/buildings/gp-square.png',
-    description: 'Main academic building with lecture halls and labs'
-  },
-  {
     id: 'spencer',
     name: 'Spencer Building (SP)',
     floors: 13,
     image: '/buildings/spencer.png',
     description: 'Secondary premises with tutorial rooms and offices'
+  },
+  {
+    id: 'gp-square',
+    name: 'GP Square',
+    floors: 8,
+    image: '/buildings/gp-square.png',
+    description: 'Main academic building with lecture halls and labs'
   },
   {
     id: 'ramakrishna',
