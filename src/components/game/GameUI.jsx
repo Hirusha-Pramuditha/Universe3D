@@ -337,7 +337,7 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTeleport, cu
           
           // Set navigation message
           const floorText = location.floor === 1 ? 'Ground Floor' : `Floor ${location.floor - 1}`;
-          setNavigationMessage(`Navigating to ${location.name}. ${location.name} is on ${floorText}`);
+          setNavigationMessage(`Navigating to ${location.name}. Your location is on ${floorText}`);
           
           // Clear previous timeout and set new one
           if (navigationMessageTimeout.current) {
