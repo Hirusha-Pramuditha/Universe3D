@@ -14,6 +14,7 @@ const Feedback = ({ onComplete, onClose, playerNickname }) => {
 
         try {
             const response = await fetch('https://feedback-three-orpin.vercel.app/api/feedback', {
+
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
