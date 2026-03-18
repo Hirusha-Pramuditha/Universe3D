@@ -171,7 +171,11 @@ function GamePage() {
 
         {/* Dress Code Selection */}
         {screenState === "dresscode" && (
-          <DressCodeSelection onComplete={handleDressCodeSubmit} />
+          <DressCodeSelection 
+            onComplete={handleDressCodeSubmit} 
+            isMuted={isMuted}
+            onToggleMute={() => setIsMuted(!isMuted)}
+          />
         )}
 
         {/* Main Menu - Select building */}

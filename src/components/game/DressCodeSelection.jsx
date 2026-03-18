@@ -426,12 +426,11 @@ const validateOutfit = (gender, selectedOutfit) => {
   return { isValid: true, message: "" };
 };
 
-const DressCodeSelection = ({ onComplete }) => {
+const DressCodeSelection = ({ onComplete, isMuted, onToggleMute }) => {
   const [gender, setGender] = useState('male');
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
   const [warningMessage, setWarningMessage] = useState("");
-  const [isMuted, setIsMuted] = useState(false);
   
   // Selection state structured by gender
   const [selections, setSelections] = useState({
@@ -530,7 +529,7 @@ const DressCodeSelection = ({ onComplete }) => {
   return (
     <div className="dresscode-container">
       {/* CORNER MUTE BUTTON */}
-      <button className="mute-btn-corner" onClick={() => setIsMuted(!isMuted)} title={isMuted ? "Unmute" : "Mute"}>
+      <button className="mute-btn-corner" onClick={onToggleMute} title={isMuted ? "Unmute" : "Mute"}>
         {isMuted ? (
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
