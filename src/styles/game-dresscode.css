@@ -53,12 +53,14 @@
   flex: 2;
   max-width: 600px;
   width: 100%;
+  min-width: 0; /* Prevent flex blowout */
 }
 
 .top-row {
   display: flex;
   gap: 1.5rem;
   width: 100%;
+  min-width: 0;
 }
 
 /* Glassmorphism Panels */
@@ -67,10 +69,11 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 20px;
-  padding: 1.5rem;
+  padding: 1.2rem; /* Slighly reduced padding */
   border: 1px solid rgba(255, 255, 255, 0.8);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   flex: 1;
+  min-width: 0; /* Prevent grid from forcing panel width outward */
 }
 
 .panel-title {
@@ -83,21 +86,21 @@
 /* Grids */
 .grid-3x2 {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 1.2rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
 }
 
 .grid-3x1-stretch {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.2rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
 }
 
 .grid-3x1 {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 /* Cards (Rounded Square Buttons) */
@@ -106,6 +109,7 @@
   background: rgba(255, 255, 255, 0.95);
   border-radius: 16px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -153,11 +157,28 @@
 }
 
 .card-inner {
-  width: 80%;
-  height: 80%;
+  width: 60%;
+  height: 60%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.item-label {
+  font-size: 10px; /* Slightly smaller to fit tight grid reliably */
+  text-align: center;
+  margin-top: 4px;
+  text-transform: lowercase;
+  opacity: 0.9;
+  color: #333;
+  font-weight: 700;
+  line-height: 1.1;
+  width: 100%;
+  padding: 0 4px;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 /* Green Checkmark Badge */

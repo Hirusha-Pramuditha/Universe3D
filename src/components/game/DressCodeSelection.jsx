@@ -357,49 +357,49 @@ const HighTornJeans = () => (
 
 const MALE_DATA = {
   tops: [
-    { id: 'm_top_1', Comp: LongSleeveShirt },
-    { id: 'm_top_2', Comp: TShirt },
-    { id: 'm_top_3', Comp: FormalShirt },
-    { id: 'm_top_4', Comp: PoloShirt }, 
-    { id: 'm_top_5', Comp: SleevelessTop },
-    { id: 'm_top_6', Comp: TankTop }
+    { id: 'm_top_1', label: 'long sleeve shirt', Comp: LongSleeveShirt },
+    { id: 'm_top_2', label: 't shirt', Comp: TShirt },
+    { id: 'm_top_3', label: 'formal shirt', Comp: FormalShirt },
+    { id: 'm_top_4', label: 'polo t shirt', Comp: PoloShirt }, 
+    { id: 'm_top_5', label: 'sleeveless top', Comp: SleevelessTop },
+    { id: 'm_top_6', label: 'tank top', Comp: TankTop }
   ],
   bottoms: [
-    { id: 'm_bot_1', Comp: RippedJeans },
-    { id: 'm_bot_2', Comp: RegularJeans },
-    { id: 'm_bot_3', Comp: CargoPants },
-    { id: 'm_bot_4', Comp: BeachShorts },
-    { id: 'm_bot_5', Comp: SportsCapri },
-    { id: 'm_bot_6', Comp: ClassicFitJeans }
+    { id: 'm_bot_1', label: 'ripped jeans', Comp: RippedJeans },
+    { id: 'm_bot_2', label: 'regular jeans', Comp: RegularJeans },
+    { id: 'm_bot_3', label: 'cargo jeans', Comp: CargoPants },
+    { id: 'm_bot_4', label: 'beach shorts', Comp: BeachShorts },
+    { id: 'm_bot_5', label: 'sports capri', Comp: SportsCapri },
+    { id: 'm_bot_6', label: 'classic fit jeans', Comp: ClassicFitJeans }
   ],
   footwear: [
-    { id: 'm_foot_1', Comp: Sneakers },
-    { id: 'm_foot_2', Comp: Loafers },
-    { id: 'm_foot_3', Comp: RubberSlides }
+    { id: 'm_foot_1', label: 'sneakers', Comp: Sneakers },
+    { id: 'm_foot_2', label: 'loafers', Comp: Loafers },
+    { id: 'm_foot_3', label: 'rubber slides', Comp: RubberSlides }
   ]
 };
 
 const FEMALE_DATA = {
   tops: [
-    { id: 'f_top_1', Comp: FrockTop },
-    { id: 'f_top_2', Comp: FemaleLongSleeve },
-    { id: 'f_top_3', Comp: FemaleSleeveless },
-    { id: 'f_top_4', Comp: OffShoulder }, 
-    { id: 'f_top_5', Comp: FemaleTShirt },
-    { id: 'f_top_6', Comp: CropTop },
-    { id: 'f_top_7', Comp: LongDress }
+    { id: 'f_top_1', label: 'frock', Comp: FrockTop },
+    { id: 'f_top_2', label: 'long sleeve shirt', Comp: FemaleLongSleeve },
+    { id: 'f_top_3', label: 'sleeveless top', Comp: FemaleSleeveless },
+    { id: 'f_top_4', label: 'off shoulder top', Comp: OffShoulder }, 
+    { id: 'f_top_5', label: 't shirt', Comp: FemaleTShirt },
+    { id: 'f_top_6', label: 'crop top', Comp: CropTop },
+    { id: 'f_top_7', label: 'long dress', Comp: LongDress }
   ],
   bottoms: [
-    { id: 'f_bot_1', Comp: FormalTrousers },
-    { id: 'f_bot_3', Comp: FemaleJeans },
-    { id: 'f_bot_4', Comp: ShortSkirt },
-    { id: 'f_bot_5', Comp: DenimShorts },
-    { id: 'f_bot_6', Comp: HighTornJeans }
+    { id: 'f_bot_1', label: 'formal trousers', Comp: FormalTrousers },
+    { id: 'f_bot_3', label: 'regular jeans', Comp: FemaleJeans },
+    { id: 'f_bot_4', label: 'short skirt', Comp: ShortSkirt },
+    { id: 'f_bot_5', label: 'denim shorts', Comp: DenimShorts },
+    { id: 'f_bot_6', label: 'high torn jeans', Comp: HighTornJeans }
   ],
   footwear: [
-    { id: 'f_foot_1', Comp: ClosedHeels },
-    { id: 'f_foot_2', Comp: FemaleSneakers },
-    { id: 'f_foot_3', Comp: FemaleSlippers }
+    { id: 'f_foot_1', label: 'closed heels', Comp: ClosedHeels },
+    { id: 'f_foot_2', label: 'sneakers', Comp: FemaleSneakers },
+    { id: 'f_foot_3', label: 'slippers', Comp: FemaleSlippers }
   ]
 };
 
@@ -565,6 +565,7 @@ const DressCodeSelection = ({ onComplete, isMuted, onToggleMute }) => {
                     <div className="card-inner">
                       <item.Comp />
                     </div>
+                    <p className="item-label">{item.label}</p>
                     {activeSelections.top === item.id && (
                       <div className="check-badge">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
@@ -593,6 +594,7 @@ const DressCodeSelection = ({ onComplete, isMuted, onToggleMute }) => {
                     <div className="card-inner">
                       <item.Comp />
                     </div>
+                    <p className="item-label">{item.label}</p>
                     {activeSelections.bottom === item.id && (
                       <div className="check-badge">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
@@ -620,6 +622,7 @@ const DressCodeSelection = ({ onComplete, isMuted, onToggleMute }) => {
                   <div className="card-inner">
                     <item.Comp />
                   </div>
+                  <p className="item-label">{item.label}</p>
                   {activeSelections.footwear === item.id && (
                     <div className="check-badge">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
