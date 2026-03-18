@@ -528,6 +528,40 @@ const DressCodeSelection = ({ onComplete, isMuted, onToggleMute }) => {
 
   return (
     <div className="dresscode-container">
+      {/* Animated Sky Background */}
+      <div className="dc-background"></div>
+      <div className="dc-gradient"></div>
+      
+      {/* Light Rays */}
+      <div className="dc-rays">
+        <div className="dc-ray dc-ray-1"></div>
+        <div className="dc-ray dc-ray-2"></div>
+        <div className="dc-ray dc-ray-3"></div>
+        <div className="dc-ray dc-ray-4"></div>
+        <div className="dc-ray dc-ray-5"></div>
+      </div>
+
+      {/* Clouds */}
+      <div className="dc-clouds">
+        <div className="dc-cloud dc-cloud-1">
+          <div className="dc-cloud-puff dc-puff-1"></div>
+          <div className="dc-cloud-puff dc-puff-2"></div>
+          <div className="dc-cloud-puff dc-puff-3"></div>
+          <div className="dc-cloud-puff dc-puff-4"></div>
+        </div>
+        <div className="dc-cloud dc-cloud-2">
+          <div className="dc-cloud-puff dc-puff-1"></div>
+          <div className="dc-cloud-puff dc-puff-2"></div>
+          <div className="dc-cloud-puff dc-puff-3"></div>
+          <div className="dc-cloud-puff dc-puff-4"></div>
+        </div>
+        <div className="dc-cloud dc-cloud-3">
+          <div className="dc-cloud-puff dc-puff-1"></div>
+          <div className="dc-cloud-puff dc-puff-2"></div>
+          <div className="dc-cloud-puff dc-puff-3"></div>
+        </div>
+      </div>
+
       {/* CORNER MUTE BUTTON */}
       <button className="mute-btn-corner" onClick={onToggleMute} title={isMuted ? "Unmute" : "Mute"}>
         {isMuted ? (

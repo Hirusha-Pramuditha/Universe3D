@@ -24,6 +24,10 @@ const Feedback = ({ onComplete, onClose }) => {
         }, 1000);
     };
 
+    const handleSkip = () => {
+        onComplete();
+    };
+
     if (submitted) {
         return (
             <div className="feedback-overlay">
@@ -81,13 +85,21 @@ const Feedback = ({ onComplete, onClose }) => {
                         rows={4}
                     />
 
-                    <div className="feedback-actions">
+                    <div className="button-group">
                         <button
                             type="submit"
-                            className="feedback-submit-btn"
+                            className="submit-btn"
                             disabled={rating === 0 || isSubmitting}
                         >
                             {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
+                        </button>
+                        <button
+                            type="button"
+                            className="skip-btn"
+                            onClick={handleSkip}
+                            disabled={isSubmitting}
+                        >
+                            Skip
                         </button>
                     </div>
                 </form>
