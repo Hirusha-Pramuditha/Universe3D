@@ -5,28 +5,14 @@
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: 100vh;
-  /* Deep sky blue gradient */
-  background: radial-gradient(circle at 50% 30%, #a4eAff 0%, #68b8d9 40%, #468cae 80%, #3a7593 100%);
+  min-height: 100vh;
+  padding: 2rem 0;
+  background: linear-gradient(135deg, #4fc3f7 0%, #0288d1 100%);
   font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: white;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
-}
-
-/* Scattered Stars */
-.dresscode-container::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-image: 
-    radial-gradient(1.5px 1.5px at 15% 20%, rgba(255,255,255,0.8) 100%, transparent),
-    radial-gradient(2px 2px at 85% 35%, rgba(255,255,255,0.6) 100%, transparent),
-    radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,0.7) 100%, transparent),
-    radial-gradient(1.5px 1.5px at 90% 85%, rgba(255,255,255,0.9) 100%, transparent),
-    radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,0.5) 100%, transparent);
-  pointer-events: none;
-  z-index: 0;
 }
 
 .title {
@@ -34,8 +20,9 @@
   font-weight: 800;
   letter-spacing: 0.5px;
   margin-bottom: 2rem;
-  text-shadow: 0 4px 10px rgba(255, 255, 255, 0.4), 0 1px 3px rgba(0,0,0,0.2);
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  text-align: center;
 }
 
 /* --- MAIN LAYOUT --- */
@@ -47,6 +34,15 @@
   width: 90%;
   justify-content: center;
   align-items: flex-start;
+  transition: opacity 200ms ease-in-out;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+.fade-in {
+  opacity: 1;
 }
 
 /* LEFT PANELS (Clothing Grids) */
@@ -56,6 +52,7 @@
   gap: 1.5rem;
   flex: 2;
   max-width: 600px;
+  width: 100%;
 }
 
 .top-row {
@@ -64,12 +61,14 @@
   width: 100%;
 }
 
+/* Glassmorphism Panels */
 .panel {
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 20px;
   padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   flex: 1;
 }
@@ -78,7 +77,7 @@
   margin: 0 0 1rem 0;
   font-size: 1.1rem;
   font-weight: 700;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 /* Grids */
@@ -86,6 +85,13 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
+  gap: 1.2rem;
+}
+
+/* Bottom grid for women's bottoms (3 items) */
+.grid-3x1-stretch {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.2rem;
 }
 
@@ -98,34 +104,33 @@
 /* Cards (Rounded Square Buttons) */
 .card {
   aspect-ratio: 1;
-  background: rgba(245, 245, 245, 0.95);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   position: relative;
-  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
-  box-shadow: inset 0 -4px 8px rgba(0,0,0,0.05), 0 4px 10px rgba(0,0,0,0.1);
-  overflow: visible; /* To allow checkmark to pop out slightly */
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border: 2px solid transparent;
 }
 
-/* Provide fixed dimensions for footwear since it's flex */
 .panel-bottom .card {
   width: 90px;
   height: 90px;
 }
 
+/* Smooth hover scale transform */
 .card:hover {
-  transform: translateY(-3px);
-  background: #ffffff;
-  box-shadow: inset 0 -4px 8px rgba(0,0,0,0.02), 0 8px 15px rgba(0,0,0,0.15);
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.15);
 }
 
+/* Selected State */
 .card.active {
   background: #ffffff;
-  border: 4px solid #4ade80; /* Bright Green outline */
-  outline: 2px solid rgba(74, 222, 128, 0.3); /* Soft outer glow */
+  border: 2px solid #4CAF50;
 }
 
 .card-inner {
@@ -136,19 +141,20 @@
   justify-content: center;
 }
 
+/* Green Checkmark Badge */
 .check-badge {
   position: absolute;
   top: -10px;
   right: -10px;
-  background: #4ade80;
+  background: #4CAF50;
   color: white;
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid white;
+  border: 2px solid white;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   z-index: 2;
 }
@@ -161,16 +167,18 @@
 /* RIGHT PANEL (Preview) */
 .preview-panel {
   flex: 1;
-  background: rgba(154, 203, 242, 0.6); /* Slightly more solid sky blue/glass */
-  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 20px;
   padding: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
   min-width: 320px;
+  width: 100%;
 }
 
 /* Toggle Switch */
@@ -202,18 +210,19 @@
   cursor: pointer;
   transition: all 0.3s;
   z-index: 1;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 .toggle-option.active {
-  background: #2563eb; /* Strong solid blue */
-  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.5);
+  background: #0288d1; /* Strong solid blue matching gradient end */
+  box-shadow: 0 2px 10px rgba(2, 136, 209, 0.4);
 }
 
 /* AVATAR BUILDER */
 .avatar-wrapper {
   position: relative;
-  width: 100px;
-  height: 180px;
+  width: 120px;
+  height: 200px;
   margin-bottom: 2rem;
 }
 
@@ -223,65 +232,110 @@
   height: 100%;
 }
 
+/* MALE/DEFAULT Dummy Shapes */
 .dummy-head {
   position: absolute;
   top: 0; left: 50%;
   transform: translateX(-50%);
-  width: 36px; height: 36px;
-  background: #facc15; /* Yellowish head */
+  width: 40px; height: 40px;
+  background: #ffccbc; /* Skin tone */
   border-radius: 50%;
   z-index: 5;
   box-shadow: inset -4px -4px 0 rgba(0,0,0,0.1);
 }
+.dummy-head::before {
+  content: ""; position: absolute; top: 15px; left: -4px; width: 6px; height: 10px; border-radius: 4px; background: #e5b3a3;
+}
+.dummy-head::after {
+  content: ""; position: absolute; top: 15px; right: -4px; width: 6px; height: 10px; border-radius: 4px; background: #e5b3a3;
+}
 
 .dummy-neck {
   position: absolute;
-  top: 34px; left: 50%;
+  top: 36px; left: 50%;
   transform: translateX(-50%);
-  width: 12px; height: 10px;
-  background: #eab308;
+  width: 14px; height: 10px;
+  background: #e5b3a3;
   z-index: 4;
 }
 
+/* Male Body */
 .dummy-arms {
   position: absolute;
-  top: 40px; left: 50%;
+  top: 45px; left: 50%;
   transform: translateX(-50%);
-  width: 80px; height: 60px;
-  background: #facc15;
+  width: 90px; height: 75px;
+  background: #ffccbc;
   border-radius: 20px;
-  z-index: 2; /* Arms behind torso slightly */
+  z-index: 2;
 }
 
-/* Hands hanging down */
 .dummy-arms::before, .dummy-arms::after {
   content: "";
   position: absolute;
-  bottom: -20px;
-  width: 16px; height: 16px;
-  background: #facc15;
-  border-radius: 50%;
+  bottom: -25px;
+  width: 18px; height: 22px;
+  background: #ffccbc;
+  border-radius: 10px;
+  box-shadow: inset -2px -2px 0 rgba(0,0,0,0.1);
 }
-.dummy-arms::before { left: 0; }
-.dummy-arms::after { right: 0; }
+.dummy-arms::before { left: -2px; }
+.dummy-arms::after { right: -2px; }
 
 .dummy-legs {
   position: absolute;
-  top: 90px; left: 50%;
+  top: 100px; left: 50%;
   transform: translateX(-50%);
-  width: 40px; height: 75px;
+  width: 44px; height: 85px;
   background: transparent;
 }
-/* bare legs in case shorts are worn */
 .dummy-legs::before, .dummy-legs::after {
   content: "";
   position: absolute;
   top: 0;
-  width: 16px; height: 75px;
-  background: #facc15;
+  width: 18px; height: 85px;
+  background: #ffccbc;
 }
-.dummy-legs::before { left: 2px; }
-.dummy-legs::after { right: 2px; }
+.dummy-legs::before { left: 1px; }
+.dummy-legs::after { right: 1px; }
+
+/* FEMALE Body specific overrides */
+.female-avatar .dummy-head {
+  width: 38px; height: 38px;
+}
+/* Hair definition */
+.female-avatar .dummy-hair {
+  position: absolute;
+  top: -4px; left: 50%;
+  transform: translateX(-50%);
+  width: 46px; height: 50px;
+  background: #5d4037; /* Brown hair */
+  border-radius: 20px 20px 0 0;
+  z-index: 4; /* Behind face slightly if we just want a bob cut */
+}
+/* Let's make hair completely fall down */
+.female-avatar .dummy-hair::after {
+  content: "";
+  position: absolute;
+  top: 20px; left: -2px;
+  width: 50px; height: 35px;
+  background: #5d4037;
+  border-radius: 10px;
+  z-index: 3;
+}
+
+/* Slimmer torso arms */
+.female-avatar .dummy-arms {
+  width: 76px; height: 75px;
+  border-radius: 16px;
+}
+
+.female-avatar .dummy-legs {
+  width: 40px; 
+}
+.female-avatar .dummy-legs::before, .female-avatar .dummy-legs::after {
+  width: 16px;
+}
 
 /* SVG Layers */
 .avatar-layer {
@@ -290,72 +344,84 @@
   top: 0; left: 0;
 }
 
-/* specific scaling/positioning for the mapped SVGs on the avatar */
-.avatar-top { top: 35px; height: 70px; z-index: 4; transform: scale(1.3); }
-.avatar-bottom { top: 90px; height: 75px; z-index: 3; transform: scale(0.9); }
-.avatar-footwear { top: 155px; height: 30px; z-index: 5; transform: scale(1.1); }
+.avatar-top { top: 40px; height: 75px; z-index: 6; transform: scale(1.4); }
+.avatar-bottom { top: 100px; height: 85px; z-index: 5; transform: scale(1.1); }
+.avatar-footwear { top: 175px; height: 35px; z-index: 7; transform: scale(1.2); }
 
 /* Bottom Preview Section */
 .preview-text {
   font-size: 1.1rem;
   font-weight: 700;
   margin-bottom: 1rem;
+  color: white;
 }
 
 .mini-thumbnails {
   display: flex;
-  gap: 10px;
+  gap: 12px;
 }
 
 .thumbnail {
-  width: 40px;
-  height: 40px;
-  background: rgba(245, 245, 245, 0.2); /* very subtle */
-  border-radius: 8px;
-  padding: 5px;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.4); 
+  border-radius: 10px;
+  padding: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .thumbnail svg {
   width: 100%;
   height: 100%;
-  /* Force a drop shadow on the clothes icon itself for depth */
-  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
 }
 
 /* NEXT BUTTON */
 .next-btn {
-  margin-top: 3rem;
-  padding: 14px 44px;
+  margin-top: 2.5rem;
+  padding: 16px 60px;
   font-size: 1.2rem;
   font-weight: 800;
   color: white;
-  background: linear-gradient(180deg, #60a5fa 0%, #2563eb 100%);
-  border: none;
-  border-radius: 40px;
+  background: linear-gradient(to right, #29b6f6, #0288d1);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50px;
   cursor: pointer;
-  box-shadow: 
-    0 8px 15px rgba(37, 99, 235, 0.4), 
-    inset 0 4px 0 rgba(255,255,255,0.4); /* Glowing top rim */
-  transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+  box-shadow: 0 4px 15px rgba(2, 136, 209, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
   z-index: 1;
 }
 
 .next-btn:hover {
   transform: scale(1.05);
-  box-shadow: 
-    0 10px 20px rgba(37, 99, 235, 0.6), 
-    inset 0 4px 0 rgba(255,255,255,0.5);
-  filter: brightness(1.1);
+  box-shadow: 0 6px 20px rgba(2, 136, 209, 0.6);
+  background: linear-gradient(to right, #4fc3f7, #0277bd);
 }
 
 .next-btn:active {
   transform: scale(0.95);
-  box-shadow: 
-    0 4px 10px rgba(37, 99, 235, 0.4), 
-    inset 0 2px 0 rgba(255,255,255,0.3);
+  box-shadow: 0 2px 10px rgba(2, 136, 209, 0.4);
+}
+
+/* RESPONSIVE DESIGN */
+@media screen and (max-width: 900px) {
+  .main-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .left-panels {
+    order: 2;
+    max-width: 100%;
+  }
+  .preview-panel {
+    order: 1;
+    max-width: 100%;
+  }
+  .top-row {
+    flex-direction: column;
+  }
 }
