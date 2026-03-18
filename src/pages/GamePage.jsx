@@ -8,6 +8,7 @@ import '../styles/game-main-menu.css'
 import '../styles/game-ui.css'
 
 import LoadingScreen from '../components/game/LoadingScreen'
+import DressCodeSelection from '../components/game/DressCodeSelection'
 import MainMenu from '../components/game/MainMenu'
 import GameCanvas from '../components/game/GameCanvas'
 import GameUI from '../components/game/GameUI'
@@ -26,7 +27,7 @@ export const usePlayer = () => {
 }
 
 function GamePage() {
-  // Screen states: 'loading' | 'menu' | 'playing'
+  // Screen states: 'loading' | 'dresscode' | 'menu' | 'playing'
   const [screenState, setScreenState] = useState('loading')
   const [playerNickname, setPlayerNickname] = useState('')
   const [selectedBuilding, setSelectedBuilding] = useState(null)
@@ -91,10 +92,17 @@ function GamePage() {
     setPlayerNickname(nickname)
     sessionStorage.setItem('universe3d_player_nickname', nickname)
 
-    // Transition to main menu
-    setScreenState('menu')
+    // Transition to dress code selection
+    setScreenState('dresscode')
 
-    console.log(`Player "${nickname}" ready to select building!`)
+    console.log(`Player "${nickname}" ready to select dress code!`)
+  }
+
+  // Called when player completes dress code selection
+  const handleDressCodeSubmit = (config) => {
+    sessionStorage.setItem('universe3d_dresscode', JSON.stringify(config))
+    setScreenState('menu')
+    console.log(`Player "${playerNickname}" dress code saved:`, config)
   }
 
   // Resume music when returning to menu
@@ -159,6 +167,11 @@ function GamePage() {
         {/* Loading Screen - Enter nickname */}
         {screenState === "loading" && (
           <LoadingScreen onNicknameSubmit={handleNicknameSubmit} />
+        )}
+
+        {/* Dress Code Selection */}
+        {screenState === "dresscode" && (
+          <DressCodeSelection onComplete={handleDressCodeSubmit} />
         )}
 
         {/* Main Menu - Select building */}

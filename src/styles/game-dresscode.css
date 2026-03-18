@@ -1,0 +1,361 @@
+/* --- BASE & BACKGROUND --- */
+.dresscode-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  /* Deep sky blue gradient */
+  background: radial-gradient(circle at 50% 30%, #a4eAff 0%, #68b8d9 40%, #468cae 80%, #3a7593 100%);
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Scattered Stars */
+.dresscode-container::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    radial-gradient(1.5px 1.5px at 15% 20%, rgba(255,255,255,0.8) 100%, transparent),
+    radial-gradient(2px 2px at 85% 35%, rgba(255,255,255,0.6) 100%, transparent),
+    radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,0.7) 100%, transparent),
+    radial-gradient(1.5px 1.5px at 90% 85%, rgba(255,255,255,0.9) 100%, transparent),
+    radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,0.5) 100%, transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-bottom: 2rem;
+  text-shadow: 0 4px 10px rgba(255, 255, 255, 0.4), 0 1px 3px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* --- MAIN LAYOUT --- */
+.main-content {
+  display: flex;
+  gap: 2rem;
+  z-index: 1;
+  max-width: 1100px;
+  width: 90%;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* LEFT PANELS (Clothing Grids) */
+.left-panels {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 2;
+  max-width: 600px;
+}
+
+.top-row {
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.panel {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+
+.panel-title {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Grids */
+.grid-3x2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1.2rem;
+}
+
+.grid-3x1 {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* Cards (Rounded Square Buttons) */
+.card {
+  aspect-ratio: 1;
+  background: rgba(245, 245, 245, 0.95);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+  box-shadow: inset 0 -4px 8px rgba(0,0,0,0.05), 0 4px 10px rgba(0,0,0,0.1);
+  overflow: visible; /* To allow checkmark to pop out slightly */
+}
+
+/* Provide fixed dimensions for footwear since it's flex */
+.panel-bottom .card {
+  width: 90px;
+  height: 90px;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  background: #ffffff;
+  box-shadow: inset 0 -4px 8px rgba(0,0,0,0.02), 0 8px 15px rgba(0,0,0,0.15);
+}
+
+.card.active {
+  background: #ffffff;
+  border: 4px solid #4ade80; /* Bright Green outline */
+  outline: 2px solid rgba(74, 222, 128, 0.3); /* Soft outer glow */
+}
+
+.card-inner {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #4ade80;
+  color: white;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+.check-badge svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* RIGHT PANEL (Preview) */
+.preview-panel {
+  flex: 1;
+  background: rgba(154, 203, 242, 0.6); /* Slightly more solid sky blue/glass */
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 320px;
+}
+
+/* Toggle Switch */
+.toggle-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.toggle-bg {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(5px);
+  border-radius: 30px;
+  display: flex;
+  padding: 4px;
+  width: 200px;
+  position: relative;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.toggle-option {
+  flex: 1;
+  padding: 8px 0;
+  text-align: center;
+  border-radius: 26px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 1;
+}
+
+.toggle-option.active {
+  background: #2563eb; /* Strong solid blue */
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.5);
+}
+
+/* AVATAR BUILDER */
+.avatar-wrapper {
+  position: relative;
+  width: 100px;
+  height: 180px;
+  margin-bottom: 2rem;
+}
+
+.avatar-dummy {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.dummy-head {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 36px; height: 36px;
+  background: #facc15; /* Yellowish head */
+  border-radius: 50%;
+  z-index: 5;
+  box-shadow: inset -4px -4px 0 rgba(0,0,0,0.1);
+}
+
+.dummy-neck {
+  position: absolute;
+  top: 34px; left: 50%;
+  transform: translateX(-50%);
+  width: 12px; height: 10px;
+  background: #eab308;
+  z-index: 4;
+}
+
+.dummy-arms {
+  position: absolute;
+  top: 40px; left: 50%;
+  transform: translateX(-50%);
+  width: 80px; height: 60px;
+  background: #facc15;
+  border-radius: 20px;
+  z-index: 2; /* Arms behind torso slightly */
+}
+
+/* Hands hanging down */
+.dummy-arms::before, .dummy-arms::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  width: 16px; height: 16px;
+  background: #facc15;
+  border-radius: 50%;
+}
+.dummy-arms::before { left: 0; }
+.dummy-arms::after { right: 0; }
+
+.dummy-legs {
+  position: absolute;
+  top: 90px; left: 50%;
+  transform: translateX(-50%);
+  width: 40px; height: 75px;
+  background: transparent;
+}
+/* bare legs in case shorts are worn */
+.dummy-legs::before, .dummy-legs::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 16px; height: 75px;
+  background: #facc15;
+}
+.dummy-legs::before { left: 2px; }
+.dummy-legs::after { right: 2px; }
+
+/* SVG Layers */
+.avatar-layer {
+  position: absolute;
+  width: 100%; height: 100%;
+  top: 0; left: 0;
+}
+
+/* specific scaling/positioning for the mapped SVGs on the avatar */
+.avatar-top { top: 35px; height: 70px; z-index: 4; transform: scale(1.3); }
+.avatar-bottom { top: 90px; height: 75px; z-index: 3; transform: scale(0.9); }
+.avatar-footwear { top: 155px; height: 30px; z-index: 5; transform: scale(1.1); }
+
+/* Bottom Preview Section */
+.preview-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.mini-thumbnails {
+  display: flex;
+  gap: 10px;
+}
+
+.thumbnail {
+  width: 40px;
+  height: 40px;
+  background: rgba(245, 245, 245, 0.2); /* very subtle */
+  border-radius: 8px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.thumbnail svg {
+  width: 100%;
+  height: 100%;
+  /* Force a drop shadow on the clothes icon itself for depth */
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
+}
+
+/* NEXT BUTTON */
+.next-btn {
+  margin-top: 3rem;
+  padding: 14px 44px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: white;
+  background: linear-gradient(180deg, #60a5fa 0%, #2563eb 100%);
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  box-shadow: 
+    0 8px 15px rgba(37, 99, 235, 0.4), 
+    inset 0 4px 0 rgba(255,255,255,0.4); /* Glowing top rim */
+  transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+  z-index: 1;
+}
+
+.next-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 10px 20px rgba(37, 99, 235, 0.6), 
+    inset 0 4px 0 rgba(255,255,255,0.5);
+  filter: brightness(1.1);
+}
+
+.next-btn:active {
+  transform: scale(0.95);
+  box-shadow: 
+    0 4px 10px rgba(37, 99, 235, 0.4), 
+    inset 0 2px 0 rgba(255,255,255,0.3);
+}
