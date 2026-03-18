@@ -619,6 +619,31 @@
   transform: translateX(4px);
 }
 
+.ls-fullscreen-hint {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+
+.ls-fullscreen-fallback {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-left: 0.3rem;
+  transition: opacity 0.2s;
+}
+
+.ls-fullscreen-fallback:hover {
+  opacity: 0.8;
+}
+
 /* ─── Footer ─── */
 .ls-footer {
   position: absolute;

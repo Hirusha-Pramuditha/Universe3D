@@ -145,7 +145,9 @@ function LoadingScreen({ onNicknameSubmit }) {
       setNicknameError('Nickname must be less than 20 characters')
       return
     }
-  
+
+    // Trigger fullscreen mode
+    enterFullscreen()
     
     // Submit nickname to parent
     onNicknameSubmit?.(trimmedNickname)
@@ -161,8 +163,53 @@ function LoadingScreen({ onNicknameSubmit }) {
   const currentTip = shuffledTips[currentTipIndex]
   const displayProgress = Math.min(Math.round(progress), 100)
 
+  // Fullscreen trigger utility
+  const enterFullscreen = () => {
+    const elem = document.documentElement;
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen().catch(err => console.log("Fullscreen blocked:", err));
+    } else if (elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      elem.msRequestFullscreen();
+    }
+  };
+
+  // Listen for fullscreen exits (useful for analytics or tracking)
+  // Also attempt to force auto-fullscreen if not active
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement) {
+        console.log("User exited fullscreen");
+      }
+    };
+    
+    const attemptFullscreen = () => {
+      if (!document.fullscreenElement) {
+        enterFullscreen();
+      }
+      document.removeEventListener("click", attemptFullscreen);
+      document.removeEventListener("keydown", attemptFullscreen);
+    };
+
+    // Attempt auto-trigger immediately on mount (might be blocked by browser)
+    enterFullscreen();
+
+    // Fallback: Bind to very first interaction to guarantee fullscreen
+    document.addEventListener("click", attemptFullscreen);
+    document.addEventListener("keydown", attemptFullscreen);
+    
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener("click", attemptFullscreen);
+      document.removeEventListener("keydown", attemptFullscreen);
+    };
+  }, []);
+
   return (
-    <div className="loading-screen-v2">
+    <div className="loading-screen-v2" onClick={enterFullscreen}>
       {/* Animated Background */}
       <div className="ls-background">
         <div className="ls-gradient"></div>
@@ -325,6 +372,16 @@ function LoadingScreen({ onNicknameSubmit }) {
             <span className="ls-tip-icon">{currentTip.icon}</span>
             <span className="ls-tip-text">{currentTip.text}</span>
           </div>
+
+          <div className="ls-fullscreen-hint" style={{ marginTop: '2rem' }}>
+            <button 
+              type="button" 
+              onClick={(e) => { e.stopPropagation(); enterFullscreen(); }} 
+              className="ls-fullscreen-fallback"
+            >
+              Click anywhere to enable Fullscreen
+            </button>
+          </div>
         </div>
       )}
 
@@ -422,6 +479,16 @@ function LoadingScreen({ onNicknameSubmit }) {
                 <path d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </button>
+            <div className="ls-fullscreen-hint">
+              Game will switch to fullscreen. 
+              <button 
+                type="button" 
+                onClick={enterFullscreen} 
+                className="ls-fullscreen-fallback"
+              >
+                Click to enable fullscreen
+              </button>
+            </div>
           </div>
         </div>
       )}
