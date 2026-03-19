@@ -342,7 +342,8 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
     // ─── Renderer (Shadows Disabled) ───
     const renderer = new THREE.WebGLRenderer({ antialias: true })
     renderer.setSize(window.innerWidth, window.innerHeight)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    const isLowEnd = window.innerWidth < 1366;
+    renderer.setPixelRatio(isLowEnd ? 1 : Math.min(window.devicePixelRatio, 2))
     renderer.shadowMap.enabled = false // Shadows disabled
     containerRef.current.appendChild(renderer.domElement)
 
@@ -1129,10 +1130,24 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
 
     // ─── Handle Resize ───
     const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight
+      const width = window.innerWidth
+      const height = window.innerHeight
+      camera.aspect = width / height
       camera.updateProjectionMatrix()
-      renderer.setSize(window.innerWidth, window.innerHeight)
+      renderer.setSize(width, height)
+      
+      const isLowEnd = width < 1366
+      renderer.setPixelRatio(isLowEnd ? 1 : Math.min(window.devicePixelRatio, 2))
+      
+      if (cameraSettingsRef.current) {
+        if (isLowEnd) {
+           cameraSettingsRef.current.distance = 2.8 // Increased zoom out for small viewports
+        } else {
+           cameraSettingsRef.current.distance = 1.9 // Default distance
+        }
+      }
     }
+    handleResize()
     window.addEventListener('resize', handleResize)
 
     // ─── Cleanup ───
