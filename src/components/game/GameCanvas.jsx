@@ -1222,7 +1222,7 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
       <LetterHunt scene={sceneInstance} playerRef={playerRef} />
 
       {/* ─── Treasure Hunt Component ─── */}
-      <TreasureHunt scene={sceneInstance} playerRef={playerRef} />
+      <TreasureHunt scene={sceneInstance} playerRef={playerRef} setMissions={setMissions} />
 
       {/* Interaction Prompt */}
       {interactionTarget && !showInfoModal && !showQuizModal && (
