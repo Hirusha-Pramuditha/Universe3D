@@ -294,7 +294,7 @@ const LetterHunt = ({ scene, playerRef, setMissions }) => {
                         const distHz = Math.sqrt(dx * dx + dz * dz);
                         const dy = Math.abs(playerPos.y - letter.mesh.position.y);
 
-                        if (distHz < 2.0 && dy < 3.0) {
+                        if (distHz < 2.0 && dy < 1.0) {
                             if (distHz < closestDist) {
                                 closestDist = distHz;
                                 closestLetter = letter;
