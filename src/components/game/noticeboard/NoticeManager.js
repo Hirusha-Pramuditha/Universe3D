@@ -51,8 +51,5 @@ export class NoticeManager {
         });
     }
 
-    update(deltaTime, gameState) {
-        // Logic to add/remove notices based on time/state
-        // For example, if it's night, add spooky notices
-    }
+
 }
