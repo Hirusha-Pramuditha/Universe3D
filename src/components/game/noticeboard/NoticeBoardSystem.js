@@ -272,21 +272,7 @@ export class NoticeBoardSystem {
         title.innerText = '📋 Notice';
         titleContainer.appendChild(title);
 
-        const closeBtn = document.createElement('button');
-        closeBtn.className = 'mission-modal-close';
-        closeBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
-        
-        closeBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (this.currentPaper) {
-                this.currentPaper.putBack();
-                this.currentPaper = null;
-            }
-            this.hidePopup();
-        });
-
         header.appendChild(titleContainer);
-        header.appendChild(closeBtn);
 
         // Body
         const body = document.createElement('div');
