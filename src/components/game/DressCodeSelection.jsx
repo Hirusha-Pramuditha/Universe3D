@@ -44,179 +44,22 @@ const RedSneakers = () => (
 // 2. FEMALE SVGS
 // ==========================================
 
-const FrockTop = () => (
-  // Floral pastel, flared at waist
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    {/* Body */}
-    <path d="M 22 18 L 42 18 L 50 56 L 14 56 Z" fill="#f8bbd0" />
-    {/* Thin straps */}
-    <rect x="24" y="10" width="2" height="10" fill="#f48fb1" />
-    <rect x="38" y="10" width="2" height="10" fill="#f48fb1" />
-    {/* Waist belt */}
-    <rect x="18" y="32" width="28" height="4" fill="#ec407a" rx="2" />
-    {/* Simple floral pattern */}
-    <circle cx="25" cy="45" r="2.5" fill="#fff" />
-    <circle cx="39" cy="42" r="3" fill="#ec407a" />
-    <circle cx="32" cy="50" r="2" fill="#fff" />
-  </svg>
-);
-const FemaleLongSleeve = () => (
-  // Cream fitted, cuffed
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 18 20 L 46 20 L 44 54 L 20 54 Z" fill="#fffdd0" />
-    <path d="M 18 20 L 10 46 L 16 48 L 22 28" fill="#fffdd0" />
-    <path d="M 46 20 L 54 46 L 48 48 L 42 28" fill="#fffdd0" />
-    {/* Cuffs */}
-    <rect x="8" y="44" width="10" height="4" fill="#eee8aa" transform="rotate(15 8 44)" />
-    <rect x="46" y="46" width="10" height="4" fill="#eee8aa" transform="rotate(-15 46 46)" />
-    {/* Neckline */}
-    <path d="M 26 20 Q 32 30 38 20 Z" fill="#ffccbc" /> {/* Generic skin tone behind */}
-    {/* Vertical seam */}
-    <rect x="31.5" y="28" width="1" height="26" fill="#ccc" />
-  </svg>
-);
-const FemaleSleeveless = () => (
-  // Lavender solid, thin straps
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 22 24 L 42 24 L 42 54 L 22 54 Z" fill="#e6e6fa" />
-    <path d="M 22 24 Q 32 32 42 24 Z" fill="#d8bfd8" /> {/* Neck drape/shadow */}
-    <rect x="24" y="12" width="2" height="14" fill="#d8bfd8" />
-    <rect x="38" y="12" width="2" height="14" fill="#d8bfd8" />
-  </svg>
-);
-const OffShoulder = () => (
-  // Sky blue ruffled
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    {/* Main body */}
-    <path d="M 20 26 L 44 26 L 44 54 L 20 54 Z" fill="#87ceeb" />
-    {/* Ruffles sweeping across shoulders */}
-    <path d="M 12 28 Q 20 20 32 26 Q 44 20 52 28 Q 54 36 46 32 Q 32 40 18 32 Q 10 36 12 28 Z" fill="#b0e2ff" />
-  </svg>
-);
-const FemaleTShirt = () => (
-  // Coral crew neck
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 16 20 L 48 20 L 46 52 L 18 52 Z" fill="#ff7f50" />
-    <path d="M 16 20 L 8 32 L 14 36 L 22 26" fill="#ff7f50" />
-    <path d="M 48 20 L 56 32 L 50 36 L 42 26" fill="#ff7f50" />
-    <path d="M 26 20 Q 32 26 38 20 Z" fill="#cd5b45" /> {/* Neck outline */}
-  </svg>
-);
-const CropTop = () => (
-  // Dark grey short hem
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 20 20 L 44 20 L 42 40 L 22 40 Z" fill="#34495e" />
-    {/* Tight short sleeves */}
-    <path d="M 20 20 L 14 28 L 20 32 Z" fill="#34495e" />
-    <path d="M 44 20 L 50 28 L 44 32 Z" fill="#34495e" />
-    <path d="M 28 20 Q 32 26 36 20 Z" fill="#2c3e50" />
-  </svg>
-);
+const FrockTop = () => <AvatarItemThumbnail type="top" itemId="f_top_1" />;
+const FemaleLongSleeve = () => <AvatarItemThumbnail type="top" itemId="f_top_2" />;
+const FemaleSleeveless = () => <AvatarItemThumbnail type="top" itemId="f_top_3" />;
+const OffShoulder = () => <AvatarItemThumbnail type="top" itemId="f_top_4" />;
+const FemaleTShirt = () => <AvatarItemThumbnail type="top" itemId="f_top_5" />;
+const CropTop = () => <AvatarItemThumbnail type="top" itemId="f_top_6" />;
+const FormalTrousers = () => <AvatarItemThumbnail type="bottom" itemId="f_bot_1" />;
+const LongDress = () => <AvatarItemThumbnail type="top" itemId="f_top_7" />;
+const FemaleJeans = () => <AvatarItemThumbnail type="bottom" itemId="f_bot_3" />;
+const ShortSkirt = () => <AvatarItemThumbnail type="bottom" itemId="f_bot_4" />;
+const DenimShorts = () => <AvatarItemThumbnail type="bottom" itemId="f_bot_5" />;
+const HighTornJeans = () => <AvatarItemThumbnail type="bottom" itemId="f_bot_6" />;
 
-const FormalTrousers = () => (
-  // Navy high waist straight cut
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 20 6 L 44 6 L 42 58 L 32 58 L 32 20 L 32 58 L 22 58 Z" fill="#1a237e" />
-    <rect x="20" y="6" width="24" height="6" fill="#0d47a1" /> {/* High waistband */}
-    {/* Crease line */}
-    <rect x="26" y="12" width="1" height="46" fill="#283593" />
-    <rect x="37" y="12" width="1" height="46" fill="#283593" />
-  </svg>
-);
-const LongDress = () => (
-  // Flowy long skirt + elegant top (Full Body)
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 28 15 L 36 15 L 42 35 L 22 35 Z" fill="#d8bfd8" /> {/* Top half */}
-    <path d="M 22 35 L 42 35 L 52 58 L 12 58 Z" fill="#d8bfd8" /> {/* Bottom half */}
-    {/* Straps */}
-    <rect x="28" y="10" width="2" height="5" fill="#cca8cc" />
-    <rect x="34" y="10" width="2" height="5" fill="#cca8cc" />
-    {/* Drapery lines */}
-    <path d="M 28 35 Q 30 45 24 58" stroke="#cca8cc" strokeWidth="1.5" fill="none" />
-    <path d="M 36 35 Q 34 45 40 58" stroke="#cca8cc" strokeWidth="1.5" fill="none" />
-    <rect x="22" y="33" width="20" height="4" fill="#cca8cc" />
-  </svg>
-);
-const FemaleJeans = () => (
-  // Mid-rise blue denim, straight leg
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 20 12 L 44 12 L 42 58 L 33 58 L 33 26 L 31 26 L 31 58 L 22 58 Z" fill="#5cacee" />
-    <rect x="20" y="12" width="24" height="4" fill="#4fa3e8" />
-    {/* Subtle fade */}
-    <rect x="24" y="20" width="3" height="30" fill="#87cefa" rx="1.5" />
-    <rect x="37" y="20" width="3" height="30" fill="#87cefa" rx="1.5" />
-  </svg>
-);
-
-const ClosedHeels = () => (
-  // Black stiletto
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    {/* Left */}
-    <path d="M 12 40 L 26 44 L 26 48 L 8 48 C 8 42 10 40 12 40 Z" fill="#111" />
-    <path d="M 24 44 L 26 44 L 26 56 L 24 56 Z" fill="#333" /> {/* Stiletto */}
-    <path d="M 14 42 Q 22 40 26 44" fill="#ffccbc" /> {/* Exposed foot */}
-    {/* Right */}
-    <path d="M 40 44 L 52 40 C 54 40 56 42 56 48 L 38 48 L 38 44 Z" fill="#111" />
-    <path d="M 38 44 L 40 44 L 40 56 L 38 56 Z" fill="#333" /> /* Stiletto Right */
-    <path d="M 40 44 Q 44 40 50 42" fill="#ffccbc" />
-  </svg>
-);
-const FemaleSneakers = () => (
-  // White low top minimal
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    {/* Left */}
-    <path d="M 10 40 L 26 40 L 26 48 L 8 48 C 8 44 9 42 10 40 Z" fill="#fff" />
-    <path d="M 8 46 L 26 46" stroke="#ddd" strokeWidth="2" fill="none" />
-    <path d="M 12 40 L 22 43" stroke="#eee" strokeWidth="1" fill="none" />
-    {/* Right */}
-    <path d="M 38 40 L 54 40 C 55 42 56 44 56 48 L 38 48 Z" fill="#fff" />
-    <path d="M 38 46 L 56 46" stroke="#ddd" strokeWidth="2" fill="none" />
-    <path d="M 42 43 L 52 40" stroke="#eee" strokeWidth="1" fill="none" />
-  </svg>
-);
-const FemaleSlippers = () => (
-  // Coral open flat
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    {/* Left */}
-    <rect x="8" y="46" width="20" height="2" fill="#d2b48c" /> {/* Sole */}
-    <path d="M 12 40 Q 18 36 24 44" stroke="#ff7f50" strokeWidth="4" fill="none" /> {/* Strap */}
-    {/* Right */}
-    <rect x="36" y="46" width="20" height="2" fill="#d2b48c" />
-    <path d="M 40 44 Q 46 36 52 40" stroke="#ff7f50" strokeWidth="4" fill="none" />
-  </svg>
-);
-const ShortSkirt = () => (
-  // Pastel pink flared short skirt
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 22 10 L 42 10 L 52 40 L 12 40 Z" fill="#ffb6c1" />
-    <rect x="22" y="10" width="20" height="4" fill="#ff99cc" />
-    {/* Pleats / folds */}
-    <path d="M 28 14 L 24 40" stroke="#ff99cc" strokeWidth="1" fill="none" />
-    <path d="M 36 14 L 40 40" stroke="#ff99cc" strokeWidth="1" fill="none" />
-  </svg>
-);
-const DenimShorts = () => (
-  // Light blue short denim cut-offs
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 20 12 L 44 12 L 46 36 L 33 36 L 33 26 L 31 26 L 31 36 L 18 36 Z" fill="#5cacee" />
-    <rect x="20" y="12" width="24" height="4" fill="#2e86c1" />
-    {/* Distressed edge */}
-    <path d="M 18 36 Q 22 34 25 37 T 31 36" stroke="#fff" strokeWidth="1" fill="none" />
-    <path d="M 33 36 Q 37 34 41 37 T 46 36" stroke="#fff" strokeWidth="1" fill="none" />
-  </svg>
-);
-const HighTornJeans = () => (
-  // High waisted, light blue, heavily ripped
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 20 6 L 44 6 L 42 58 L 33 58 L 33 26 L 31 26 L 31 58 L 22 58 Z" fill="#87cefa" />
-    <rect x="20" y="6" width="24" height="6" fill="#4682b4" /> {/* High waist */}
-    {/* Rips */}
-    <path d="M 24 24 L 30 24 L 28 26 L 23 26 Z" fill="#fff" />
-    <path d="M 35 34 L 41 34 L 40 36 L 34 36 Z" fill="#fff" />
-    <path d="M 23 44 L 28 44 L 27 46 L 22 46 Z" fill="#fff" />
-    <path d="M 35 20 L 40 20 L 39 22 L 34 22 Z" fill="#fff" />
-  </svg>
-);
+const ClosedHeels = () => <AvatarItemThumbnail type="footwear" itemId="f_foot_1" />;
+const FemaleSneakers = () => <AvatarItemThumbnail type="footwear" itemId="f_foot_2" />;
+const FemaleSlippers = () => <AvatarItemThumbnail type="footwear" itemId="f_foot_3" />;
 
 // ==========================================
 // DATA MAPPING
