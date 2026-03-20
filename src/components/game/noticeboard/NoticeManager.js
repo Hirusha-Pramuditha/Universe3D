@@ -10,8 +10,8 @@ export class NoticeManager {
         const defaultNotices = [
             {
                 id: 'n1',
-                text: "MISSING:\nCalculus Homework\nReward: 5 Credits",
-                type: 'quest',
+                text: "📌 Important Rule\n\nIf it works, don’t touch it.\n\nIf you touched it… good luck.\n\nIf it stops working after you touched it,\nno one saw anything.\n\nIf someone asks,\nit was already broken.",
+                type: 'info',
                 color: 0xfffbea,
                 x: -1.0, y: 0.6, rotation: -0.1
             },
