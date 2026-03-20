@@ -8,7 +8,7 @@ const COLORS = {
   m_foot_1: '#ffffff', m_foot_2: '#5c3a21', m_foot_3: '#1a1a1a',
 
   f_top_1: '#E84342', f_top_2: '#FF7675', f_top_3: '#E17055', 
-  f_top_4: '#6C5CE7', f_top_5: '#00B894', f_top_6: '#FDCB6E', f_top_7: '#E84342',
+  f_top_4: '#6C5CE7', f_top_5: '#00B894', f_top_6: '#ff9ff3', f_top_7: '#E84342',
   f_bot_1: '#2D3436', f_bot_3: '#0984E3', 
   f_bot_4: '#E84342', f_bot_5: '#00CEC9', f_bot_6: '#6C5CE7',
   f_foot_1: '#2D3436', f_foot_2: '#636E72', f_foot_3: '#FF7675'
@@ -153,8 +153,15 @@ const renderTopLayer = (id) => {
       <g>
         {/* Frock */}
         <path d="M 38 44 C 45 41, 55 41, 62 44 L 62 70 L 65 105 Q 70 125 75 145 L 25 145 Q 30 125 35 105 L 38 70 Z" fill={color} />
+        <path d="M 38 44 C 41 42, 43 43, 44 45 L 43 70 L 45 105 Q 49 125 51 145 L 25 145 Q 30 125 35 105 L 38 70 Z" fill="#111" opacity="0.15" />
+        <path d="M 38 75 L 48 85 L 46 88 L 36 80 Z" fill="#111" opacity="0.1" />
+        <path d="M 62 65 L 52 80 L 53 82 L 62 70 Z" fill="#111" opacity="0.1" />
+        <path d="M 25 140 Q 50 145 75 140 L 75 145 L 25 145 Z" fill="#111" opacity="0.2" />
+
         <path d="M 45 44 L 50 52 L 55 44 Z" fill="#f4caa7" />
+        
         <path d="M 38 44 Q 30 55 28 65 L 34 65 Q 38 55 40 50 Z" fill={color} />
+        <path d="M 38 44 Q 32 50 31 58 L 28 65 L 34 65 Q 38 55 40 50 Z" fill="#111" opacity="0.15" />
         <path d="M 62 44 Q 70 55 72 65 L 66 65 Q 62 55 60 50 Z" fill={color} />
       </g>
     );
@@ -163,13 +170,20 @@ const renderTopLayer = (id) => {
         {/* Sleeveless Top */}
         <path d="M 42 44 L 42 40 M 58 44 L 58 40" stroke={color} strokeWidth="3" strokeLinecap="round" />
         <path d="M 40 44 Q 45 50 50 50 Q 55 50 60 44 L 62 70 L 65 105 L 35 105 L 38 70 Z" fill={color} />
+        <path d="M 40 44 Q 42 47 43 47 L 44 70 L 46 105 L 35 105 L 38 70 Z" fill="#111" opacity="0.15" />
+        <path d="M 38 75 L 48 85 L 46 88 L 36 80 Z" fill="#111" opacity="0.1" />
+        <path d="M 62 65 L 52 80 L 53 82 L 62 70 Z" fill="#111" opacity="0.1" />
       </g>
     );
     if (id === 'f_top_4') return (
       <g>
         {/* Off Shoulder Top */}
         <path d="M 32 52 L 68 52 L 63 70 L 65 105 L 35 105 L 37 70 Z" fill={color} />
+        <path d="M 32 52 L 38 52 L 39 70 L 41 105 L 35 105 L 37 70 Z" fill="#111" opacity="0.15" />
+        <path d="M 37 75 L 48 85 L 46 88 L 35 80 Z" fill="#111" opacity="0.1" />
+        
         <path d="M 26 52 L 34 52 L 36 62 L 30 62 Z" fill={color} />
+        <path d="M 26 52 L 30 52 L 33 60 L 30 62 Z" fill="#111" opacity="0.15" />
         <path d="M 74 52 L 66 52 L 64 62 L 70 62 Z" fill={color} />
       </g>
     );
@@ -177,8 +191,14 @@ const renderTopLayer = (id) => {
       <g>
         {/* T-Shirt */}
         <path d="M 38 44 C 45 41, 55 41, 62 44 L 62 70 L 63 90 L 37 90 L 38 70 Z" fill={color} />
+        <path d="M 38 44 C 42 42, 44 43, 44 46 L 43 70 L 44 90 L 37 90 L 38 70 Z" fill="#111" opacity="0.15" />
+        <path d="M 37 80 L 48 88 L 47 90 L 37 85 Z" fill="#111" opacity="0.1" />
+        <path d="M 63 75 L 53 85 L 54 87 L 62 80 Z" fill="#111" opacity="0.1" />
+        
         <path d="M 44 44 Q 50 50 56 44 Z" fill="#fff" opacity="0.15" />
+        
         <path d="M 38 44 Q 30 60 28 75 L 34 75 Q 38 60 40 55 Z" fill={color} />
+        <path d="M 38 44 Q 32 55 31 65 L 28 75 L 34 75 Q 38 60 40 55 Z" fill="#111" opacity="0.15" />
         <path d="M 62 44 Q 70 60 72 75 L 66 75 Q 62 60 60 55 Z" fill={color} />
       </g>
     );
@@ -186,8 +206,12 @@ const renderTopLayer = (id) => {
       <g>
         {/* Crop Top */}
         <path d="M 38 44 C 45 41, 55 41, 62 44 L 62 70 L 38 70 Z" fill={color} />
+        <path d="M 38 44 C 42 42, 44 43, 44 46 L 44 70 L 38 70 Z" fill="#111" opacity="0.15" />
+        <path d="M 38 68 L 62 68 L 62 70 L 38 70 Z" fill="#111" opacity="0.15" />
         <path d="M 44 44 Q 50 50 56 44 Z" fill="#f4caa7" />
+        
         <path d="M 38 44 Q 30 60 28 75 L 34 75 Q 38 60 40 55 Z" fill={color} />
+        <path d="M 38 44 Q 32 55 31 65 L 28 75 L 34 75 Q 38 60 40 55 Z" fill="#111" opacity="0.15" />
         <path d="M 62 44 Q 70 60 72 75 L 66 75 Q 62 60 60 55 Z" fill={color} />
       </g>
     );
@@ -195,8 +219,13 @@ const renderTopLayer = (id) => {
       <g>
         {/* Long Dress */}
         <path d="M 38 44 C 45 41, 55 41, 62 44 L 62 70 L 65 105 L 70 180 L 30 180 L 35 105 L 38 70 Z" fill={color} />
+        <path d="M 38 44 C 42 42, 43 43, 44 45 L 43 70 L 45 105 L 45 180 L 30 180 L 35 105 L 38 70 Z" fill="#111" opacity="0.15" />
+        <path d="M 38 120 L 50 140 L 48 145 L 34 110 Z" fill="#111" opacity="0.1" />
+        <path d="M 68 110 L 55 130 L 56 135 L 70 130 Z" fill="#111" opacity="0.1" />
+        
         <path d="M 45 44 L 50 54 L 55 44 Z" fill="#f4caa7" />
         <path d="M 38 44 Q 25 70 24 100 L 32 100 Q 36 70 40 55 Z" fill={color} />
+        <path d="M 38 44 Q 28 65 28 85 L 24 100 L 32 100 Q 36 70 40 55 Z" fill="#111" opacity="0.15" />
         <path d="M 62 44 Q 75 70 76 100 L 68 100 Q 64 70 60 55 Z" fill={color} />
       </g>
     );
@@ -287,34 +316,57 @@ const renderBottomLayer = (id) => {
   const color = COLORS[id] || '#5d3936';
   if (id.startsWith('f_')) {
     if (id === 'f_bot_1') return (
-      <g fill={color}>
+      <g>
         {/* Formal Trousers */}
-        <path d="M 37 85 L 63 85 L 65 105 L 62 185 L 52 185 L 50 110 L 48 185 L 38 185 L 35 105 Z" />
+        <path d="M 37 85 L 63 85 L 65 105 L 62 185 L 52 185 L 50 110 L 48 185 L 38 185 L 35 105 Z" fill={color} />
+        <path d="M 37 85 L 43 85 L 43 105 L 43 185 L 38 185 L 35 105 Z" fill="#111" opacity="0.15" />
+        <path d="M 50 110 L 48 185 L 45 185 L 47 115 Z" fill="#111" opacity="0.2" />
+        <path d="M 50 110 L 52 185 L 55 185 L 53 115 Z" fill="#111" opacity="0.2" />
+        <path d="M 45 85 L 55 85 L 50 110 Z" fill="#111" opacity="0.15" />
+        <path d="M 37 140 L 42 160 L 41 165 L 36 145 Z" fill="#111" opacity="0.1" />
+        <path d="M 63 130 L 58 150 L 59 155 L 64 135 Z" fill="#111" opacity="0.1" />
       </g>
     );
     if (id === 'f_bot_3') return (
-      <g fill={color}>
+      <g>
         {/* Regular Jeans */}
-        <path d="M 37 85 L 63 85 L 65 105 L 62 185 L 53 185 L 50 110 L 47 185 L 38 185 L 35 105 Z" />
+        <path d="M 37 85 L 63 85 L 65 105 L 62 185 L 53 185 L 50 110 L 47 185 L 38 185 L 35 105 Z" fill={color} />
+        <path d="M 37 85 L 43 85 L 43 105 L 43 185 L 38 185 L 35 105 Z" fill="#111" opacity="0.15" />
+        <path d="M 50 110 L 47 185 L 44 185 L 47 115 Z" fill="#111" opacity="0.2" />
+        <path d="M 50 110 L 53 185 L 56 185 L 53 115 Z" fill="#111" opacity="0.2" />
+        <path d="M 45 85 L 55 85 L 50 110 Z" fill="#111" opacity="0.15" />
+        <path d="M 37 140 L 42 160 L 41 165 L 36 145 Z" fill="#111" opacity="0.1" />
+        <path d="M 63 130 L 58 150 L 59 155 L 64 135 Z" fill="#111" opacity="0.1" />
       </g>
     );
     if (id === 'f_bot_4') return (
-      <g fill={color}>
+      <g>
         {/* Short Skirt */}
-        <path d="M 37 85 L 63 85 L 65 105 L 67 135 L 33 135 L 35 105 Z" />
+        <path d="M 37 85 L 63 85 L 65 105 L 67 135 L 33 135 L 35 105 Z" fill={color} />
+        <path d="M 37 85 L 43 85 L 43 105 L 41 135 L 33 135 L 35 105 Z" fill="#111" opacity="0.15" />
         <path d="M 50 85 L 50 135" stroke="#222" strokeWidth="0.8" opacity="0.4" fill="none" />
+        <path d="M 63 85 L 65 105 L 67 135 L 65 135 L 62 105 L 61 85 Z" fill="#fff" opacity="0.1" />
       </g>
     );
     if (id === 'f_bot_5') return (
-      <g fill={color}>
+      <g>
         {/* Denim Shorts */}
-        <path d="M 37 85 L 63 85 L 65 105 L 65 125 L 52 125 L 50 110 L 48 125 L 35 125 L 35 105 Z" />
+        <path d="M 37 85 L 63 85 L 65 105 L 65 125 L 52 125 L 50 110 L 48 125 L 35 125 L 35 105 Z" fill={color} />
+        <path d="M 37 85 L 43 85 L 44 105 L 43 125 L 35 125 L 35 105 Z" fill="#111" opacity="0.15" />
+        <path d="M 50 110 L 48 125 L 46 125 L 48 110 Z" fill="#111" opacity="0.2" />
+        <path d="M 50 110 L 52 125 L 54 125 L 52 110 Z" fill="#111" opacity="0.2" />
+        <path d="M 50 85 L 50 108" stroke="#111" strokeWidth="0.5" opacity="0.4" fill="none" />
+        <path d="M 37 95 Q 40 98 42 90" stroke="#111" strokeWidth="0.5" opacity="0.4" fill="none" />
+        <path d="M 63 95 Q 60 98 58 90" stroke="#111" strokeWidth="0.5" opacity="0.4" fill="none" />
       </g>
     );
     if (id === 'f_bot_6') return (
       <g>
         {/* High Torn Jeans */}
         <path d="M 37 85 L 63 85 L 65 105 L 62 185 L 53 185 L 50 110 L 47 185 L 38 185 L 35 105 Z" fill={color} />
+        <path d="M 37 85 L 43 85 L 43 105 L 43 185 L 38 185 L 35 105 Z" fill="#111" opacity="0.15" />
+        <path d="M 50 110 L 47 185 L 44 185 L 47 115 Z" fill="#111" opacity="0.2" />
+        <path d="M 50 110 L 53 185 L 56 185 L 53 115 Z" fill="#111" opacity="0.2" />
         {/* Rips */}
         <path d="M 39 135 Q 42 133 45 137 Q 42 140 39 135 Z" fill="#f4caa7" />
         <path d="M 55 140 Q 58 138 61 142 Q 58 145 55 140 Z" fill="#f4caa7" />
@@ -451,17 +503,28 @@ export const AvatarItemThumbnail = ({ type, itemId }) => {
     <svg viewBox="0 0 100 100" width="100%" height="100%">
       <SharedDefs topItem={type === 'top' ? itemId : 'none'} bottomItem={type === 'bottom' ? itemId : 'none'} />
       {type === 'top' && (
-        <g transform="translate(-15, -45) scale(1.3)">
+        <g transform={
+          itemId === 'f_top_1' || itemId === 'f_top_7' ? "translate(-10, -50) scale(1.15)" :
+          itemId.startsWith('f_') ? "translate(-22, -60) scale(1.5)" :
+          "translate(-15, -45) scale(1.3)"
+        }>
           {renderTopLayer(itemId)}
         </g>
       )}
       {type === 'bottom' && (
-        <g transform="translate(-5, -100) scale(1.1)">
+        <g transform={
+          itemId === 'f_bot_4' || itemId === 'f_bot_5' ? "translate(-12, -105) scale(1.25)" :
+          itemId.startsWith('f_') ? "translate(-7, -100) scale(1.15)" :
+          "translate(-5, -100) scale(1.1)"
+        }>
           {renderBottomLayer(itemId)}
         </g>
       )}
       {type === 'footwear' && (
-        <g transform="translate(-75, -417) scale(2.5)">
+        <g transform={
+          itemId.startsWith('f_') ? "translate(-90, -425) scale(2.8)" :
+          "translate(-75, -417) scale(2.5)"
+        }>
           {renderFootwearLayer(itemId)}
         </g>
       )}
