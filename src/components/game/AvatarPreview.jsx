@@ -10,7 +10,7 @@ const COLORS = {
   f_top_1: '#E84342', f_top_2: '#FF7675', f_top_3: '#E17055', 
   f_top_4: '#6C5CE7', f_top_5: '#00B894', f_top_6: '#ff9ff3', f_top_7: '#E84342',
   f_bot_1: '#2D3436', f_bot_3: '#0984E3', 
-  f_bot_4: '#E84342', f_bot_5: '#00CEC9', f_bot_6: '#6C5CE7',
+  f_bot_4: '#E84342', f_bot_5: '#00CEC9', f_bot_6: '#6C5CE7', f_bot_7: '#8c7ae6',
   f_foot_1: '#2D3436', f_foot_2: '#636E72', f_foot_3: '#FF7675'
 };
 
@@ -370,6 +370,19 @@ const renderBottomLayer = (id) => {
         {/* Rips */}
         <path d="M 39 135 Q 42 133 45 137 Q 42 140 39 135 Z" fill="#f4caa7" />
         <path d="M 55 140 Q 58 138 61 142 Q 58 145 55 140 Z" fill="#f4caa7" />
+      </g>
+    );
+    if (id === 'f_bot_7') return (
+      <g>
+        {/* Long Skirt */}
+        <path d="M 37 85 L 63 85 L 65 105 L 70 180 L 30 180 L 35 105 Z" fill={color} />
+        <path d="M 37 85 L 43 85 L 43 105 L 45 180 L 30 180 L 35 105 Z" fill="#111" opacity="0.15" />
+        {/* Folds */}
+        <path d="M 50 85 L 48 180 L 52 180 Z" fill="#111" opacity="0.1" /> 
+        <path d="M 42 85 L 38 180 L 40 180 Z" fill="#111" opacity="0.1" /> 
+        <path d="M 58 85 L 62 180 L 60 180 Z" fill="#111" opacity="0.1" /> 
+        <path d="M 37 120 L 45 140 L 43 145 L 34 110 Z" fill="#111" opacity="0.05" /> 
+        <path d="M 63 110 L 55 130 L 56 135 L 66 130 Z" fill="#111" opacity="0.05" /> 
       </g>
     );
     return <g></g>;

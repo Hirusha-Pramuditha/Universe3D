@@ -55,6 +55,7 @@ const FemaleJeans = () => <AvatarItemThumbnail type="bottom" itemId="f_bot_3" />
 const ShortSkirt = () => <AvatarItemThumbnail type="bottom" itemId="f_bot_4" />;
 const DenimShorts = () => <AvatarItemThumbnail type="bottom" itemId="f_bot_5" />;
 const HighTornJeans = () => <AvatarItemThumbnail type="bottom" itemId="f_bot_6" />;
+const LongSkirt = () => <AvatarItemThumbnail type="bottom" itemId="f_bot_7" />;
 
 const ClosedHeels = () => <AvatarItemThumbnail type="footwear" itemId="f_foot_1" />;
 const FemaleSneakers = () => <AvatarItemThumbnail type="footwear" itemId="f_foot_2" />;
@@ -104,7 +105,8 @@ const FEMALE_DATA = {
     { id: 'f_bot_3', label: 'regular jeans', Comp: FemaleJeans },
     { id: 'f_bot_4', label: 'short skirt', Comp: ShortSkirt },
     { id: 'f_bot_5', label: 'denim shorts', Comp: DenimShorts },
-    { id: 'f_bot_6', label: 'high torn jeans', Comp: HighTornJeans }
+    { id: 'f_bot_6', label: 'high torn jeans', Comp: HighTornJeans },
+    { id: 'f_bot_7', label: 'long skirt', Comp: LongSkirt }
   ],
   footwear: [
     { id: 'f_foot_1', label: 'closed heels', Comp: ClosedHeels },
