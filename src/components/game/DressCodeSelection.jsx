@@ -539,18 +539,27 @@ const DressCodeSelection = ({ onComplete, isMuted, onToggleMute }) => {
               </p>
               <p>You now have permission to continue to the game.</p>
             </div>
-            <button 
-              className="validation-modal-btn" 
-              style={{ background: '#2ecc71', borderColor: '#27ae60' }} 
-              onClick={() => onComplete({
-                gender,
-                top: selections[gender].top,
-                bottom: selections[gender].bottom,
-                footwear: selections[gender].footwear
-              })}
-            >
-              Continue to Game
-            </button>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <button 
+                className="validation-modal-btn" 
+                style={{ background: '#2ecc71', borderColor: '#27ae60', margin: 0 }} 
+                onClick={() => onComplete({
+                  gender,
+                  top: selections[gender].top,
+                  bottom: selections[gender].bottom,
+                  footwear: selections[gender].footwear
+                })}
+              >
+                Continue to Game
+              </button>
+              <button 
+                className="validation-modal-btn" 
+                style={{ background: 'transparent', color: '#2c3e50', border: '2px solid #bdc3c7', margin: 0 }} 
+                onClick={() => setShowSuccess(false)}
+              >
+                Back to Selection
+              </button>
+            </div>
           </div>
         </div>
       )}
