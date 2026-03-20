@@ -535,7 +535,7 @@ export const AvatarItemThumbnail = ({ type, itemId }) => {
       )}
       {type === 'footwear' && (
         <g transform={
-          itemId.startsWith('f_') ? "translate(-90, -425) scale(2.8)" :
+          itemId.startsWith('f_') ? "translate(-90, -485) scale(2.8)" :
           "translate(-75, -417) scale(2.5)"
         }>
           {renderFootwearLayer(itemId)}
