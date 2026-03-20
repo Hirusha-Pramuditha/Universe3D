@@ -92,49 +92,56 @@ const BaseAvatar = ({ gender, skinTone = 'medium' }) => {
     return (
       <g>
         {/* Hair Back */}
-        <path d="M 37 45 Q 25 60 28 95 Q 35 80 40 50 Z" fill="#805641" />
-        <path d="M 63 45 Q 75 60 72 95 Q 65 80 60 50 Z" fill="#805641" />
-        <path d="M 50 10 Q 30 15 33 60 L 67 60 Q 70 15 50 10 Z" fill="#805641" />
+        <path d="M 40 22 C 25 35 20 70 28 95 C 32 80 40 70 45 50 Z" fill="#4a2f1d" />
+        <path d="M 60 22 C 75 35 80 70 72 95 C 68 80 60 70 55 50 Z" fill="#4a2f1d" />
+        <path d="M 50 5 Q 30 10 32 60 L 68 60 Q 70 10 50 5 Z" fill="#4a2f1d" />
 
         {/* Neck */}
-        <path d="M 46 35 L 54 35 L 54 48 L 46 48 Z" fill={SKIN} />
+        <path d="M 47 36 Q 48 39 47 42 L 53 42 Q 52 39 53 36 Z" fill={SKIN} />
         {/* Torso */}
-        <path d="M 38 45 C 45 42, 55 42, 62 45 L 62 60 C 60 80, 58 85, 62 105 L 38 105 C 42 85, 40 80, 38 60 Z" fill={SKIN} />
+        <path d="M 47 38 Q 40 38 34 42 Q 41 55 43 65 Q 37 80 35 95 Q 40 100 50 100 Q 60 100 65 95 Q 63 80 57 65 Q 59 55 66 42 Q 60 38 53 38 Z" fill={SKIN} />
         {/* Arms */}
-        <path d="M 38 45 C 32 48, 28 60, 26 80 L 22 110 C 20 115, 26 115, 28 110 L 32 80 Z" fill={SKIN} />
-        <path d="M 62 45 C 68 48, 72 60, 74 80 L 78 110 C 80 115, 74 115, 72 110 L 68 80 Z" fill={SKIN} />
-        
+        <path d="M 34 42 Q 28 65 24 90 L 28 90 Q 34 65 42 50 Z" fill={SKIN} />
+        <path d="M 66 42 Q 72 65 76 90 L 72 90 Q 66 65 58 50 Z" fill={SKIN} />
+        {/* Hands */}
+        <ellipse cx="26" cy="94" rx="2.5" ry="4" fill={SKIN} transform="rotate(15 26 94)" />
+        <ellipse cx="74" cy="94" rx="2.5" ry="4" fill={SKIN} transform="rotate(-15 74 94)" />
         {/* Legs */}
-        <path d="M 38 105 L 49 105 L 47 150 L 44 185 C 42 190, 38 190, 37 185 L 34 150 Z" fill={SKIN} />
-        <path d="M 51 105 L 62 105 L 66 150 L 63 185 C 62 190, 58 190, 56 185 L 53 150 Z" fill={SKIN} />
+        <path d="M 35 95 Q 38 120 40 140 Q 42 165 43 185 L 47 185 Q 48 165 46 140 Q 46 115 49 100 Z" fill={SKIN} />
+        <path d="M 65 95 Q 62 120 60 140 Q 58 165 57 185 L 53 185 Q 52 165 54 140 Q 54 115 51 100 Z" fill={SKIN} />
 
         {/* Face Base */}
-        <ellipse cx="38" cy="27" rx="2" ry="3" fill={SKIN} />
-        <ellipse cx="62" cy="27" rx="2" ry="3" fill={SKIN} />
-        <ellipse cx="50" cy="26" rx="13" ry="15" fill={SKIN} />
+        <ellipse cx="40" cy="23" rx="1.5" ry="2.5" fill={SKIN} />
+        <ellipse cx="60" cy="23" rx="1.5" ry="2.5" fill={SKIN} />
+        <ellipse cx="50" cy="22" rx="10" ry="13" fill={SKIN} />
         
-        {/* Eyes & Features */}
-        <ellipse cx="44" cy="26" rx="1.5" ry="2" fill="#3a2a22" />
-        <ellipse cx="56" cy="26" rx="1.5" ry="2" fill="#3a2a22" />
+        {/* Eyes (Larger, cuter) */}
+        <ellipse cx="45" cy="21" rx="1.8" ry="2.5" fill="#221100" />
+        <ellipse cx="55" cy="21" rx="1.8" ry="2.5" fill="#221100" />
+        <circle cx="44.2" cy="20" r="0.7" fill="#fff" />
+        <circle cx="54.2" cy="20" r="0.7" fill="#fff" />
+        
         {/* Eyelashes */}
-        <path d="M 42 25 Q 43 23 45 24 M 42 26 L 41 25" stroke="#3a2a22" strokeWidth="1" fill="none" strokeLinecap="round" />
-        <path d="M 58 25 Q 57 23 55 24 M 58 26 L 59 25" stroke="#3a2a22" strokeWidth="1" fill="none" strokeLinecap="round" />
+        <path d="M 43 19 Q 45 17 47 18 M 42 20 Q 40 20 39 19 M 43 21 L 41 21 M 47 21 L 49 21" stroke="#221100" strokeWidth="0.8" fill="none" strokeLinecap="round" />
+        <path d="M 57 19 Q 55 17 53 18 M 58 20 Q 60 20 61 19 M 57 21 L 59 21 M 53 21 L 51 21" stroke="#221100" strokeWidth="0.8" fill="none" strokeLinecap="round" />
         
         {/* Brows */}
-        <path d="M 41 21 Q 44 19 46 21" stroke="#5a3a22" strokeWidth="1.2" fill="none" strokeLinecap="round" />
-        <path d="M 59 21 Q 56 19 54 21" stroke="#5a3a22" strokeWidth="1.2" fill="none" strokeLinecap="round" />
+        <path d="M 41 16 Q 44 14 47 15" stroke="#3A1F0D" strokeWidth="1" fill="none" strokeLinecap="round" />
+        <path d="M 59 16 Q 56 14 53 15" stroke="#3A1F0D" strokeWidth="1" fill="none" strokeLinecap="round" />
 
-        {/* Blush */}
-        <ellipse cx="41" cy="30" rx="2.5" ry="1.5" fill="#e59585" opacity="0.6" />
-        <ellipse cx="59" cy="30" rx="2.5" ry="1.5" fill="#e59585" opacity="0.6" />
+        {/* Blush & Details */}
+        <ellipse cx="42" cy="25" rx="3.5" ry="2" fill="#E88873" opacity="0.35" />
+        <ellipse cx="58" cy="25" rx="3.5" ry="2" fill="#E88873" opacity="0.35" />
+        <path d="M 50 24 Q 51 26 50 27" stroke="#AD8A73" strokeWidth="0.8" fill="none" strokeLinecap="round" />
         
         {/* Mouth */}
-        <path d="M 48 33 Q 50 35 52 33" stroke="#c07060" strokeWidth="1.2" fill="none" strokeLinecap="round" />
+        <path d="M 47 30 Q 50 31 53 30" stroke="#DD5555" strokeWidth="1.2" fill="none" strokeLinecap="round" />
+        <path d="M 48 30 Q 50 33 52 30" fill="#FF8888" opacity="0.6" />
 
         {/* Front Hair Bangs/Waves */}
-        <path d="M 50 10 Q 40 12 37 30 Q 42 22 50 25 Q 58 22 63 30 Q 60 12 50 10 Z" fill="#805641" />
-        <path d="M 37 30 Q 36 35 34 50 Q 25 70 28 50 Q 34 35 37 45 Z" fill="#805641" />
-        <path d="M 63 30 Q 64 35 66 50 Q 75 70 72 50 Q 66 35 63 45 Z" fill="#805641" />
+        <path d="M 50 5 Q 40 7 36 20 Q 38 12 50 15 Q 62 12 64 20 Q 60 7 50 5 Z" fill="#6b442a" />
+        <path d="M 36 20 Q 34 30 33 45 Q 26 60 28 50 Q 32 35 36 25 Z" fill="#6b442a" />
+        <path d="M 64 20 Q 66 30 67 45 Q 74 60 72 50 Q 68 35 64 25 Z" fill="#6b442a" />
       </g>
     );
   }
@@ -147,48 +154,52 @@ const renderTopLayer = (id) => {
     if (id === 'f_top_1') return (
       <g>
         {/* Frock */}
-        <path d="M 38 45 C 45 42, 55 42, 62 45 L 62 60 Q 64 80 66 105 L 75 145 L 25 145 L 34 105 Q 36 80 38 60 Z" fill={color} />
-        <path d="M 38 45 C 32 48, 28 60, 26 80 L 22 110 C 20 115, 26 115, 28 110 L 32 80 Z" fill={color} />
-        <path d="M 62 45 C 68 48, 72 60, 74 80 L 78 110 C 80 115, 74 115, 72 110 L 68 80 Z" fill={color} />
+        <path d="M 47 38 Q 40 38 34 42 Q 41 55 43 65 Q 37 80 40 100 Q 30 130 25 140 Q 50 145 75 140 Q 70 130 60 100 Q 63 80 57 65 Q 59 55 66 42 Q 60 38 53 38 Z" fill={color} />
+        <path d="M 45 38 L 50 48 L 55 38 Z" fill="#f4caa7" />
+        <path d="M 34 42 Q 28 55 24 60 L 30 65 Q 36 50 42 50 Z" fill={color} />
+        <path d="M 66 42 Q 72 55 76 60 L 70 65 Q 64 50 58 50 Z" fill={color} />
       </g>
     );
     if (id === 'f_top_3') return (
       <g>
         {/* Sleeveless Top */}
-        <path d="M 42 45 L 42 40 M 58 45 L 58 40" stroke={color} strokeWidth="2.5" />
-        <path d="M 38 48 C 45 45, 55 45, 62 48 L 62 60 C 60 80, 58 85, 62 105 L 38 105 C 42 85, 40 80, 38 60 Z" fill={color} />
+        <path d="M 42 42 L 40 38 M 58 42 L 60 38" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+        <path d="M 38 43 Q 42 55 43 65 L 41 72 L 59 72 L 57 65 Q 58 55 62 43 Q 50 48 38 43 Z" fill={color} />
       </g>
     );
     if (id === 'f_top_4') return (
       <g>
         {/* Off Shoulder Top */}
-        <path d="M 36 55 C 45 52, 55 52, 64 55 L 62 60 C 60 80, 58 85, 62 105 L 38 105 C 42 85, 40 80, 38 60 Z" fill={color} />
-        <ellipse cx="32" cy="62" rx="4" ry="7" fill={color} transform="rotate(15 32 62)" />
-        <ellipse cx="68" cy="62" rx="4" ry="7" fill={color} transform="rotate(-15 68 62)" />
+        <path d="M 30 48 L 70 48 Q 62 55 57 65 L 59 72 L 41 72 L 43 65 Q 38 55 30 48 Z" fill={color} />
+        <path d="M 24 50 Q 28 60 35 55 Q 35 45 24 50 Z" fill={color} />
+        <path d="M 76 50 Q 72 60 65 55 Q 65 45 76 50 Z" fill={color} />
       </g>
     );
     if (id === 'f_top_5') return (
       <g>
         {/* T-Shirt */}
-        <path d="M 38 45 C 45 42, 55 42, 62 45 L 62 60 C 60 80, 58 85, 62 105 L 38 105 C 42 85, 40 80, 38 60 Z" fill={color} />
-        <path d="M 38 45 C 32 48, 28 60, 26 80 L 32 80 Z" fill={color} />
-        <path d="M 62 45 C 68 48, 72 60, 74 80 L 68 80 Z" fill={color} />
+        <path d="M 47 38 Q 40 38 34 42 Q 41 55 43 65 L 40 80 L 60 80 L 57 65 Q 59 55 66 42 Q 60 38 53 38 Z" fill={color} />
+        <path d="M 43 38 Q 50 45 57 38 Z" fill="#fff" opacity="0.1" />
+        <path d="M 34 42 Q 28 55 24 60 L 30 65 Q 36 50 42 50 Z" fill={color} />
+        <path d="M 66 42 Q 72 55 76 60 L 70 65 Q 64 50 58 50 Z" fill={color} />
       </g>
     );
     if (id === 'f_top_6') return (
       <g>
         {/* Crop Top */}
-        <path d="M 38 45 C 45 42, 55 42, 62 45 L 62 60 C 60 70, 58 80, 60 85 L 40 85 C 42 80, 40 70, 38 60 Z" fill={color} />
-        <path d="M 38 45 C 32 48, 28 60, 26 80 L 32 80 Z" fill={color} />
-        <path d="M 62 45 C 68 48, 72 60, 74 80 L 68 80 Z" fill={color} />
+        <path d="M 47 38 Q 40 38 34 42 Q 38 50 41 60 L 59 60 Q 62 50 66 42 Q 60 38 53 38 Z" fill={color} />
+        <path d="M 43 38 Q 50 45 57 38 Z" fill="#f4caa7" />
+        <path d="M 34 42 Q 28 50 25 55 L 30 58 Q 36 50 42 50 Z" fill={color} />
+        <path d="M 66 42 Q 72 50 75 55 L 70 58 Q 64 50 58 50 Z" fill={color} />
       </g>
     );
     if (id === 'f_top_7') return (
       <g>
         {/* Long Dress */}
-        <path d="M 38 45 C 45 42, 55 42, 62 45 L 62 60 Q 64 80 66 105 L 75 180 C 65 185, 35 185, 25 180 L 34 105 Q 36 80 38 60 Z" fill={color} />
-        <path d="M 38 45 C 32 48, 28 60, 26 80 L 22 110 L 32 110 Z" fill={color} />
-        <path d="M 62 45 C 68 48, 72 60, 74 80 L 78 110 L 68 110 Z" fill={color} />
+        <path d="M 47 38 Q 40 38 34 42 Q 41 55 43 65 Q 37 80 40 100 Q 35 150 28 175 Q 50 185 72 175 Q 65 150 60 100 Q 63 80 57 65 Q 59 55 66 42 Q 60 38 53 38 Z" fill={color} />
+        <path d="M 44 38 L 50 50 L 56 38 Z" fill="#f4caa7" />
+        <path d="M 34 42 Q 20 70 18 90 L 26 95 Q 36 60 42 50 Z" fill={color} />
+        <path d="M 66 42 Q 80 70 82 90 L 74 95 Q 64 60 58 50 Z" fill={color} />
       </g>
     );
   }
@@ -280,37 +291,38 @@ const renderBottomLayer = (id) => {
     if (id === 'f_bot_1') return (
       <g fill={color}>
         {/* Formal Trousers */}
-        <path d="M 38 100 L 49 100 L 47 150 L 44 187 L 34 187 L 34 150 Z" />
-        <path d="M 51 100 L 62 100 L 66 150 L 66 187 L 56 187 L 53 150 Z" />
+        <path d="M 41 70 Q 37 80 35 95 Q 38 120 40 140 Q 42 165 40 185 L 49 185 Q 49 165 47 140 Q 47 115 50 100 L 50 70 Z" />
+        <path d="M 59 70 Q 63 80 65 95 Q 62 120 60 140 Q 58 165 60 185 L 51 185 Q 51 165 53 140 Q 53 115 50 100 L 50 70 Z" />
       </g>
     );
     if (id === 'f_bot_3') return (
       <g fill={color}>
         {/* Regular Jeans */}
-        <path d="M 38 100 L 49 100 L 47 150 L 44 186 L 35 186 L 34 150 Z" />
-        <path d="M 51 100 L 62 100 L 66 150 L 65 186 L 56 186 L 53 150 Z" />
+        <path d="M 41 70 Q 37 80 35 95 Q 38 120 40 140 Q 42 165 42 185 L 48 185 Q 49 165 47 140 Q 47 115 50 100 L 50 70 Z" />
+        <path d="M 59 70 Q 63 80 65 95 Q 62 120 60 140 Q 58 165 58 185 L 52 185 Q 51 165 53 140 Q 53 115 50 100 L 50 70 Z" />
       </g>
     );
     if (id === 'f_bot_4') return (
       <g fill={color}>
         {/* Short Skirt */}
-        <path d="M 38 100 L 62 100 L 68 135 C 50 140 50 140 32 135 Z" />
+        <path d="M 41 70 Q 32 80 30 115 Q 50 120 70 115 Q 68 80 59 70 Z" />
       </g>
     );
     if (id === 'f_bot_5') return (
       <g fill={color}>
         {/* Denim Shorts */}
-        <path d="M 38 100 L 49 100 L 47 125 L 34 125 Z" />
-        <path d="M 51 100 L 62 100 L 66 125 L 53 125 Z" />
+        <path d="M 41 70 Q 37 80 35 95 Q 36 100 37 115 L 48 115 Q 48 105 50 100 L 50 70 Z" />
+        <path d="M 59 70 Q 63 80 65 95 Q 64 100 63 115 L 52 115 Q 52 105 50 100 L 50 70 Z" />
       </g>
     );
     if (id === 'f_bot_6') return (
       <g>
         {/* High Torn Jeans */}
-        <path d="M 38 100 L 49 100 L 47 150 L 44 186 L 35 186 L 34 150 Z" fill={color} />
-        <path d="M 51 100 L 62 100 L 66 150 L 65 186 L 56 186 L 53 150 Z" fill={color} />
+        <path d="M 41 70 Q 37 80 35 95 Q 38 120 40 140 Q 42 165 42 185 L 48 185 Q 49 165 47 140 Q 47 115 50 100 L 50 70 Z" fill={color} />
+        <path d="M 59 70 Q 63 80 65 95 Q 62 120 60 140 Q 58 165 58 185 L 52 185 Q 51 165 53 140 Q 53 115 50 100 L 50 70 Z" fill={color} />
         {/* Rips */}
-        <path d="M 37 140 Q 40 138 43 142 Q 40 145 37 140 Z M 57 145 Q 60 143 63 147 Q 60 150 57 145 Z" fill="#f4caa7" />
+        <path d="M 39 130 Q 42 128 45 132 Q 42 135 39 130 Z" fill="#f4caa7" />
+        <path d="M 55 135 Q 58 133 61 137 Q 58 140 55 135 Z" fill="#f4caa7" />
       </g>
     );
     return <g></g>;
@@ -374,27 +386,27 @@ const renderFootwearLayer = (id) => {
     if (id === 'f_foot_1') return (
       <g fill={color}>
         {/* Closed Heels */}
-        <path d="M 36 185 L 45 185 L 46 193 C 35 195 36 190 36 185 Z" />
-        <rect x="43" y="193" width="2" height="6" />
-        <path d="M 55 185 L 64 185 L 64 185 C 64 190 65 195 54 193 L 55 185 Z" />
-        <rect x="55" y="193" width="2" height="6" />
+        <path d="M 42 185 L 48 185 L 49 194 Q 40 196 40 185 Z" />
+        <rect x="46" y="193" width="2" height="6" />
+        <path d="M 52 185 L 58 185 L 60 185 Q 60 196 51 194 Z" />
+        <rect x="52" y="193" width="2" height="6" />
       </g>
     );
     if (id === 'f_foot_2') return (
       <g>
         {/* Sneakers */}
-        <path d="M 35 183 L 45 183 L 46 193 C 35 193 35 190 35 183 Z" fill={color} />
-        <path d="M 55 183 L 65 183 L 65 183 C 65 190 65 193 54 193 L 55 183 Z" fill={color} />
-        <path d="M 35 190 L 46 190 M 54 190 L 65 190" stroke="#ddd" strokeWidth="2" fill="none" />
+        <path d="M 41 183 L 48 183 L 49 193 Q 40 193 40 185 Z" fill={color} />
+        <path d="M 52 183 L 59 183 L 60 185 Q 60 193 51 193 Z" fill={color} />
+        <path d="M 40 190 L 48 190 M 52 190 L 60 190" stroke="#ddd" strokeWidth="2" fill="none" />
       </g>
     );
     if (id === 'f_foot_3') return (
       <g>
         {/* Slippers */}
-        <rect x="36" y="192" width="10" height="2" fill="#d2b48c" />
-        <path d="M 38 188 Q 42 185 46 192" stroke={color} strokeWidth="2.5" fill="none" />
-        <rect x="54" y="192" width="10" height="2" fill="#d2b48c" />
-        <path d="M 54 192 Q 58 185 62 188" stroke={color} strokeWidth="2.5" fill="none" />
+        <rect x="40" y="192" width="10" height="2" fill="#d2b48c" rx="1" />
+        <path d="M 42 188 Q 45 185 48 192" stroke={color} strokeWidth="2" fill="none" />
+        <rect x="50" y="192" width="10" height="2" fill="#d2b48c" rx="1" />
+        <path d="M 52 192 Q 55 185 58 188" stroke={color} strokeWidth="2" fill="none" />
       </g>
     );
     return <g></g>;
