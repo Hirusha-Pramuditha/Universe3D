@@ -516,32 +516,74 @@ const renderFootwearLayer = (id) => {
     return <g></g>;
   }
 
-  return (
-    <g>
-      {/* clipPath to constrain shoes within the foot area */}
-      <defs>
-        <clipPath id="footClip">
-          <rect x="25" y="170" width="50" height="30" />
-        </clipPath>
-      </defs>
-
-      {id === 'm_foot_1' && (
-        <image href="/assets/footwear/shoe1.png" x="25" y="170" width="50" height="28" preserveAspectRatio="xMidYMid meet" clipPath="url(#footClip)" />
-      )}
-      {id === 'm_foot_2' && (
-        <image href="/assets/footwear/shoe2.png" x="25" y="170" width="50" height="28" preserveAspectRatio="xMidYMid meet" clipPath="url(#footClip)" />
-      )}
-      {id === 'm_foot_3' && (
-        <image href="/assets/footwear/shoe3.png" x="25" y="170" width="50" height="28" preserveAspectRatio="xMidYMid meet" clipPath="url(#footClip)" />
-      )}
-      {id === 'm_foot_4' && (
-        <image href="/assets/footwear/shoe4.png" x="25" y="172" width="50" height="26" preserveAspectRatio="xMidYMid meet" clipPath="url(#footClip)" />
-      )}
-      {id === 'm_foot_5' && (
-        <image href="/assets/footwear/shoe5.png" x="25" y="170" width="50" height="28" preserveAspectRatio="xMidYMid meet" clipPath="url(#footClip)" />
-      )}
-    </g>
+  if (id === 'm_foot_1') return (
+      <g>
+        {/* Left Sneaker Realistic (White/Grey) */}
+        <path d="M 33 175 C 32 181 32 186 42 186 C 47 186 48 181 48 175 Z" fill="#ecf0f1" />
+        <path d="M 33 182 Q 42 186 48 182 L 48 186 Q 42 189 33 186 Z" fill="#bdc3c7" />
+        <path d="M 36 177 L 44 177 M 35 179 L 45 179 M 34 181 L 46 181" stroke="#34495e" strokeWidth="0.8" />
+        <path d="M 33 184 L 43 184" stroke="#95a5a6" strokeWidth="1.5" />
+        
+        {/* Right Sneaker Realistic */}
+        <path d="M 52 175 C 52 181 53 186 63 186 C 68 186 68 181 67 175 Z" fill="#ecf0f1" />
+        <path d="M 52 182 Q 63 186 67 182 L 67 186 Q 63 189 52 186 Z" fill="#bdc3c7" />
+        <path d="M 56 177 L 64 177 M 55 179 L 65 179 M 54 181 L 66 181" stroke="#34495e" strokeWidth="0.8" />
+        <path d="M 57 184 L 67 184" stroke="#95a5a6" strokeWidth="1.5" />
+      </g>
   );
+  if (id === 'm_foot_2') return (
+      <g>
+        {/* Left Formal Shoe Realistic */}
+        <path d="M 35 175 C 33 182 34 186 41 186 C 48 186 48 182 48 175 Z" fill="#2d3436" />
+        <path d="M 36 175 Q 41 179 47 175" fill="#1e272e" />
+        <path d="M 34 184 L 48 184 L 48 187 L 34 187 Z" fill="#111" />
+        <path d="M 38 176 L 43 176 M 38 178 L 44 178" stroke="#111" strokeWidth="1" />
+        <path d="M 36 178 Q 40 183 45 178" stroke="#3d3d3d" strokeWidth="0.5" fill="none" />
+        
+        {/* Right Formal Shoe Realistic */}
+        <path d="M 52 175 C 52 182 53 186 59 186 C 67 186 68 182 65 175 Z" fill="#2d3436" />
+        <path d="M 53 175 Q 59 179 64 175" fill="#1e272e" />
+        <path d="M 52 184 L 66 184 L 66 187 L 52 187 Z" fill="#111" />
+        <path d="M 57 176 L 62 176 M 56 178 L 62 178" stroke="#111" strokeWidth="1" />
+        <path d="M 55 178 Q 60 183 64 178" stroke="#3d3d3d" strokeWidth="0.5" fill="none" />
+      </g>
+  );
+  if (id === 'm_foot_3') return (
+      <g>
+        {/* Left Croc Realistic */}
+        <path d="M 33 176 C 30 182 31 187 42 187 C 50 187 49 182 48 176 Z" fill="#2c3e50" />
+        <path d="M 32 183 Q 41 187 49 183 L 49 187 Q 41 190 31 187 Z" fill="#34495e" />
+        <circle cx="39" cy="180" r="1.2" fill="#1a252f" /><circle cx="43" cy="180" r="1.2" fill="#1a252f" />
+        <circle cx="37" cy="182" r="1.2" fill="#1a252f" /><circle cx="41" cy="182" r="1.2" fill="#1a252f" /><circle cx="45" cy="182" r="1.2" fill="#1a252f" />
+        <path d="M 32 176 Q 41 179 48 176" stroke="#1a252f" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+        
+        {/* Right Croc Realistic */}
+        <path d="M 52 176 C 51 182 50 187 58 187 C 69 187 70 182 67 176 Z" fill="#2c3e50" />
+        <path d="M 51 183 Q 59 187 68 183 L 69 187 Q 59 190 51 187 Z" fill="#34495e" />
+        <circle cx="57" cy="180" r="1.2" fill="#1a252f" /><circle cx="61" cy="180" r="1.2" fill="#1a252f" />
+        <circle cx="55" cy="182" r="1.2" fill="#1a252f" /><circle cx="59" cy="182" r="1.2" fill="#1a252f" /><circle cx="63" cy="182" r="1.2" fill="#1a252f" />
+        <path d="M 52 176 Q 59 179 68 176" stroke="#1a252f" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+      </g>
+  );
+  if (id === 'm_foot_4') return (
+      <g>
+        {/* Left Bare Foot & Flip Flop */}
+        <path d="M 36 175 C 33 182 34 185 41 185 C 47 185 46 182 46 175 Z" fill="#f4caa7" />
+        <path d="M 33 184 L 46 184 L 46 186 L 33 186 Z" fill="#2c3e50" />
+        <path d="M 35 182 L 40 178 L 45 182" stroke="#2980b9" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M 40 178 L 40 184" stroke="#2980b9" strokeWidth="2" strokeLinecap="round" />
+        <path d="M 36 185 Q 40 184 45 185" fill="none" stroke="#2c3e50" strokeWidth="0.5" />
+
+        {/* Right Bare Foot & Flip Flop */}
+        <path d="M 54 175 C 54 182 53 185 59 185 C 66 185 67 182 64 175 Z" fill="#f4caa7" />
+        <path d="M 54 184 L 67 184 L 67 186 L 54 186 Z" fill="#2c3e50" />
+        <path d="M 55 182 L 60 178 L 65 182" stroke="#2980b9" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M 60 178 L 60 184" stroke="#2980b9" strokeWidth="2" strokeLinecap="round" />
+        <path d="M 55 185 Q 60 184 64 185" fill="none" stroke="#2c3e50" strokeWidth="0.5" />
+      </g>
+  );
+  
+  return <g></g>;
 };
 
 export const AvatarItemThumbnail = ({ type, itemId }) => {
@@ -570,7 +612,7 @@ export const AvatarItemThumbnail = ({ type, itemId }) => {
       {type === 'footwear' && (
         <g transform={
           itemId.startsWith('f_') ? "translate(-90, -485) scale(2.8)" :
-          "translate(-75, -417) scale(2.5)"
+          "translate(-90, -460) scale(2.8)"
         }>
           {renderFootwearLayer(itemId)}
         </g>

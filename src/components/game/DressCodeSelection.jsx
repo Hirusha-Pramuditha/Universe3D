@@ -22,24 +22,11 @@ const RegularJeans = () => <AvatarItemThumbnail type="bottom" itemId="m_bot_2" /
 const CargoPants = () => <AvatarItemThumbnail type="bottom" itemId="m_bot_3" />;
 const BeachShorts = () => <AvatarItemThumbnail type="bottom" itemId="m_bot_4" />;
 const SportsCapri = () => <AvatarItemThumbnail type="bottom" itemId="m_bot_5" />;
-const ClassicFitJeans = () => <AvatarItemThumbnail type="bottom" itemId="m_bot_6" />;
-
-// Footwear - Real shoe images
-const OrangeSneakers = () => (
-  <img src="/assets/footwear/shoe1.png" alt="Orange Sneakers" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-);
-const FormalShoes = () => (
-  <img src="/assets/footwear/shoe2.png" alt="Black Formal" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-);
-const Crocs = () => (
-  <img src="/assets/footwear/shoe3.png" alt="Black Crocs" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-);
-const FlipFlops = () => (
-  <img src="/assets/footwear/shoe4.png" alt="Flip Flops" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-);
-const RedSneakers = () => (
-  <img src="/assets/footwear/shoe5.png" alt="Red Sneakers" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-);
+// Footwear
+const Sneakers = () => <AvatarItemThumbnail type="footwear" itemId="m_foot_1" />;
+const FormalShoes = () => <AvatarItemThumbnail type="footwear" itemId="m_foot_2" />;
+const Crocs = () => <AvatarItemThumbnail type="footwear" itemId="m_foot_3" />;
+const FlipFlops = () => <AvatarItemThumbnail type="footwear" itemId="m_foot_4" />;
 // ==========================================
 // 2. FEMALE SVGS
 // ==========================================
@@ -84,11 +71,10 @@ const MALE_DATA = {
     { id: 'm_bot_6', label: 'classic fit jeans', Comp: ClassicFitJeans }
   ],
   footwear: [
-    { id: 'm_foot_1', label: 'orange sneakers', Comp: OrangeSneakers },
-    { id: 'm_foot_2', label: 'black formal', Comp: FormalShoes },
-    { id: 'm_foot_3', label: 'black crocs', Comp: Crocs },
-    { id: 'm_foot_4', label: 'flip flops', Comp: FlipFlops },
-    { id: 'm_foot_5', label: 'red sneakers', Comp: RedSneakers }
+    { id: 'm_foot_1', label: 'sneakers', Comp: Sneakers },
+    { id: 'm_foot_2', label: 'formal shoes', Comp: FormalShoes },
+    { id: 'm_foot_3', label: 'crocs', Comp: Crocs },
+    { id: 'm_foot_4', label: 'flip flops', Comp: FlipFlops }
   ]
 };
 
