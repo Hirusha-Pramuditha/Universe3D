@@ -17,8 +17,8 @@ export class NoticeManager {
             },
             {
                 id: 'n2',
-                text: "EVENT:\nCampus Hackathon\nTonight at 8PM",
-                type: 'info',
+                text: "Swimming Pool Reopening Event\n\nThe university swimming pool will reopen after maintenance.\n\n📅 Date: 21st October\n📍 Venue: University Pool\n⏰ Time: 8:00 AM\n\nEvents include:\n• Friendly Races\n• Free Swim Session\n\nAll students are welcome.",
+                type: 'event',
                 color: 0xe6f2ff,
                 x: 0.8, y: 0.7, rotation: 0.15
             },
