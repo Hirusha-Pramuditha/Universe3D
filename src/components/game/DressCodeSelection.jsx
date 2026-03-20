@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import '../../styles/game-dresscode.css';
 import AvatarPreview from './AvatarPreview';
+import { AvatarItemThumbnail } from './AvatarPreview';
 
 // ==========================================
 // 1. MALE SVGS
 // ==========================================
-
-import { AvatarItemThumbnail } from './AvatarPreview';
 
 // Tops
 const LongSleeveShirt = () => <AvatarItemThumbnail type="top" itemId="m_top_1" />;
@@ -22,6 +21,7 @@ const RegularJeans = () => <AvatarItemThumbnail type="bottom" itemId="m_bot_2" /
 const CargoPants = () => <AvatarItemThumbnail type="bottom" itemId="m_bot_3" />;
 const BeachShorts = () => <AvatarItemThumbnail type="bottom" itemId="m_bot_4" />;
 const SportsCapri = () => <AvatarItemThumbnail type="bottom" itemId="m_bot_5" />;
+const ClassicFitJeans = () => <AvatarItemThumbnail type="bottom" itemId="m_bot_6" />;
 // Footwear
 const Sneakers = () => <AvatarItemThumbnail type="footwear" itemId="m_foot_1" />;
 const FormalShoes = () => <AvatarItemThumbnail type="footwear" itemId="m_foot_2" />;
@@ -520,5 +520,4 @@ const DressCodeSelection = ({ onComplete, isMuted, onToggleMute }) => {
     </div>
   );
 };
-
 export default DressCodeSelection;
