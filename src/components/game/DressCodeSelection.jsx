@@ -122,14 +122,14 @@ const dressRules = {
   },
   female: {
     tops: {
-      'f_top_3': { message: "Sleeveless tops are not allowed. Shoulders must be covered.", suggestion: "Try: T-Shirt, Frock" },
-      'f_top_4': { message: "Off-shoulder tops are not allowed. Shoulders must be covered.", suggestion: "Try: T-Shirt, Frock" },
-      'f_top_6': { message: "Crop tops are not allowed. Midriff must be covered.", suggestion: "Try: T-Shirt, Long Dress" }
+      'f_top_3': { message: "Sleeveless tops are not allowed. Shoulders must be covered.", suggestion: "Try: Frock, T Shirt, Long Dress" },
+      'f_top_4': { message: "Off-shoulder tops are not allowed. Shoulders must be covered.", suggestion: "Try: Frock, T Shirt, Long Dress" },
+      'f_top_6': { message: "Crop tops are not allowed. Midriff must be covered.", suggestion: "Try: Frock, T Shirt, Long Dress" }
     },
     bottoms: {
-      'f_bot_4': { message: "Short skirts are not allowed. Skirts or shorts must be knee-length or longer.", suggestion: "Try: Formal Trousers, Regular Jeans" },
-      'f_bot_5': { message: "Denim shorts are not allowed. Wear full-length or knee-length pants/skirts.", suggestion: "Try: Formal Trousers, Regular Jeans" },
-      'f_bot_6': { message: "High torn jeans are not allowed. Clothing must not be torn.", suggestion: "Try: Regular Jeans, Formal Trousers" }
+      'f_bot_4': { message: "Short skirts are not allowed. Skirts or shorts must be knee-length or longer.", suggestion: "Try: Formal Trouser, Regular Jeans, Long Skirt" },
+      'f_bot_5': { message: "Denim shorts are not allowed. Wear full-length or knee-length pants/skirts.", suggestion: "Try: Formal Trouser, Regular Jeans, Long Skirt" },
+      'f_bot_6': { message: "High torn jeans are not allowed. Clothing must not be torn.", suggestion: "Try: Formal Trouser, Regular Jeans, Long Skirt" }
     },
     footwear: {
       'f_foot_3': { message: "Slippers are not allowed. Closed or formal footwear is preferred.", suggestion: "Try: Sneakers, Closed Heels" },
