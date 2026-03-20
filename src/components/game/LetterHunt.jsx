@@ -327,7 +327,7 @@ const LetterHunt = ({ scene, playerRef, setMissions }) => {
             // Update Active Target & Interact
             if (closestLetter) {
                 // Check for interaction
-                if (keys.current.f || keys.current.e) {
+                if ( keys.current.e) {
 
                     if (isGiftTarget) {
                         // Handle Gift Open
