@@ -5,174 +5,41 @@ import AvatarPreview from './AvatarPreview';
 // ==========================================
 // 1. MALE SVGS
 // ==========================================
-const LongSleeveShirt = () => (
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 16 20 L 48 20 L 50 54 L 14 54 Z" fill="#2c3e50" />
-    <path d="M 16 20 L 8 42 L 18 44 L 22 30" fill="#2c3e50" />
-    <path d="M 48 20 L 56 42 L 46 44 L 42 30" fill="#2c3e50" />
-    <path d="M 6 40 L 20 45 L 18 48 L 4 43 Z" fill="#34495e" />
-    <path d="M 58 40 L 44 45 L 46 48 L 60 43 Z" fill="#34495e" />
-    <path d="M 24 20 L 32 28 L 22 26 Z" fill="#1a252f" />
-    <path d="M 40 20 L 32 28 L 42 26 Z" fill="#1a252f" />
-    <rect x="31" y="28" width="2" height="26" fill="#1a252f" />
-    <circle cx="32" cy="34" r="1.5" fill="#ecf0f1" />
-    <circle cx="32" cy="42" r="1.5" fill="#ecf0f1" />
-  </svg>
-);
-const TShirt = () => (
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 14 20 L 4 34 L 12 38 L 20 28" fill="#e74c3c" />
-    <path d="M 50 20 L 60 34 L 52 38 L 44 28" fill="#e74c3c" />
-    <path d="M 18 20 L 46 20 L 48 52 L 16 52 Z" fill="#e74c3c" />
-    <path d="M 26 20 Q 32 28 38 20 Z" fill="#c0392b" />
-    <circle cx="40" cy="30" r="2" fill="#fff" />
-  </svg>
-);
-const FormalShirt = () => (
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 18 20 L 46 20 L 48 52 L 16 52 Z" fill="#87CEEB" />
-    <path d="M 16 20 L 8 36 L 16 40 L 22 28" fill="#87CEEB" />
-    <path d="M 48 20 L 56 36 L 48 40 L 42 28" fill="#87CEEB" />
-    <path d="M 24 20 L 32 26 L 30 20 Z" fill="#ffffff" />
-    <path d="M 40 20 L 32 26 L 34 20 Z" fill="#ffffff" />
-    <rect x="31" y="26" width="2" height="26" fill="#ffffff" />
-    <circle cx="32" cy="32" r="1" fill="#333" />
-    <circle cx="32" cy="40" r="1" fill="#333" />
-    <circle cx="32" cy="48" r="1" fill="#333" />
-    <path d="M 38 30 L 44 30 L 44 36 L 41 38 L 38 36 Z" fill="#ffffff" />
-  </svg>
-);
-const PoloShirt = () => (
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 14 20 L 6 36 L 14 40 L 22 28" fill="#27ae60" />
-    <path d="M 50 20 L 58 36 L 50 40 L 42 28" fill="#27ae60" />
-    <rect x="10" y="37" width="6" height="3" fill="#ffffff" transform="rotate(25 10 37)" />
-    <rect x="48" y="39" width="6" height="3" fill="#ffffff" transform="rotate(-25 48 39)" />
-    <path d="M 18 20 L 46 20 L 48 54 L 16 54 Z" fill="#2ecc71" />
-    <path d="M 24 20 L 32 30 L 30 20 Z" fill="#ffffff" />
-    <path d="M 40 20 L 32 30 L 34 20 Z" fill="#ffffff" />
-    <rect x="31" y="20" width="2" height="12" fill="#ffffff" />
-    <circle cx="32" cy="27" r="1" fill="#27ae60" />
-  </svg>
-);
-const SleevelessTop = () => (
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 22 18 L 42 18 L 46 54 L 18 54 Z" fill="#f39c12" />
-    <path d="M 22 18 L 26 18 L 18 30 Z" fill="#e67e22" />
-    <path d="M 42 18 L 38 18 L 46 30 Z" fill="#e67e22" />
-    <path d="M 26 18 Q 32 30 38 18 Z" fill="rgba(0,0,0,0.1)" />
-  </svg>
-);
-const TankTop = () => (
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 24 30 L 40 30 L 44 54 L 20 54 Z" fill="#222222" />
-    <rect x="23" y="16" width="3" height="15" fill="#222222" />
-    <rect x="38" y="16" width="3" height="15" fill="#222222" />
-    <path d="M 26 30 Q 32 36 38 30 Z" fill="rgba(0,0,0,0.1)" />
-    <rect x="28" y="36" width="8" height="2" fill="#e74c3c" />
-    <rect x="28" y="40" width="8" height="2" fill="#e74c3c" />
-  </svg>
-);
-const RippedJeans = () => (
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 18 10 L 31 10 L 28 58 L 16 58 Z" fill="#5dade2" />
-    <path d="M 33 10 L 46 10 L 48 58 L 36 58 Z" fill="#5dade2" />
-    <path d="M 20 28 L 27 28 L 26 30 L 19 30 Z" fill="#ffffff" />
-    <path d="M 22 32 L 26 32 L 25 34 L 21 34 Z" fill="#ffffff" />
-    <path d="M 38 35 L 43 35 L 44 37 L 37 37 Z" fill="#ffffff" />
-    <path d="M 23 46 L 27 46 L 26 48 L 22 48 Z" fill="#ffffff" />
-    <rect x="17" y="10" width="30" height="5" fill="#2e86c1" />
-  </svg>
-);
-const RegularJeans = () => (
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 18 10 L 31 10 L 28 58 L 15 58 Z" fill="#1f618d" />
-    <path d="M 33 10 L 46 10 L 49 58 L 36 58 Z" fill="#1f618d" />
-    <rect x="22" y="16" width="4" height="36" fill="#2980b9" rx="2" />
-    <rect x="38" y="16" width="4" height="36" fill="#2980b9" rx="2" />
-    <rect x="17" y="10" width="30" height="5" fill="#154360" />
-    <rect x="18" y="56" width="9" height="1" fill="#d4ac0d" />
-    <rect x="37" y="56" width="9" height="1" fill="#d4ac0d" />
-  </svg>
-);
-const CargoPants = () => (
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 16 10 L 31 10 L 29 58 L 12 58 Z" fill="#556b2f" />
-    <path d="M 33 10 L 48 10 L 52 58 L 35 58 Z" fill="#556b2f" />
-    <rect x="11" y="28" width="12" height="14" fill="#6b8e23" rx="2" stroke="#333" strokeWidth="0.5" />
-    <rect x="11" y="28" width="12" height="4" fill="#808000" rx="1" />
-    <rect x="41" y="28" width="12" height="14" fill="#6b8e23" rx="2" stroke="#333" strokeWidth="0.5" />
-    <rect x="41" y="28" width="12" height="4" fill="#808000" rx="1" />
-    <rect x="15" y="10" width="34" height="5" fill="#4b5d27" />
-  </svg>
-);
-const BeachShorts = () => (
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 15 10 L 30 10 L 28 42 L 13 40 Z" fill="#ffb74d" />
-    <path d="M 34 10 L 49 10 L 51 40 L 36 42 Z" fill="#ffb74d" />
-    <polygon points="20,15 25,25 15,25" fill="#e11d48" />
-    <polygon points="40,20 45,30 35,30" fill="#2563eb" />
-    <polygon points="25,35 30,45 20,45" fill="#10b981" />
-    <polygon points="45,35 50,45 40,45" fill="#e11d48" />
-    <circle cx="20" cy="30" r="3" fill="#ffffff" />
-    <circle cx="45" cy="20" r="3" fill="#ffffff" />
-    <rect x="14" y="10" width="36" height="6" fill="#f97316" rx="2" />
-    <path d="M 32 16 Q 30 24 26 28" stroke="#fff" strokeWidth="1.5" fill="none" />
-    <path d="M 32 16 Q 34 24 38 28" stroke="#fff" strokeWidth="1.5" fill="none" />
-  </svg>
-);
-const SportsCapri = () => (
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 17 10 L 31 10 L 28 48 L 18 48 Z" fill="#374151" />
-    <path d="M 33 10 L 47 10 L 46 48 L 36 48 Z" fill="#374151" />
-    <rect x="18" y="15" width="3" height="33" fill="#10b981" />
-    <rect x="43" y="15" width="3" height="33" fill="#10b981" />
-    <rect x="16" y="10" width="32" height="5" fill="#1f2937" rx="1" />
-  </svg>
-);
-const ClassicFitJeans = () => (
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 19 10 L 31 10 L 30 58 L 20 58 Z" fill="#1e3a8a" />
-    <path d="M 33 10 L 45 10 L 44 58 L 34 58 Z" fill="#1e3a8a" />
-    <rect x="18" y="10" width="28" height="5" fill="#8b4513" />
-    <rect x="30" y="10" width="4" height="5" fill="#facc15" />
-    <rect x="25" y="15" width="1" height="43" fill="#3b82f6" opacity="0.5" />
-    <rect x="38" y="15" width="1" height="43" fill="#3b82f6" opacity="0.5" />
-  </svg>
-);
-const Sneakers = () => (
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 12 36 L 24 36 L 26 48 L 8 48 C 8 40 10 38 12 36 Z" fill="#cbd5e1" />
-    <path d="M 14 36 L 20 44 L 26 44" stroke="#3b82f6" strokeWidth="3" fill="none" />
-    <path d="M 8 46 L 26 46 L 26 48 L 8 48 Z" fill="#ffffff" />
-    <circle cx="14" cy="42" r="1.5" fill="#ef4444" />
-    <path d="M 40 36 L 52 36 C 54 38 56 40 56 48 L 38 48 L 40 36 Z" fill="#cbd5e1" />
-    <path d="M 50 36 L 44 44 L 38 44" stroke="#3b82f6" strokeWidth="3" fill="none" />
-    <path d="M 38 46 L 56 46 L 56 48 L 38 48 Z" fill="#ffffff" />
-    <circle cx="50" cy="42" r="1.5" fill="#ef4444" />
-  </svg>
-);
-const Loafers = () => (
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 10 42 C 10 36 24 34 28 42 L 28 48 L 8 48 C 8 46 9 44 10 42 Z" fill="#111111" />
-    <path d="M 8 46 L 28 46 L 28 48 L 8 48 Z" fill="#000000" />
-    <path d="M 16 38 L 22 38" stroke="#d4af37" strokeWidth="2" fill="none" strokeLinecap="round" />
-    <path d="M 36 42 C 40 34 54 36 54 42 C 55 44 56 46 56 48 L 36 48 L 36 42 Z" fill="#111111" />
-    <path d="M 36 46 L 56 46 L 56 48 L 36 48 Z" fill="#000000" />
-    <path d="M 42 38 L 48 38" stroke="#d4af37" strokeWidth="2" fill="none" strokeLinecap="round" />
-  </svg>
-);
-const RubberSlides = () => (
-  <svg viewBox="0 0 64 64" width="100%" height="100%">
-    <path d="M 8 42 C 8 36 28 36 28 42 L 28 48 L 8 48 Z" fill="#9ca3af" />
-    <rect x="8" y="44" width="20" height="4" fill="#374151" />
-    <path d="M 10 34 Q 18 28 26 34" stroke="#1f2937" strokeWidth="8" fill="none" strokeLinecap="round" />
-    <path d="M 36 42 C 36 36 56 36 56 42 L 56 48 L 36 48 Z" fill="#9ca3af" />
-    <rect x="36" y="44" width="20" height="4" fill="#374151" />
-    <path d="M 38 34 Q 46 28 54 34" stroke="#1f2937" strokeWidth="8" fill="none" strokeLinecap="round" />
-  </svg>
-);
 
+import { AvatarItemThumbnail } from './AvatarPreview';
+
+// Tops
+const LongSleeveShirt = () => <AvatarItemThumbnail type="top" itemId="m_top_1" />;
+const TShirt = () => <AvatarItemThumbnail type="top" itemId="m_top_2" />;
+const FormalShirt = () => <AvatarItemThumbnail type="top" itemId="m_top_3" />;
+const PoloShirt = () => <AvatarItemThumbnail type="top" itemId="m_top_4" />;
+const SleevelessTop = () => <AvatarItemThumbnail type="top" itemId="m_top_5" />;
+const TankTop = () => <AvatarItemThumbnail type="top" itemId="m_top_6" />;
+
+// Bottoms
+const RippedJeans = () => <AvatarItemThumbnail type="bottom" itemId="m_bot_1" />;
+const RegularJeans = () => <AvatarItemThumbnail type="bottom" itemId="m_bot_2" />;
+const CargoPants = () => <AvatarItemThumbnail type="bottom" itemId="m_bot_3" />;
+const BeachShorts = () => <AvatarItemThumbnail type="bottom" itemId="m_bot_4" />;
+const SportsCapri = () => <AvatarItemThumbnail type="bottom" itemId="m_bot_5" />;
+const ClassicFitJeans = () => <AvatarItemThumbnail type="bottom" itemId="m_bot_6" />;
+
+// Footwear - Real shoe images
+const OrangeSneakers = () => (
+  <img src="/assets/footwear/shoe1.png" alt="Orange Sneakers" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+);
+const FormalShoes = () => (
+  <img src="/assets/footwear/shoe2.png" alt="Black Formal" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+);
+const Crocs = () => (
+  <img src="/assets/footwear/shoe3.png" alt="Black Crocs" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+);
+const FlipFlops = () => (
+  <img src="/assets/footwear/shoe4.png" alt="Flip Flops" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+);
+const RedSneakers = () => (
+  <img src="/assets/footwear/shoe5.png" alt="Red Sneakers" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+);
 // ==========================================
 // 2. FEMALE SVGS
 // ==========================================
@@ -373,9 +240,11 @@ const MALE_DATA = {
     { id: 'm_bot_6', label: 'classic fit jeans', Comp: ClassicFitJeans }
   ],
   footwear: [
-    { id: 'm_foot_1', label: 'sneakers', Comp: Sneakers },
-    { id: 'm_foot_2', label: 'loafers', Comp: Loafers },
-    { id: 'm_foot_3', label: 'rubber slides', Comp: RubberSlides }
+    { id: 'm_foot_1', label: 'orange sneakers', Comp: OrangeSneakers },
+    { id: 'm_foot_2', label: 'black formal', Comp: FormalShoes },
+    { id: 'm_foot_3', label: 'black crocs', Comp: Crocs },
+    { id: 'm_foot_4', label: 'flip flops', Comp: FlipFlops },
+    { id: 'm_foot_5', label: 'red sneakers', Comp: RedSneakers }
   ]
 };
 
@@ -416,7 +285,8 @@ const dressRules = {
       'm_bot_5': { message: "Sports capris are not allowed. Wear full-length pants.", suggestion: "Try: Regular Jeans, Classic Fit Jeans" }
     },
     footwear: {
-      'm_foot_3': { message: "Rubber slides are not allowed. Appropriate footwear is required.", suggestion: "Try: Sneakers, Loafers" }
+      'm_foot_3': { message: "Crocs are too casual for university dress code. Please wear appropriate closed footwear.", suggestion: "Try: Sneakers, Formal Shoes" },
+      'm_foot_4': { message: "Flip flops are strictly prohibited on campus. Appropriate closed footwear is required.", suggestion: "Try: Sneakers, Formal Shoes" }
     }
   },
   female: {
