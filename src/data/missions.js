@@ -247,8 +247,8 @@ const MISSIONS = [
         correctAnswer: 0
       },
       {
-        question: 'The auditorium supports which aspect of campus life?',
-        options: ['Academic and community engagement', 'Food management', 'Administrative processing', 'Security monitoring'],
+        question: 'What makes an auditorium different from a classroom?',
+        options: ['Larger space designed for big audiences', 'Smaller seating capacity', 'No presentation equipment', 'Only used for exams'],
         correctAnswer: 0
       },
       {
