@@ -91,34 +91,29 @@ const MISSIONS = [
       },
       {
         question: 'What type of documents might students request from SRU?',
-        options: ['Food receipt', 'Academic transcript', 'Gym card', 'Parking ticket'],
+        options: ['Lecture slides', 'Academic letters and official documents', 'Exam papers', ' Library books'],
         correctAnswer: 1
       },
       {
-        question: 'Who works in SRU?',
-        options: ['Lecturers', 'Student support officers', 'Lab assistants', 'Security guards'],
+        question: 'When students need help with university procedures, where should they go first?',
+        options: ['Reception', 'Library', 'SRU Office', 'Auditorium'],
+        correctAnswer: 2
+      },
+      {
+        question: 'SRU mainly deals with which type of support?',
+        options: ['Academic lectures', 'Administrative and student services', ' Entertainment activities', 'Cafeteria services'],
         correctAnswer: 1
       },
       {
-        question: 'What should you bring when visiting SRU?',
-        options: ['Student ID', 'Sports shoes', 'Laptop charger', 'Lab coat'],
-        correctAnswer: 0
-      },
-      {
-        question: 'Why is SRU important?',
-        options: ['Manages student administration', 'Controls WiFi', 'Hosts lectures', 'Manages cafeteria'],
-        correctAnswer: 0
+        question: 'What role does SRU staff play for students?',
+        options: ['Teaching programming', 'Managing sports teams', 'Guiding students on administrative processes', 'Organizing events'],
+        correctAnswer: 2
       },
       {
         question: 'If you miss an exam, where do you report?',
         options: ['Auditorium', 'Cafeteria', 'SRU', 'Library'],
         correctAnswer: 2
       },
-      {
-        question: 'SRU mainly deals with which group?',
-        options: ['Visitors', 'Students', 'Contractors', 'Delivery drivers'],
-        correctAnswer: 1
-      }
     ]
   },
   {
