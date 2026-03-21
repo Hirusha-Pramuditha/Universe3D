@@ -12,7 +12,7 @@ const BUILDING_INFO = {
   'ramakrishna': { name: 'Ramakrishna Building', floors: 5 }
 }
 
-function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTryDressCode, onTeleport, currentFloor, setCurrentFloor, missions, onMissionUpdate }) {
+function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTryDressCode, onTeleport, currentFloor, setCurrentFloor, missions, onMissionUpdate, playerRef }) {
   const navigate = useNavigate()
   const [showControls, setShowControls] = useState(false)
   const [showMenu, setShowMenu] = useState(false)

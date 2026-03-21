@@ -123,7 +123,7 @@ function Minimap({ playerRef, currentFloor, buildingName, isExpanded, selectedBu
             ctx.save()
             ctx.translate(playerPx, playerPy)
 
-            ctx.rotate(-rotY - Math.PI / 2)
+            ctx.rotate(-rotY + Math.PI / 2)
 
             // Arrow
             ctx.beginPath()

@@ -15,7 +15,7 @@ THREE.BufferGeometry.prototype.computeBoundsTree = computeBoundsTree
 THREE.BufferGeometry.prototype.disposeBoundsTree = disposeBoundsTree
 THREE.Mesh.prototype.raycast = acceleratedRaycast
 
-function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions, setMissions }) {
+function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions, setMissions, onPlayerRef }) {
   const containerRef = useRef(null)
   const [isLoading, setIsLoading] = useState(true)
   const [loadingProgress, setLoadingProgress] = useState(0)
