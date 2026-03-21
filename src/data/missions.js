@@ -221,14 +221,13 @@ const MISSIONS = [
     completed: false,
     info: {
       title: 'University Auditorium',
-      description: 'The University Auditorium is a premier venue for major events, ceremonies, and performances. With state-of-the-art facilities, professional lighting and sound, and a seating capacity of 500, it hosts convocations, cultural shows, guest lectures, and community events.',
+      description: 'The auditorium is a large event space used for important university activities such as orientations, guest lectures, workshops, and student events.z',
       details: [
-        '🎭 Capacity: 500 seats',
-        '🎪 Professional stage setup',
-        '💡 Advanced lighting system',
-        '🎵 Concert-quality sound',
-        '🎬 Full AV production suite',
-        '❄️ Climate controlled environment'
+        '🎥 Guest lectures and presentations',
+        '👨‍🎓 Orientation programs for new students',
+        '🎤 Stage with audio visual equipment',
+        '🎭 Student events and ceremonies',
+        '🪑 Large seating capacity for audiences'
       ]
     },
     questions: [
