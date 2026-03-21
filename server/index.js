@@ -42,8 +42,20 @@ app.post('/api/feedback', async (req, res) => {
             rating,
             timestamp: new Date()
         });
+
+        const savedFeedback = await newFeedback.save();
+
+        res.status(201).json({
+            message: 'Feedback saved successfully',
+            feedback: savedFeedback
+        });
+
     } catch (error) {
         console.error('Error saving feedback:', error);
-        res.status(500).json({ message: 'Failed to save feedback' });
+        res.status(500).json({
+            message: 'Internal server error while saving feedback.',
+            error: error.message,
+            stack: error.stack
+        });
     }
 });
