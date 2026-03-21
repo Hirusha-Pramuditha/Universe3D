@@ -271,7 +271,7 @@ const MISSIONS = [
     completed: false,
     info: {
       title: 'Main Reception',
-      description: 'The Main Reception is your first point of contact for any inquiries or assistance. Our friendly reception staff can help with directions, visitor passes, general information, and will connect you with the appropriate department for specific needs.',
+      description: 'The main reception is the first point of contact for visitors and students entering the institute. Reception staff provide directions, information, and visitor assistance.',
       details: [
         '🚪 Main entrance access point',
         'ℹ️ General information desk',
