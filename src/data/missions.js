@@ -167,14 +167,12 @@ const MISSIONS = [
     completed: false,
     info: {
       title: 'Staff Hierarchy Board',
-      description: 'The Staff Hierarchy Board displays the organizational structure of the university, showing key administrative positions, academic departments, and support staff. This helps students understand who to contact for specific needs and how the university is organized.',
+      description: 'The staff hierarchy shows the academic structure of the institute. It explains how responsibilities flow from senior leadership to teaching staff. This helps students understand who manages the faculty and who delivers the lectures.',
       details: [
-        '👔 Administrative Leadership',
-        '📖 Academic Department Heads',
-        '🔧 Support Services Staff',
-        '📞 Contact Information',
-        '🗂️ Department Organization',
-        '🏢 Office Locations'
+        '👔 Dean / Director Board leads the academic faculty',
+        '📖 Senior Lecturers manage modules and guide teaching',
+        '🔧 Assistant Lecturers support teaching and student learning',
+        '🔎 Helps students understand the academic chain of responsibility'
       ]
     },
     questions: [
