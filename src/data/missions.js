@@ -10,9 +10,8 @@ const MISSIONS = [
       title: 'University Cafeteria',
       description: 'The cafeteria is the heart of campus life, offering nutritious meals and a space for students to socialize. Open from 7 AM to 8 PM daily, it features various food stations including hot meals, salads, sandwiches, and beverages.',
       details: [
-        '🍽️ Breakfast: 7:00 AM - 10:00 AM',
-        '🥗 Lunch: 12:00 PM - 3:00 PM',
-        '🍕 Dinner: 5:00 PM - 8:00 PM',
+        '🍽️ Breakfas',
+        '🥗 Lunch',
         '☕ Snacks & Coffee: All day'
       ]
     },
