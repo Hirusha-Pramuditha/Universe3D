@@ -37,11 +37,6 @@ const MISSIONS = [
         correctAnswer: 1
       },
       {
-        question: 'Why is the cafeteria important for students?',
-        options: ['It replaces classrooms', 'It supports social interaction', 'It stores grades', 'It controls WiFi'],
-        correctAnswer: 1
-      },
-      {
         question: 'What should you do after finishing your meal?',
         options: ['Leave everything on the table', 'Clean your table and dispose waste properly', 'Move to another table', 'Switch off lights'],
         correctAnswer: 1
