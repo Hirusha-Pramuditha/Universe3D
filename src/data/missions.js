@@ -347,17 +347,7 @@ const MISSIONS = [
         correctAnswer: 0
       },
       {
-        question: 'Why is the IT Department important in a modern university?',
-        options: ['It supports digital learning systems', 'It organizes graduation', 'It handles student attendance manually', 'It manages food counters'],
-        correctAnswer: 0
-      },
-      {
-        question: 'In your UniVerse 3D project, which system would logically be managed by IT?',
-        options: ['Mission quiz database', 'Cafeteria seating', 'Auditorium stage lights', 'Reception desk'],
-        correctAnswer: 0
-      },
-      {
-        question: 'If lab computers stop working before a practical, who should be contacted?',
+        question: 'If your computer stop working before a practical, who should be contacted?',
         options: ['Security', 'IT Department', 'Reception', 'Lecturer only'],
         correctAnswer: 1
       },
@@ -366,11 +356,6 @@ const MISSIONS = [
         options: ['Installing and maintaining software', 'Managing exam papers', 'Serving meals', 'Organizing events'],
         correctAnswer: 0
       },
-      {
-        question: 'Why is cybersecurity important for the IT Department?',
-        options: ['To protect student and staff data', 'To improve cafeteria hygiene', 'To manage seating', 'To control elevators'],
-        correctAnswer: 0
-      }
     ]
   },
   {
