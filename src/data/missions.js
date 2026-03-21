@@ -283,19 +283,19 @@ const MISSIONS = [
     },
     questions: [
       {
-        question: 'If a new student enters the building and feels lost, what is the correct first action?',
-        options: ['Go to the Auditorium', 'Visit Reception for directions', 'Enter a random classroom', 'Go to SRU immediately'],
+        question: 'What is the main role of the reception desk?',
+        options: ['Conduct lectures', 'Provide information and directions', ' Manage student exams', 'Run student clubs'],
         correctAnswer: 1
       },
       {
-        question: 'What should you NOT do at the main reception?',
-        options: ['Ask for directions politely', 'Speak respectfully', 'Shout across the desk', 'Wait for your turn'],
-        correctAnswer: 2
+        question: 'Who usually approaches the reception desk?',
+        options: ['Visitors and students who need guidance', 'Only lecturers', 'Only administrators', 'Only security staff'],
+        correctAnswer: 0
       },
       {
-        question: 'When approaching reception, you should first:',
-        options: ['Walk behind the desk', 'Greet and explain your purpose', 'Ignore staff', 'Use loud voice'],
-        correctAnswer: 1
+        question: 'Why is reception important in an institution?',
+        options: ['It helps visitors find their way and get information', 'It manages lectures', ' It organizes exams', 'It conducts research'],
+        correctAnswer: 0
       },
       {
         question: 'If visitors enter the building, where should they report first?',
