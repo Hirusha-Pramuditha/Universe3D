@@ -498,7 +498,7 @@ const DressCodeSelection = ({ onComplete, isMuted, onToggleMute }) => {
             </div>
             <h2 className="validation-modal-title">Dress Code Violation</h2>
             <div className="validation-modal-message">
-              <p style={{ fontWeight: 'bold', color: '#e74c3c', marginBottom: '15px' }}>
+              <p style={{ fontWeight: '700', color: '#fff', marginBottom: '12px', textShadow: '0 1px 3px rgba(0,0,0,0.2)' }}>
                 You selected a not allowed dresscode. Please try again!
               </p>
               {Array.isArray(warningMessage) ? (
@@ -525,16 +525,16 @@ const DressCodeSelection = ({ onComplete, isMuted, onToggleMute }) => {
       {/* Success Modal */}
       {showSuccess && (
         <div className="validation-modal-overlay">
-          <div className="validation-modal" style={{ borderTop: '5px solid #2ecc71' }}>
-            <div className="validation-modal-icon" style={{ color: '#2ecc71', background: 'rgba(46, 204, 113, 0.1)' }}>
+          <div className="validation-modal">
+            <div className="validation-modal-icon" style={{ color: '#2ecc71' }}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
               </svg>
             </div>
-            <h2 className="validation-modal-title" style={{ color: '#2ecc71' }}>All Allowed!</h2>
+            <h2 className="validation-modal-title" style={{ color: '#fff', textShadow: '0 2px 8px rgba(255, 255, 255, 0.3)' }}>All Allowed!</h2>
             <div className="validation-modal-message">
-              <p style={{ fontWeight: 'bold', color: '#2c3e50', marginBottom: '15px' }}>
+              <p style={{ fontWeight: '700', color: '#fff', marginBottom: '12px', textShadow: '0 1px 3px rgba(0,0,0,0.2)' }}>
                 Excellent choice! Your selected dresscode follows all university rules.
               </p>
               <p>You now have permission to continue to the game.</p>
@@ -542,7 +542,6 @@ const DressCodeSelection = ({ onComplete, isMuted, onToggleMute }) => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <button 
                 className="validation-modal-btn" 
-                style={{ background: '#2ecc71', borderColor: '#27ae60', margin: 0 }} 
                 onClick={() => onComplete({
                   gender,
                   top: selections[gender].top,
@@ -554,7 +553,7 @@ const DressCodeSelection = ({ onComplete, isMuted, onToggleMute }) => {
               </button>
               <button 
                 className="validation-modal-btn" 
-                style={{ background: 'transparent', color: '#2c3e50', border: '2px solid #bdc3c7', margin: 0 }} 
+                style={{ background: 'rgba(255, 255, 255, 0.15)', color: '#fff', border: '2px solid rgba(255, 255, 255, 0.4)', boxShadow: 'none' }} 
                 onClick={() => setShowSuccess(false)}
               >
                 Back to Selection
