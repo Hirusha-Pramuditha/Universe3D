@@ -147,9 +147,10 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTryDressCode
   return (
     <div className="game-ui">
       {/* Top Bar */}
-      <div className="game-ui-top">
+      <div className="game-ui-top" style={{ justifyContent: 'center' }}>
         <button
           className="game-ui-btn game-logo-btn"
+          style={{ position: 'absolute', left: '1.5rem' }}
           onClick={() => setShowMenu(!showMenu)}
         >
           <svg
@@ -163,7 +164,7 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTryDressCode
           <span>Universe 3D</span>
         </button>
 
-        {/* Building Location - Now on left side */}
+        {/* Building Location */}
         <div className="game-ui-location">
           <svg
             viewBox="0 0 24 24"
@@ -179,7 +180,10 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTryDressCode
           </span>
         </div>
 
-        {/* Player Info - Now on right side */}
+      </div>
+
+      {/* Right Column Layout */}
+      <div className="game-right-panel">
         <div className="game-ui-player">
           <div className="player-avatar">
             <svg
@@ -195,8 +199,17 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTryDressCode
           <span className="player-name">{playerNickname || "Explorer"}</span>
         </div>
 
-        {/* Mission Panel - Under top bar on right side */}
         <MissionPanel missions={missions} onMissionUpdate={onMissionUpdate} buildingName={buildingInfo.name} />
+
+        <div className="game-minimap-wrapper">
+          <Minimap
+            playerRef={playerRef}
+            currentFloor={currentFloor}
+            buildingName={buildingInfo.name}
+            isExpanded={isMinimapExpanded}
+            selectedBuilding={selectedBuilding}
+          />
+        </div>
       </div>
 
       {/* Control Hints */}
@@ -409,14 +422,7 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTryDressCode
         </div>
       )}
 
-      {/*  Mini Map */}
-      <Minimap
-        playerRef={playerRef}
-        currentFloor={currentFloor}
-        buildingName={buildingInfo.name}
-        isExpanded={isMinimapExpanded}
-        selectedBuilding={selectedBuilding}
-      />
+      {/* Mini Map moved to game-right-panel */}
 
       {/* Bottom Info */}
       <div className="game-ui-bottom">

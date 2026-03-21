@@ -194,7 +194,7 @@ function Minimap({ playerRef, currentFloor, buildingName, isExpanded, selectedBu
                 <canvas
                     ref={canvasRef}
                     className="minimap-canvas"
-                    width={isExpanded ? 400 : 260}
+                    width={isExpanded ? 400 : 280}
                     height={isExpanded ? 711 : 462}
                     onClick={handleClick}
                     style={CALIBRATION_MODE
