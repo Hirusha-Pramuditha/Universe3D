@@ -893,3 +893,54 @@
     right: 1rem;
   }
 }
+
+/* ─── Height-Based Responsive Design for Laptops ─── */
+@media (max-height: 850px) {
+  .mm-card {
+    height: 310px;
+  }
+  .mm-card.mm-card-center {
+    height: 350px;
+  }
+  .mm-content {
+    gap: 1.2rem;
+    padding: 1rem;
+  }
+  .mm-title {
+    font-size: 2.8rem;
+  }
+  .mm-start-btn {
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+  }
+  .main-menu {
+    overflow-y: auto;
+    overflow-x: hidden;
+    align-items: flex-start;
+  }
+  .mm-content {
+    margin: auto 0;
+  }
+}
+
+@media (max-height: 700px) {
+  .mm-card {
+    height: 270px;
+  }
+  .mm-card.mm-card-center {
+    height: 300px;
+  }
+  .mm-content {
+    gap: 0.8rem;
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .mm-title {
+    font-size: 2.2rem;
+  }
+  .mm-start-btn {
+    padding: 0.8rem 2.5rem;
+    font-size: 1.1rem;
+  }
+}

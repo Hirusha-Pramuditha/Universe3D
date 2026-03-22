@@ -773,30 +773,7 @@
 
 
 
-/* ─── Mini Map ─── */
-.game-minimap {
-  width: 280px;
-  height: 492px;
-  box-sizing: border-box;
-  /* 30px header + 462px map */
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
-  border-radius: 10px;
-  overflow: hidden;
-  z-index: 100;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
-}
-
-.game-minimap.expanded {
-  width: 400px;
-  height: 755px;
-  /* 44px header + 711px map */
-  border-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(239, 68, 68, 0.2);
-}
+/* Removed duplicate large minimap */
 
 /* Header row */
 .minimap-header {
@@ -2191,5 +2168,47 @@
   .player-avatar svg {
     width: 20px;
     height: 20px;
+  }
+}
+
+/* ─── Height-Based Responsive Design for Laptops ─── */
+@media (max-height: 800px) {
+  .game-ui-bottom {
+    bottom: 0.5rem;
+  }
+  .game-controls-panel {
+    bottom: 0.5rem;
+    transform: scale(0.85);
+    transform-origin: bottom left;
+  }
+  .mission-panel {
+    transform: scale(0.85);
+    transform-origin: top right;
+  }
+  .game-menu-panel {
+    transform: scale(0.85);
+    transform-origin: top left;
+  }
+  .game-minimap {
+    transform: scale(0.85);
+    transform-origin: bottom right;
+  }
+  .game-ui-top {
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (max-height: 650px) {
+  .game-controls-panel {
+    transform: scale(0.75);
+  }
+  .mission-panel {
+    transform: scale(0.75);
+  }
+  .game-menu-panel {
+    transform: scale(0.75);
+  }
+  .game-minimap {
+    transform: scale(0.75);
   }
 }
