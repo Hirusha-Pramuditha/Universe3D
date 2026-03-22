@@ -17,7 +17,7 @@ const Feedback = ({ onComplete, onClose, playerNickname }) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ rating, review: comment, nickname: playerNickname || 'Explorer' }),
+                body: JSON.stringify({ rating, review: comment, nickname: playerNickname}),
             });
 
             if (response.ok) {

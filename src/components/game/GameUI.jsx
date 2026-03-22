@@ -449,6 +449,7 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTryDressCode
       {/* Feedback Modal */}
       {showFeedback && (
         <Feedback
+          playerNickname={playerNickname}
           onComplete={handleFeedbackComplete}
           onClose={() => setShowFeedback(false)}
         />

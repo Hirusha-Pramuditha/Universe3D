@@ -304,6 +304,7 @@ function MainMenu({ onStartGame, onExit, onBack, playerNickname, isMuted, onTogg
       {/* Feedback Modal */}
       {showFeedback && (
         <Feedback
+          playerNickname={playerNickname}
           onComplete={handleFeedbackComplete}
           onClose={() => setShowFeedback(false)}
         />
