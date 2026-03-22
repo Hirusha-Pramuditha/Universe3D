@@ -298,6 +298,7 @@ const TreasureHunt = ({ scene, playerRef, setMissions }) => {
                                 // Check if already opening to be safe
                                 if (!chestRef.current.userData.isOpening) {
                                     chestRef.current.userData.isOpening = true;
+                                    console.log("Test Pass: Treasure chest opened successfully");
                                     setGameState(prev => ({ ...prev, chestOpen: true }));
                                     gameStateRef.current = { ...gameStateRef.current, chestOpen: true };
                                     openChestAnimation(chestRef.current);
