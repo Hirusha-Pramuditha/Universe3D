@@ -261,20 +261,18 @@
 /* ─── Cookie Banner & Policies ─── */
 .cookie-banner {
   position: fixed;
-  bottom: 1.5rem; left: 0; right: 0; margin: 0 auto;
-  width: 90%; max-width: 1080px;
+  bottom: 0; left: 0; right: 0;
   z-index: 1000;
-  background: rgba(15, 23, 42, 0.90);
+  background: rgba(15, 23, 42, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 100px;
-  padding: 1.2rem 2.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
 }
 .cookie-content p {
   color: var(--gray-300);
@@ -314,9 +312,6 @@
 
 @media (max-width: 768px) {
   .cookie-banner {
-    border-radius: 22px;
-    width: calc(100% - 2rem);
-    bottom: 1rem;
     flex-direction: column;
     align-items: flex-start;
     padding: 1.5rem;
