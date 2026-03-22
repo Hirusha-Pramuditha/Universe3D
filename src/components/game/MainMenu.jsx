@@ -9,7 +9,8 @@ const BUILDINGS = [
     name: 'Spencer Building (SP)',
     floors: 13,
     image: '/buildings/spencer.png',
-    description: 'Secondary premises with tutorial rooms and offices'
+    description: 'Secondary premises with tutorial rooms and offices',
+    comingSoon: true
   },
   {
     id: 'gp-square',
@@ -23,7 +24,8 @@ const BUILDINGS = [
     name: 'Ramakrishna Building',
     floors: 5,
     image: '/buildings/ramakrishna.png',
-    description: 'Additional facilities and student services'
+    description: 'Additional facilities and student services',
+    comingSoon: true
   }
 ]
 
@@ -231,6 +233,17 @@ function MainMenu({ onStartGame, onExit, playerNickname, isMuted, onToggleMute }
                       e.target.style.display = 'none'
                     }}
                   />
+                  {building.comingSoon && selectedBuilding === building.id && (
+                    <div className="mm-card-locked-overlay">
+                      <div className="locked-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        <span>Under<br/>Development</span>
+                      </div>
+                    </div>
+                  )}
                   <div className="mm-card-image-fallback">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                     </svg>
@@ -254,17 +267,21 @@ function MainMenu({ onStartGame, onExit, playerNickname, isMuted, onToggleMute }
 
         {/* Selection prompt */}
         <p className={`mm-prompt ${selectedBuilding ? 'ready' : ''}`}>
-          {selectedBuilding ? 'Building selected! Ready to explore.' : 'Select a Building to Continue'}
+          {selectedBuilding 
+            ? (BUILDINGS.find(b => b.id === selectedBuilding)?.comingSoon ? 'This area is currently under development!' : 'Building selected! Ready to explore.')
+            : 'Select a Building to Continue'}
         </p>
 
         {/* Start Game button */}
         <button
-          className={`mm-start-btn ${selectedBuilding ? 'active' : 'disabled'}`}
+          className={`mm-start-btn ${selectedBuilding && !BUILDINGS.find(b => b.id === selectedBuilding)?.comingSoon ? 'active' : 'disabled'}`}
           onClick={handleStartGame}
-          disabled={!selectedBuilding}
+          disabled={!selectedBuilding || BUILDINGS.find(b => b.id === selectedBuilding)?.comingSoon}
         >
           <span className="mm-start-btn-glow"></span>
-          <span className="mm-start-btn-text">Start Game</span>
+          <span className="mm-start-btn-text">
+            {selectedBuilding && BUILDINGS.find(b => b.id === selectedBuilding)?.comingSoon ? 'Coming Soon' : 'Start Game'}
+          </span>
         </button>
       </div>
 
