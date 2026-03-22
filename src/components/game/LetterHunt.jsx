@@ -327,7 +327,7 @@ const LetterHunt = ({ scene, playerRef, setMissions }) => {
             // Update Active Target & Interact
             if (closestLetter) {
                 // Check for interaction
-                if ( keys.current.e) {
+                if (keys.current.e) {
 
                     if (isGiftTarget) {
                         // Handle Gift Open
@@ -354,6 +354,7 @@ const LetterHunt = ({ scene, playerRef, setMissions }) => {
                             const newCount = prevCount + 1;
                             const total = lettersRef.current.length;
                             if (newCount === total) {
+                                console.log("All 3 IIT letters collected successfully - Pass");
                                 setCompleted(true);
                                 spawnRewardBook();
                                 // Mark mission as completed
