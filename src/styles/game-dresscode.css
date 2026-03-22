@@ -145,10 +145,10 @@
 .main-content {
   position: relative;
   display: flex;
-  gap: 2rem;
+  gap: clamp(1.5rem, 3vw, 3rem);
   z-index: 10;
-  max-width: 1100px;
-  width: 90%;
+  max-width: 1400px; /* Increased from 1100px for full screen */
+  width: 95%; /* Increased from 90% */
   justify-content: center;
   align-items: flex-start;
   perspective: 1500px;
@@ -171,9 +171,9 @@
 .left-panels {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: clamp(1rem, 2vh, 1.5rem);
   flex: 2;
-  max-width: clamp(450px, 50vw, 700px);
+  max-width: clamp(450px, 60vw, 900px);
   width: 100%;
   min-width: 0;
 }
@@ -279,8 +279,8 @@
 }
 
 .panel-bottom .card {
-  width: 90px;
-  height: 90px;
+  width: clamp(70px, 8vw, 100px); /* Changed from fixed 90px to responsive width */
+  height: clamp(70px, 8vw, 100px); /* Changed from fixed 90px to responsive height */
 }
 
 .card:hover {
@@ -389,7 +389,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: clamp(280px, 25vw, 400px);
+  min-width: clamp(280px, 28vw, 450px);
   width: 100%;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }

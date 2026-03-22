@@ -1,14 +1,14 @@
 import React from 'react'
 import useScrollReveal, { useScrollProgress } from '../hooks/useScrollRevealBidirectional'
 
-function AnimatedStat({ target, label, suffix = '' }) {
+function AnimatedStat({ target, label, suffix = '', animate = true }) {
   // target can be a number or a special string like "3D", "∞", "24/7"
-  const isNumeric = !isNaN(Number(target))
+  const isNumeric = animate && !isNaN(Number(target))
   const numVal    = isNumeric ? Number(target) : 0
 
   const { ref, progress } = useScrollProgress()
   const current = Math.round(progress * numVal)
-  const display = isNumeric ? `${current}${suffix}` : target
+  const display = isNumeric ? `${current}${suffix}` : `${target}${suffix}`
 
   return (
     <div ref={ref} className="stat-card">
@@ -42,7 +42,7 @@ function AboutUs() {
           </div>
 
           <div ref={statsRef} className={`about-stats reveal-right ${statsVis ? 'visible' : ''}`}>
-            <AnimatedStat target="6"   suffix="+" label="Co-Founders"          />
+            <AnimatedStat target="6"         label="Co-Founders"          animate={false} />
             <AnimatedStat target="3D"        label="Real-time Rendering"  />
             <AnimatedStat target="∞"         label="Possibilities"        />
             <AnimatedStat target="24/7"      label="Support"              />
