@@ -549,6 +549,7 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
             } else if (clipName.includes('walk')) {
               animations['walk'] = action
             } else if (clipName.includes('ascend')) {
+              action.timeScale = 0.5; // Reduce climbing speed
               animations['ascend'] = action
             }
           })

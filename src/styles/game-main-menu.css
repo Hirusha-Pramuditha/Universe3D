@@ -259,9 +259,14 @@
   height: 24px;
 }
 
-.mm-exit-btn {
+.mm-home-btn {
   top: 1.5rem;
   left: 1.5rem;
+}
+
+.mm-back-btn {
+  top: 1.5rem;
+  left: 5.5rem;
 }
 
 .mm-audio-btn {
@@ -721,6 +726,59 @@
   font-size: 0.9em;
 }
 
+/* ─── Locked / Under Development Cards ─── */
+.mm-card-locked-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 10;
+  border-radius: inherit;
+}
+
+.locked-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 1.25rem 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 2px 5px rgba(255, 255, 255, 0.2);
+  transform: rotate(-8deg);
+  animation: floatLock 3s ease-in-out infinite;
+}
+
+@keyframes floatLock {
+  0%, 100% { transform: rotate(-8deg) translateY(0); }
+  50% { transform: rotate(-8deg) translateY(-6px); }
+}
+
+.locked-badge svg {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.locked-badge span {
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  text-align: center;
+}
+
 /* ─── Footer Star ─── */
 .mm-footer-star {
   position: absolute;
@@ -878,9 +936,14 @@
     height: 40px;
   }
   
-  .mm-exit-btn {
+  .mm-home-btn {
     top: 1rem;
     left: 1rem;
+  }
+  
+  .mm-back-btn {
+    top: 1rem;
+    left: 4.5rem;
   }
   
   .mm-audio-btn {
@@ -891,5 +954,56 @@
   .mm-footer-star {
     bottom: 1rem;
     right: 1rem;
+  }
+}
+
+/* ─── Height-Based Responsive Design for Laptops ─── */
+@media (max-height: 850px) {
+  .mm-card {
+    height: 310px;
+  }
+  .mm-card.mm-card-center {
+    height: 350px;
+  }
+  .mm-content {
+    gap: 1.2rem;
+    padding: 1rem;
+  }
+  .mm-title {
+    font-size: 2.8rem;
+  }
+  .mm-start-btn {
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+  }
+  .main-menu {
+    overflow-y: auto;
+    overflow-x: hidden;
+    align-items: flex-start;
+  }
+  .mm-content {
+    margin: auto 0;
+  }
+}
+
+@media (max-height: 700px) {
+  .mm-card {
+    height: 270px;
+  }
+  .mm-card.mm-card-center {
+    height: 300px;
+  }
+  .mm-content {
+    gap: 0.8rem;
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .mm-title {
+    font-size: 2.2rem;
+  }
+  .mm-start-btn {
+    padding: 0.8rem 2.5rem;
+    font-size: 1.1rem;
   }
 }

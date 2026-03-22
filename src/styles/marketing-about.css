@@ -14,6 +14,9 @@
   gap: 5rem;
   align-items: center;
 }
+@media (max-width: 1024px) {
+  .about-row { gap: 2rem; }
+}
 @media (max-width: 760px) {
   .about-row { grid-template-columns: 1fr; gap: 2.8rem; }
 }

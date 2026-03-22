@@ -12,6 +12,10 @@
   overflow: hidden;
   padding: 6rem 1.5rem 5rem;
 }
+
+@media (max-width: 1024px) {
+  .hero { padding: 4rem 1.5rem 3rem; }
+}
 .hero-3d-container {
   position: absolute;
   inset: 0;

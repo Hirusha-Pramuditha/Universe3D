@@ -59,11 +59,11 @@ function Features() {
     {
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 4.354a4 4 0 110 8.048M12 4.354L7.325 8.677a4 4 0 000 5.646L12 19M12 4.354l4.675 4.323a4 4 0 010 5.646L12 19" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
         </svg>
       ),
-      title: 'Staff Directory',
-      description: 'Integrated hierarchy mapping and department-level organisation at a glance.'
+      title: 'Interactive Noticeboards',
+      description: 'Discover real-time campus news, announcements, and events pinned directly onto immersive 3D boards.'
     },
     {
       icon: (

@@ -29,6 +29,8 @@ import VideoModal from '../components/modals/VideoModal'
 import ContactModal from '../components/modals/ContactModal'
 import PricingModal from '../components/modals/PricingModal'
 import AuthModal from '../components/modals/AuthModal'
+import PolicyModal from '../components/modals/PolicyModal'
+import CookieBanner from '../components/CookieBanner'
 
 function MarketingPage() {
   const navigate = useNavigate()
@@ -66,13 +68,18 @@ function MarketingPage() {
       <Pricing openPricingModal={openPricingModal} />
       <FooterCTA openModal={openModal} />
       <Team />
-      <Footer />
+      <Footer openModal={openModal} />
       <ScrollToTop />
       
       {activeModal === 'video' && <VideoModal closeModal={closeModal} />}
       {activeModal === 'contact' && <ContactModal closeModal={closeModal} />}
       {activeModal === 'pricing' && <PricingModal closeModal={closeModal} planName={pricingData.planName} planPrice={pricingData.planPrice} />}
       {activeModal === 'auth' && <AuthModal closeModal={closeModal} />}
+      {activeModal === 'privacy' && <PolicyModal type="privacy" closeModal={closeModal} />}
+      {activeModal === 'terms' && <PolicyModal type="terms" closeModal={closeModal} />}
+      {activeModal === 'cookie' && <PolicyModal type="cookie" closeModal={closeModal} />}
+      
+      <CookieBanner />
     </>
   )
 }

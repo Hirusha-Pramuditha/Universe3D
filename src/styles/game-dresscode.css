@@ -151,15 +151,21 @@
   width: 90%;
   justify-content: center;
   align-items: flex-start;
-  transition: opacity 200ms ease-in-out;
+  perspective: 1500px;
+  transform-style: preserve-3d;
+  transition: opacity 400ms ease-in-out, transform 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55), filter 400ms ease-in-out;
 }
 
 .fade-out {
   opacity: 0;
+  transform: rotateX(20deg) translateY(-50px) scale(0.85);
+  filter: blur(8px);
 }
 
 .fade-in {
   opacity: 1;
+  transform: rotateX(0deg) translateY(0) scale(1);
+  filter: blur(0px);
 }
 
 .left-panels {
@@ -860,4 +866,86 @@
   display: inline-block;
   margin-top: 0.25rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* ─── Height-Based Responsive Design for Laptops ─── */
+@media (max-height: 850px) {
+  .title {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    font-size: 2.2rem;
+  }
+  .main-content {
+    gap: 1rem;
+  }
+  .avatar-wrapper {
+    height: 220px;
+    margin-bottom: 1rem;
+  }
+  .panel {
+    padding: 1rem;
+  }
+  .preview-panel {
+    padding: 1rem;
+  }
+  .panel-bottom .card {
+    width: 75px;
+    height: 75px;
+  }
+  .card-inner {
+    width: 50%;
+    height: 50%;
+  }
+  .next-btn {
+    margin-top: 1rem;
+    padding: 0.8rem 2.5rem;
+    font-size: 1.1rem;
+  }
+  .validation-modal {
+    transform: scale(0.9);
+  }
+}
+
+@media (max-height: 750px) {
+  .title {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  .dresscode-container {
+    padding: 0.5rem 0;
+  }
+  .avatar-wrapper {
+    height: 180px;
+  }
+  .panel {
+    padding: 0.75rem;
+  }
+  .panel-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .panel-bottom .card {
+    width: 65px;
+    height: 65px;
+  }
+  .next-btn {
+    margin-top: 0.5rem;
+    padding: 0.6rem 2rem;
+  }
+  .preview-panel {
+    padding: 1rem;
+  }
+  .validation-modal {
+    padding: 1.25rem;
+    transform: scale(0.85);
+  }
+  .validation-modal-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.75rem;
+  }
+  .validation-error-list {
+    max-height: 40vh;
+  }
 }
