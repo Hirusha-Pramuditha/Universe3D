@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../../styles/game-dresscode.css';
 import AvatarPreview from './AvatarPreview';
 import { AvatarItemThumbnail } from './AvatarPreview';
@@ -196,6 +196,14 @@ const DressCodeSelection = ({ onComplete, isMuted, onToggleMute }) => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [warningMessage, setWarningMessage] = useState([]);
   
+  const selectSoundRef = useRef(null);
+
+  useEffect(() => {
+    selectSoundRef.current = new Audio('/audio/dress-select.mp3');
+    selectSoundRef.current.volume = 0.5;
+    selectSoundRef.current.load();
+  }, []);
+
   // Selection state structured by gender
   const [selections, setSelections] = useState({
     male: {
@@ -212,6 +220,12 @@ const DressCodeSelection = ({ onComplete, isMuted, onToggleMute }) => {
 
   const handleGenderSwitch = (newGender) => {
     if (gender === newGender) return;
+    
+    if (selectSoundRef.current && !isMuted) {
+      selectSoundRef.current.currentTime = 0;
+      selectSoundRef.current.play().catch(() => {});
+    }
+
     setIsTransitioning(true);
     
     setTimeout(() => {
@@ -230,6 +244,11 @@ const DressCodeSelection = ({ onComplete, isMuted, onToggleMute }) => {
   };
 
   const handleSelect = (category, id) => {
+    if (selectSoundRef.current && !isMuted) {
+      selectSoundRef.current.currentTime = 0;
+      selectSoundRef.current.play().catch(() => {});
+    }
+
     // Check if selecting a bottom while a full-body outfit is active
     if (category === 'bottom' && gender === 'female' && FULL_BODY_TOPS.includes(selections.female.top)) {
       setWarningMessage([{
