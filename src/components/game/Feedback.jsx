@@ -22,14 +22,13 @@ const Feedback = ({ onComplete, onClose, playerNickname }) => {
 
             if (response.ok) {
                 setSubmitted(true);
-                setTimeout(() => {
-                    if (onComplete) onComplete();
-                }, 1500);
             } else {
                 console.error('Failed to submit feedback');
+                setSubmitted(true);
             }
         } catch (error) {
             console.error('Error submitting feedback:', error);
+            setSubmitted(true);
         } finally {
             setIsSubmitting(false);
         }
@@ -52,6 +51,16 @@ const Feedback = ({ onComplete, onClose, playerNickname }) => {
                     </div>
                     <h2>Feedback Submitted!</h2>
                     <p>Thank you for helping us improve.</p>
+                    <button 
+                        className="submit-btn" 
+                        style={{marginTop: '1.5rem', width: '100%'}} 
+                        onClick={() => {
+                            if (onComplete) onComplete();
+                            else if (onClose) onClose();
+                        }}
+                    >
+                        Back to Webpage
+                    </button>
                 </div>
             </div>
         );
@@ -101,7 +110,7 @@ const Feedback = ({ onComplete, onClose, playerNickname }) => {
                         <button
                             type="submit"
                             className="submit-btn"
-                            disabled={rating === 0 || isSubmitting}
+                            disabled={(rating === 0 && comment.trim() === '') || isSubmitting}
                         >
                             {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
                         </button>

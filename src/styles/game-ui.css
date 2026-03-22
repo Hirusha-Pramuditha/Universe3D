@@ -1868,6 +1868,16 @@
   padding: 0.5rem;
   border-radius: 50%;
   transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.feedback-close-btn svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 2.5px;
 }
 
 .feedback-close-btn:hover {
