@@ -13,8 +13,14 @@
   padding: 6rem 1.5rem 5rem;
 }
 
+@media (max-width: 1440px) or (max-height: 850px) {
+  .hero { padding: 4rem 1.5rem 3rem; min-height: 90vh; }
+  .hero-text h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); margin-bottom: 1rem; }
+  .hero-sub { margin-bottom: 1.8rem; }
+}
+
 @media (max-width: 1024px) {
-  .hero { padding: 4rem 1.5rem 3rem; }
+  .hero { padding: 4rem 1.5rem 3rem; min-height: 80vh; }
 }
 .hero-3d-container {
   position: absolute;

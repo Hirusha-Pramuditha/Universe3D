@@ -323,6 +323,17 @@
   margin-top: 0;
 }
 
+@media (max-width: 1440px) or (max-height: 850px) {
+  .cookie-banner {
+    padding: 0.8rem 1.5rem;
+    gap: 1.5rem;
+    bottom: 0.8rem;
+  }
+  .cookie-content p {
+    font-size: 0.82rem;
+  }
+}
+
 @media (max-width: 768px) {
   .cookie-banner {
     width: calc(100% - 2rem);
