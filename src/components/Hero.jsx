@@ -25,7 +25,7 @@ function Hero({ openModal }) {
       <div className="hero-overlay"></div>
       <div className="hero-content">
         <div className="hero-text">
-          <p className="hero-eyebrow">Immersive 3D by | Team Explore X | </p>
+          <p className="hero-eyebrow">Universe 3D by | Team Explore X | </p>
           <h1>
             Explore Digital<br />
             <span className="gradient-text">Universes</span><br />
