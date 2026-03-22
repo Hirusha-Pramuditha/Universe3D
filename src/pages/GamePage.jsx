@@ -192,6 +192,7 @@ function GamePage() {
           <MainMenu
             onStartGame={handleStartGame}
             onExit={handleExit}
+            onBack={handleTryDressCode}
             playerNickname={playerNickname}
             isMuted={isMuted}
             onToggleMute={() => setIsMuted(!isMuted)}

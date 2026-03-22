@@ -259,9 +259,14 @@
   height: 24px;
 }
 
-.mm-exit-btn {
+.mm-home-btn {
   top: 1.5rem;
   left: 1.5rem;
+}
+
+.mm-back-btn {
+  top: 1.5rem;
+  left: 5.5rem;
 }
 
 .mm-audio-btn {
@@ -931,9 +936,14 @@
     height: 40px;
   }
   
-  .mm-exit-btn {
+  .mm-home-btn {
     top: 1rem;
     left: 1rem;
+  }
+  
+  .mm-back-btn {
+    top: 1rem;
+    left: 4.5rem;
   }
   
   .mm-audio-btn {

@@ -29,7 +29,7 @@ const BUILDINGS = [
   }
 ]
 
-function MainMenu({ onStartGame, onExit, playerNickname, isMuted, onToggleMute }) {
+function MainMenu({ onStartGame, onExit, onBack, playerNickname, isMuted, onToggleMute }) {
   const [selectedBuilding, setSelectedBuilding] = useState(null)
   const [hoveredCard, setHoveredCard] = useState(null)
   const [showFeedback, setShowFeedback] = useState(false)
@@ -171,14 +171,24 @@ function MainMenu({ onStartGame, onExit, playerNickname, isMuted, onToggleMute }
 
       {/* Corner buttons */}
       <button
-        className="mm-corner-btn mm-exit-btn"
+        className="mm-corner-btn mm-home-btn"
         onClick={handleExit}
         title="Exit to Home"
       >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
-          <polyline points="16 17 21 12 16 7" />
-          <line x1="21" y1="12" x2="9" y2="12" />
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+      </button>
+
+      <button
+        className="mm-corner-btn mm-back-btn"
+        onClick={onBack}
+        title="Back to Dress Code"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
         </svg>
       </button>
 
