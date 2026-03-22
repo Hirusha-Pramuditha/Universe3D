@@ -8,10 +8,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100vw;
-  min-height: 100vh;
-  padding: 2rem 0;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100vh;
+  padding: 3rem 0;
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
@@ -871,35 +871,41 @@
 /* ─── Height-Based Responsive Design for Laptops ─── */
 @media (max-height: 850px) {
   .title {
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 2rem;
+  }
+  .dresscode-container {
+    padding: 1rem 0;
   }
   .main-content {
     gap: 1rem;
+    transform: scale(0.95);
+    transform-origin: top center;
   }
   .avatar-wrapper {
-    height: 220px;
-    margin-bottom: 1rem;
+    height: 200px;
+    margin-bottom: 0.5rem;
   }
   .panel {
-    padding: 1rem;
+    padding: 0.75rem;
   }
   .preview-panel {
-    padding: 1rem;
+    padding: 0.75rem;
   }
   .panel-bottom .card {
-    width: 75px;
-    height: 75px;
+    width: 65px;
+    height: 65px;
   }
   .card-inner {
     width: 50%;
     height: 50%;
   }
   .next-btn {
-    margin-top: 1rem;
-    padding: 0.8rem 2.5rem;
-    font-size: 1.1rem;
+    margin-top: 0.5rem;
+    padding: 0.6rem 2rem;
+    font-size: 1rem;
+    transform: scale(0.95);
   }
   .validation-modal {
     transform: scale(0.9);
@@ -908,44 +914,60 @@
 
 @media (max-height: 750px) {
   .title {
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
-    margin-top: 0.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 0px;
+    margin-top: 0px;
   }
   .dresscode-container {
     padding: 0.5rem 0;
+    justify-content: center;
+  }
+  .main-content {
+    transform: scale(0.85);
+    transform-origin: top center;
+    gap: 0.5rem;
   }
   .avatar-wrapper {
-    height: 180px;
+    height: 160px;
   }
   .panel {
-    padding: 0.75rem;
+    padding: 0.5rem;
   }
   .panel-title {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
   }
   .panel-bottom .card {
-    width: 65px;
-    height: 65px;
+    width: 55px;
+    height: 55px;
+  }
+  .card .item-label {
+    font-size: 9px;
+    margin-top: 2px;
   }
   .next-btn {
-    margin-top: 0.5rem;
-    padding: 0.6rem 2rem;
-  }
-  .preview-panel {
-    padding: 1rem;
-  }
-  .validation-modal {
-    padding: 1.25rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
     transform: scale(0.85);
   }
+  .preview-panel {
+    padding: 0.5rem;
+  }
+  .toggle-container {
+    margin-bottom: 0.5rem;
+  }
+  .validation-modal {
+    padding: 1rem;
+    transform: scale(0.8);
+  }
   .validation-modal-icon {
-    width: 48px;
-    height: 48px;
-    margin-bottom: 0.75rem;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 0.5rem;
   }
   .validation-error-list {
-    max-height: 40vh;
+    max-height: 35vh;
   }
 }
