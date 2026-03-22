@@ -1,15 +1,15 @@
 import React from 'react';
 
 const COLORS = {
-  m_top_1: '#4a5c44', m_top_2: '#e5ddd3', m_top_3: '#8fbce1', 
+  m_top_1: '#4a5c44', m_top_2: '#e5ddd3', m_top_3: '#8fbce1',
   m_top_4: '#284635', m_top_5: '#f2ebe2', m_top_6: '#222222',
-  m_bot_1: '#5a8ebf', m_bot_2: '#305170', m_bot_3: '#525a41', 
+  m_bot_1: '#5a8ebf', m_bot_2: '#305170', m_bot_3: '#525a41',
   m_bot_4: '#c5523a', m_bot_5: '#2d3338', m_bot_6: '#224063',
   m_foot_1: '#ffffff', m_foot_2: '#5c3a21', m_foot_3: '#1a1a1a',
 
-  f_top_1: '#E84342', f_top_2: '#FF7675', f_top_3: '#E17055', 
+  f_top_1: '#E84342', f_top_2: '#FF7675', f_top_3: '#E17055',
   f_top_4: '#6C5CE7', f_top_5: '#00B894', f_top_6: '#ff9ff3', f_top_7: '#E84342',
-  f_bot_1: '#2D3436', f_bot_3: '#0984E3', 
+  f_bot_1: '#2D3436', f_bot_3: '#0984E3',
   f_bot_4: '#E84342', f_bot_5: '#00CEC9', f_bot_6: '#6C5CE7', f_bot_7: '#8c7ae6',
   f_foot_1: '#2D3436', f_foot_2: '#636E72', f_foot_3: '#E17055', f_foot_4: '#ffffff'
 };
@@ -39,20 +39,20 @@ const BaseAvatar = ({ gender, skinTone = 'medium' }) => {
 
         {/* Head */}
         <path d="M 36 20 C 36 6 64 6 64 20 C 64 34 56 38 50 38 C 44 38 36 34 36 20 Z" fill={SKIN} />
-        
+
         {/* Eyes */}
         <ellipse cx="44" cy="20" rx="1.5" ry="2.2" fill="#111" />
         <ellipse cx="56" cy="20" rx="1.5" ry="2.2" fill="#111" />
         <circle cx="44.5" cy="19" r="0.5" fill="#fff" />
         <circle cx="56.5" cy="19" r="0.5" fill="#fff" />
-        
+
         {/* Eyebrows */}
         <path d="M 41 16 Q 44 14 47 16" fill="none" stroke="#111" strokeWidth="1.5" strokeLinecap="round" />
         <path d="M 59 16 Q 56 14 53 16" fill="none" stroke="#111" strokeWidth="1.5" strokeLinecap="round" />
 
         {/* Nose */}
-        <path d="M 50 22 L 48 26 L 50 27" fill="none" stroke="#111" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.6"/>
-        
+        <path d="M 50 22 L 48 26 L 50 27" fill="none" stroke="#111" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
+
         {/* Mouth */}
         <path d="M 46 32 Q 50 35 54 31" fill="none" stroke="#111" strokeWidth="0.8" strokeLinecap="round" />
 
@@ -118,11 +118,11 @@ const BaseAvatar = ({ gender, skinTone = 'medium' }) => {
         <ellipse cx="38" cy="25" rx="2" ry="4" fill={SKIN} />
         <ellipse cx="62" cy="25" rx="2" ry="4" fill={SKIN} />
         <ellipse cx="50" cy="24" rx="12" ry="14" fill={SKIN} />
-        
+
         {/* Eyes (Cute arcs) */}
         <path d="M 43 24 Q 45 21 47 24" stroke="#221100" strokeWidth="1.5" fill="none" strokeLinecap="round" />
         <path d="M 53 24 Q 55 21 57 24" stroke="#221100" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-        
+
         {/* Brows */}
         <path d="M 42 20 Q 45 18 48 20" stroke="#3A2315" strokeWidth="1.2" fill="none" strokeLinecap="round" />
         <path d="M 52 20 Q 55 18 58 20" stroke="#3A2315" strokeWidth="1.2" fill="none" strokeLinecap="round" />
@@ -130,10 +130,10 @@ const BaseAvatar = ({ gender, skinTone = 'medium' }) => {
         {/* Blush */}
         <ellipse cx="42" cy="27" rx="3" ry="1.5" fill="#E88873" opacity="0.5" />
         <ellipse cx="58" cy="27" rx="3" ry="1.5" fill="#E88873" opacity="0.5" />
-        
+
         {/* Nose */}
         <path d="M 49 27 Q 50 29 51 27" stroke="#AD8A73" strokeWidth="1" fill="none" strokeLinecap="round" />
-        
+
         {/* Mouth (Happy Smile with teeth) */}
         <path d="M 46 31 Q 50 36 54 31 Z" fill="#FFFFFF" stroke="#DD5555" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
 
@@ -159,7 +159,7 @@ const renderTopLayer = (id) => {
         <path d="M 25 140 Q 50 145 75 140 L 75 145 L 25 145 Z" fill="#111" opacity="0.2" />
 
         <path d="M 45 44 L 50 52 L 55 44 Z" fill="#f4caa7" />
-        
+
         <path d="M 38 44 Q 30 55 28 65 L 34 65 Q 38 55 40 50 Z" fill={color} />
         <path d="M 38 44 Q 32 50 31 58 L 28 65 L 34 65 Q 38 55 40 50 Z" fill="#111" opacity="0.15" />
         <path d="M 62 44 Q 70 55 72 65 L 66 65 Q 62 55 60 50 Z" fill={color} />
@@ -181,7 +181,7 @@ const renderTopLayer = (id) => {
         <path d="M 32 52 L 68 52 L 63 70 L 65 105 L 35 105 L 37 70 Z" fill={color} />
         <path d="M 32 52 L 38 52 L 39 70 L 41 105 L 35 105 L 37 70 Z" fill="#111" opacity="0.15" />
         <path d="M 37 75 L 48 85 L 46 88 L 35 80 Z" fill="#111" opacity="0.1" />
-        
+
         <path d="M 26 52 L 34 52 L 36 62 L 30 62 Z" fill={color} />
         <path d="M 26 52 L 30 52 L 33 60 L 30 62 Z" fill="#111" opacity="0.15" />
         <path d="M 74 52 L 66 52 L 64 62 L 70 62 Z" fill={color} />
@@ -194,9 +194,9 @@ const renderTopLayer = (id) => {
         <path d="M 38 44 C 42 42, 44 43, 44 46 L 43 70 L 44 90 L 37 90 L 38 70 Z" fill="#111" opacity="0.15" />
         <path d="M 37 80 L 48 88 L 47 90 L 37 85 Z" fill="#111" opacity="0.1" />
         <path d="M 63 75 L 53 85 L 54 87 L 62 80 Z" fill="#111" opacity="0.1" />
-        
+
         <path d="M 44 44 Q 50 50 56 44 Z" fill="#fff" opacity="0.15" />
-        
+
         <path d="M 38 44 Q 30 60 28 75 L 34 75 Q 38 60 40 55 Z" fill={color} />
         <path d="M 38 44 Q 32 55 31 65 L 28 75 L 34 75 Q 38 60 40 55 Z" fill="#111" opacity="0.15" />
         <path d="M 62 44 Q 70 60 72 75 L 66 75 Q 62 60 60 55 Z" fill={color} />
@@ -209,7 +209,7 @@ const renderTopLayer = (id) => {
         <path d="M 38 44 C 42 42, 44 43, 44 46 L 44 70 L 38 70 Z" fill="#111" opacity="0.15" />
         <path d="M 38 68 L 62 68 L 62 70 L 38 70 Z" fill="#111" opacity="0.15" />
         <path d="M 44 44 Q 50 50 56 44 Z" fill="#f4caa7" />
-        
+
         <path d="M 38 44 Q 30 60 28 75 L 34 75 Q 38 60 40 55 Z" fill={color} />
         <path d="M 38 44 Q 32 55 31 65 L 28 75 L 34 75 Q 38 60 40 55 Z" fill="#111" opacity="0.15" />
         <path d="M 62 44 Q 70 60 72 75 L 66 75 Q 62 60 60 55 Z" fill={color} />
@@ -222,7 +222,7 @@ const renderTopLayer = (id) => {
         <path d="M 38 44 C 42 42, 43 43, 44 45 L 43 70 L 45 105 L 45 180 L 30 180 L 35 105 L 38 70 Z" fill="#111" opacity="0.15" />
         <path d="M 38 120 L 50 140 L 48 145 L 34 110 Z" fill="#111" opacity="0.1" />
         <path d="M 68 110 L 55 130 L 56 135 L 70 130 Z" fill="#111" opacity="0.1" />
-        
+
         <path d="M 45 44 L 50 54 L 55 44 Z" fill="#f4caa7" />
         <path d="M 38 44 Q 25 70 24 100 L 32 100 Q 36 70 40 55 Z" fill={color} />
         <path d="M 38 44 Q 28 65 28 85 L 24 100 L 32 100 Q 36 70 40 55 Z" fill="#111" opacity="0.15" />
@@ -262,7 +262,7 @@ const renderTopLayer = (id) => {
             <g>
               <path d="M 34 45 L 23 96 L 31 96 L 38 45 Z" fill={color} />
               <path d="M 34 45 L 27 96 L 31 96 L 38 45 Z" fill="#111" opacity="0.15" />
-              
+
               <path d="M 66 45 L 77 96 L 69 96 L 62 45 Z" fill={color} />
               <path d="M 66 45 L 73 96 L 69 96 L 62 45 Z" fill="#111" opacity="0.15" />
             </g>
@@ -270,7 +270,7 @@ const renderTopLayer = (id) => {
             <g>
               <path d="M 34 45 L 27 75 L 34 75 L 38 45 Z" fill={color} />
               <path d="M 38 45 L 32 75 L 34 75 Z" fill="#111" opacity="0.15" />
-              
+
               <path d="M 66 45 L 73 75 L 66 75 L 62 45 Z" fill={color} />
               <path d="M 62 45 L 68 75 L 66 75 Z" fill="#111" opacity="0.15" />
             </g>
@@ -294,12 +294,12 @@ const renderTopLayer = (id) => {
       {isFormal && (
         <g>
           <path d="M 50 45 L 50 100" fill="none" stroke="#111" strokeWidth="1" opacity="0.3" />
-          {[55,65,75,85,95].map(y => <circle key={y} cx="50" cy={y} r="1" fill="#fff" stroke="#888" strokeWidth="0.5" />)}
+          {[55, 65, 75, 85, 95].map(y => <circle key={y} cx="50" cy={y} r="1" fill="#fff" stroke="#888" strokeWidth="0.5" />)}
           <path d="M 43 42 L 50 49 L 57 42 L 50 40 Z" fill="#fff" />
           <path d="M 43 42 L 50 49 L 57 42" fill="none" stroke="#222" strokeWidth="1" opacity="0.2" />
         </g>
       )}
-      
+
       {isPolo && (
         <g>
           <rect x="48" y="46" width="4" height="15" fill={color} stroke="#222" strokeWidth="0.5" opacity="0.8" />
@@ -378,11 +378,11 @@ const renderBottomLayer = (id) => {
         <path d="M 37 85 L 63 85 L 65 105 L 70 180 L 30 180 L 35 105 Z" fill={color} />
         <path d="M 37 85 L 43 85 L 43 105 L 45 180 L 30 180 L 35 105 Z" fill="#111" opacity="0.15" />
         {/* Folds */}
-        <path d="M 50 85 L 48 180 L 52 180 Z" fill="#111" opacity="0.1" /> 
-        <path d="M 42 85 L 38 180 L 40 180 Z" fill="#111" opacity="0.1" /> 
-        <path d="M 58 85 L 62 180 L 60 180 Z" fill="#111" opacity="0.1" /> 
-        <path d="M 37 120 L 45 140 L 43 145 L 34 110 Z" fill="#111" opacity="0.05" /> 
-        <path d="M 63 110 L 55 130 L 56 135 L 66 130 Z" fill="#111" opacity="0.05" /> 
+        <path d="M 50 85 L 48 180 L 52 180 Z" fill="#111" opacity="0.1" />
+        <path d="M 42 85 L 38 180 L 40 180 Z" fill="#111" opacity="0.1" />
+        <path d="M 58 85 L 62 180 L 60 180 Z" fill="#111" opacity="0.1" />
+        <path d="M 37 120 L 45 140 L 43 145 L 34 110 Z" fill="#111" opacity="0.05" />
+        <path d="M 63 110 L 55 130 L 56 135 L 66 130 Z" fill="#111" opacity="0.05" />
       </g>
     );
     return <g></g>;
@@ -398,7 +398,7 @@ const renderBottomLayer = (id) => {
       {/* Flat Vector Base Pants (Custom mapped to legs correctly) */}
       <path d={`M 36 100 L 50 100 L 50 120 L 49 ${length} L 31 ${length} Z`} fill={color} />
       <path d={`M 50 100 L 64 100 L 69 ${length} L 51 ${length} L 50 120 Z`} fill={color} />
-      
+
       {/* Pants Shadows (flat block) */}
       {/* Left leg left-side shadow */}
       <path d={`M 36 100 L 42 100 L 37 ${length} L 31 ${length} Z`} fill="#111" opacity="0.15" />
@@ -412,7 +412,7 @@ const renderBottomLayer = (id) => {
       {/* Wrinkles */}
       <path d="M 36 140 L 42 155 L 43 150 Z" fill="#111" opacity="0.1" />
       <path d="M 64 140 L 58 155 L 57 150 Z" fill="#111" opacity="0.1" />
-      
+
       {/* Flat waist shadow under shirt */}
       <path d="M 36 100 L 64 100 L 64 105 L 36 105 Z" fill="#111" opacity="0.25" />
 
@@ -449,7 +449,7 @@ const renderFootwearLayer = (id) => {
         <path d="M 37 184 C 36 192 36 195 41 195 C 46 195 47 190 47 184 Z" fill={color} />
         <path d="M 40.5 195 L 41 201 L 43 201 L 42.5 195 Z" fill="#222" />
         <path d="M 38 184 Q 42 190 46 184 Z" fill="#f4caa7" />
-        
+
         <path d="M 53 184 C 53 190 54 195 59 195 C 64 195 64 192 63 184 Z" fill={color} />
         <path d="M 57.5 195 L 57 201 L 59 201 L 59.5 195 Z" fill="#222" />
         <path d="M 54 184 Q 58 190 62 184 Z" fill="#f4caa7" />
@@ -461,7 +461,7 @@ const renderFootwearLayer = (id) => {
         <path d="M 36 183 C 34 190 35 195 41 195 C 48 195 48 190 47 183 Z" fill={color} />
         <path d="M 36 192 Q 41 196 47 192 L 48 195 Q 41 198 35 195 Z" fill="#fff" />
         <path d="M 40 185 L 44 185 M 39 188 L 45 188 M 38 191 L 46 191" stroke="#fff" strokeWidth="1" />
-        
+
         <path d="M 53 183 C 52 190 52 195 59 195 C 66 195 66 190 64 183 Z" fill={color} />
         <path d="M 53 192 Q 59 196 64 192 L 65 195 Q 59 198 52 195 Z" fill="#fff" />
         <path d="M 56 185 L 60 185 M 55 188 L 61 188 M 54 191 L 62 191" stroke="#fff" strokeWidth="1" />
@@ -473,7 +473,7 @@ const renderFootwearLayer = (id) => {
         <path d="M 37 184 C 36 192 36 194 40 194 A 4 4 0 0 0 47 184 Z" fill="#f4caa7" />
         <path d="M 36 190 Q 42 186 47 189" stroke={color} strokeWidth="2.5" fill="none" />
         <path d="M 38 194 L 46 194" stroke="#d2b48c" strokeWidth="2" strokeLinecap="round" />
-        
+
         <path d="M 53 184 C 53 190 55 194 60 194 A 4 4 0 0 0 63 184 Z" fill="#f4caa7" />
         <path d="M 53 189 Q 58 186 64 190" stroke={color} strokeWidth="2.5" fill="none" />
         <path d="M 54 194 L 62 194" stroke="#d2b48c" strokeWidth="2" strokeLinecap="round" />
@@ -485,13 +485,13 @@ const renderFootwearLayer = (id) => {
         {/* Left Bunny */}
         <path d="M 35 184 C 33 194 36 197 42 197 C 48 197 49 194 47 184 C 47 181 37 181 35 184 Z" fill={color} />
         <path d="M 35 194 Q 41 198 47 194" stroke="#e0e0e0" strokeWidth="2" strokeLinecap="round" fill="none" />
-        
+
         {/* Left Ears */}
         <path d="M 38 184 Q 36 175 39 174 Q 42 175 41 184 Z" fill={color} />
         <path d="M 43 184 Q 43 175 46 174 Q 48 175 46 184 Z" fill={color} />
         <path d="M 38.5 182 Q 37 176 39 176 Q 40.5 176 40.5 182 Z" fill="#ff7675" />
         <path d="M 43.5 182 Q 44 176 45.5 176 Q 47 176 45.5 182 Z" fill="#ff7675" />
-        
+
         {/* Left Face */}
         <circle cx="42" cy="189" r="1.5" fill="#ff7675" />
         <circle cx="39" cy="188" r="1.2" fill="#2d3436" />
@@ -500,13 +500,13 @@ const renderFootwearLayer = (id) => {
         {/* Right Bunny */}
         <path d="M 52 184 C 50 194 53 197 59 197 C 65 197 66 194 65 184 C 64 181 54 181 52 184 Z" fill={color} />
         <path d="M 52 194 Q 59 198 65 194" stroke="#e0e0e0" strokeWidth="2" strokeLinecap="round" fill="none" />
-        
+
         {/* Right Ears */}
         <path d="M 54 184 Q 52 175 55 174 Q 58 175 57 184 Z" fill={color} />
         <path d="M 60 184 Q 59 175 62 174 Q 65 175 63 184 Z" fill={color} />
         <path d="M 54.5 182 Q 53 176 55 176 Q 56.5 176 56.5 182 Z" fill="#ff7675" />
         <path d="M 60.5 182 Q 60 176 61.5 176 Q 64 176 62.5 182 Z" fill="#ff7675" />
-        
+
         {/* Right Face */}
         <circle cx="59" cy="189" r="1.5" fill="#ff7675" />
         <circle cx="56" cy="188" r="1.2" fill="#2d3436" />
@@ -517,72 +517,72 @@ const renderFootwearLayer = (id) => {
   }
 
   if (id === 'm_foot_1') return (
-      <g>
-        {/* Left Sneaker Realistic (White/Grey) */}
-        <path d="M 33 175 C 32 181 32 186 42 186 C 47 186 48 181 48 175 Z" fill="#ecf0f1" />
-        <path d="M 33 182 Q 42 186 48 182 L 48 186 Q 42 189 33 186 Z" fill="#bdc3c7" />
-        <path d="M 36 177 L 44 177 M 35 179 L 45 179 M 34 181 L 46 181" stroke="#34495e" strokeWidth="0.8" />
-        <path d="M 33 184 L 43 184" stroke="#95a5a6" strokeWidth="1.5" />
-        
-        {/* Right Sneaker Realistic */}
-        <path d="M 52 175 C 52 181 53 186 63 186 C 68 186 68 181 67 175 Z" fill="#ecf0f1" />
-        <path d="M 52 182 Q 63 186 67 182 L 67 186 Q 63 189 52 186 Z" fill="#bdc3c7" />
-        <path d="M 56 177 L 64 177 M 55 179 L 65 179 M 54 181 L 66 181" stroke="#34495e" strokeWidth="0.8" />
-        <path d="M 57 184 L 67 184" stroke="#95a5a6" strokeWidth="1.5" />
-      </g>
+    <g>
+      {/* Left Sneaker Realistic (White/Grey) */}
+      <path d="M 33 175 C 32 181 32 186 42 186 C 47 186 48 181 48 175 Z" fill="#ecf0f1" />
+      <path d="M 33 182 Q 42 186 48 182 L 48 186 Q 42 189 33 186 Z" fill="#bdc3c7" />
+      <path d="M 36 177 L 44 177 M 35 179 L 45 179 M 34 181 L 46 181" stroke="#34495e" strokeWidth="0.8" />
+      <path d="M 33 184 L 43 184" stroke="#95a5a6" strokeWidth="1.5" />
+
+      {/* Right Sneaker Realistic */}
+      <path d="M 52 175 C 52 181 53 186 63 186 C 68 186 68 181 67 175 Z" fill="#ecf0f1" />
+      <path d="M 52 182 Q 63 186 67 182 L 67 186 Q 63 189 52 186 Z" fill="#bdc3c7" />
+      <path d="M 56 177 L 64 177 M 55 179 L 65 179 M 54 181 L 66 181" stroke="#34495e" strokeWidth="0.8" />
+      <path d="M 57 184 L 67 184" stroke="#95a5a6" strokeWidth="1.5" />
+    </g>
   );
   if (id === 'm_foot_2') return (
-      <g>
-        {/* Left Formal Shoe Realistic */}
-        <path d="M 35 175 C 33 182 34 186 41 186 C 48 186 48 182 48 175 Z" fill="#2d3436" />
-        <path d="M 36 175 Q 41 179 47 175" fill="#1e272e" />
-        <path d="M 34 184 L 48 184 L 48 187 L 34 187 Z" fill="#111" />
-        <path d="M 38 176 L 43 176 M 38 178 L 44 178" stroke="#111" strokeWidth="1" />
-        <path d="M 36 178 Q 40 183 45 178" stroke="#3d3d3d" strokeWidth="0.5" fill="none" />
-        
-        {/* Right Formal Shoe Realistic */}
-        <path d="M 52 175 C 52 182 53 186 59 186 C 67 186 68 182 65 175 Z" fill="#2d3436" />
-        <path d="M 53 175 Q 59 179 64 175" fill="#1e272e" />
-        <path d="M 52 184 L 66 184 L 66 187 L 52 187 Z" fill="#111" />
-        <path d="M 57 176 L 62 176 M 56 178 L 62 178" stroke="#111" strokeWidth="1" />
-        <path d="M 55 178 Q 60 183 64 178" stroke="#3d3d3d" strokeWidth="0.5" fill="none" />
-      </g>
+    <g>
+      {/* Left Formal Shoe Realistic */}
+      <path d="M 35 175 C 33 182 34 186 41 186 C 48 186 48 182 48 175 Z" fill="#2d3436" />
+      <path d="M 36 175 Q 41 179 47 175" fill="#1e272e" />
+      <path d="M 34 184 L 48 184 L 48 187 L 34 187 Z" fill="#111" />
+      <path d="M 38 176 L 43 176 M 38 178 L 44 178" stroke="#111" strokeWidth="1" />
+      <path d="M 36 178 Q 40 183 45 178" stroke="#3d3d3d" strokeWidth="0.5" fill="none" />
+
+      {/* Right Formal Shoe Realistic */}
+      <path d="M 52 175 C 52 182 53 186 59 186 C 67 186 68 182 65 175 Z" fill="#2d3436" />
+      <path d="M 53 175 Q 59 179 64 175" fill="#1e272e" />
+      <path d="M 52 184 L 66 184 L 66 187 L 52 187 Z" fill="#111" />
+      <path d="M 57 176 L 62 176 M 56 178 L 62 178" stroke="#111" strokeWidth="1" />
+      <path d="M 55 178 Q 60 183 64 178" stroke="#3d3d3d" strokeWidth="0.5" fill="none" />
+    </g>
   );
   if (id === 'm_foot_3') return (
-      <g>
-        {/* Left Croc Realistic */}
-        <path d="M 33 176 C 30 182 31 187 42 187 C 50 187 49 182 48 176 Z" fill="#2c3e50" />
-        <path d="M 32 183 Q 41 187 49 183 L 49 187 Q 41 190 31 187 Z" fill="#34495e" />
-        <circle cx="39" cy="180" r="1.2" fill="#1a252f" /><circle cx="43" cy="180" r="1.2" fill="#1a252f" />
-        <circle cx="37" cy="182" r="1.2" fill="#1a252f" /><circle cx="41" cy="182" r="1.2" fill="#1a252f" /><circle cx="45" cy="182" r="1.2" fill="#1a252f" />
-        <path d="M 32 176 Q 41 179 48 176" stroke="#1a252f" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-        
-        {/* Right Croc Realistic */}
-        <path d="M 52 176 C 51 182 50 187 58 187 C 69 187 70 182 67 176 Z" fill="#2c3e50" />
-        <path d="M 51 183 Q 59 187 68 183 L 69 187 Q 59 190 51 187 Z" fill="#34495e" />
-        <circle cx="57" cy="180" r="1.2" fill="#1a252f" /><circle cx="61" cy="180" r="1.2" fill="#1a252f" />
-        <circle cx="55" cy="182" r="1.2" fill="#1a252f" /><circle cx="59" cy="182" r="1.2" fill="#1a252f" /><circle cx="63" cy="182" r="1.2" fill="#1a252f" />
-        <path d="M 52 176 Q 59 179 68 176" stroke="#1a252f" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-      </g>
+    <g>
+      {/* Left Croc Realistic */}
+      <path d="M 33 176 C 30 182 31 187 42 187 C 50 187 49 182 48 176 Z" fill="#2c3e50" />
+      <path d="M 32 183 Q 41 187 49 183 L 49 187 Q 41 190 31 187 Z" fill="#34495e" />
+      <circle cx="39" cy="180" r="1.2" fill="#1a252f" /><circle cx="43" cy="180" r="1.2" fill="#1a252f" />
+      <circle cx="37" cy="182" r="1.2" fill="#1a252f" /><circle cx="41" cy="182" r="1.2" fill="#1a252f" /><circle cx="45" cy="182" r="1.2" fill="#1a252f" />
+      <path d="M 32 176 Q 41 179 48 176" stroke="#1a252f" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+
+      {/* Right Croc Realistic */}
+      <path d="M 52 176 C 51 182 50 187 58 187 C 69 187 70 182 67 176 Z" fill="#2c3e50" />
+      <path d="M 51 183 Q 59 187 68 183 L 69 187 Q 59 190 51 187 Z" fill="#34495e" />
+      <circle cx="57" cy="180" r="1.2" fill="#1a252f" /><circle cx="61" cy="180" r="1.2" fill="#1a252f" />
+      <circle cx="55" cy="182" r="1.2" fill="#1a252f" /><circle cx="59" cy="182" r="1.2" fill="#1a252f" /><circle cx="63" cy="182" r="1.2" fill="#1a252f" />
+      <path d="M 52 176 Q 59 179 68 176" stroke="#1a252f" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+    </g>
   );
   if (id === 'm_foot_4') return (
-      <g>
-        {/* Left Bare Foot & Flip Flop */}
-        <path d="M 36 175 C 33 182 34 185 41 185 C 47 185 46 182 46 175 Z" fill="#f4caa7" />
-        <path d="M 33 184 L 46 184 L 46 186 L 33 186 Z" fill="#2c3e50" />
-        <path d="M 35 182 L 40 178 L 45 182" stroke="#2980b9" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M 40 178 L 40 184" stroke="#2980b9" strokeWidth="2" strokeLinecap="round" />
-        <path d="M 36 185 Q 40 184 45 185" fill="none" stroke="#2c3e50" strokeWidth="0.5" />
+    <g>
+      {/* Left Bare Foot & Flip Flop */}
+      <path d="M 36 175 C 33 182 34 185 41 185 C 47 185 46 182 46 175 Z" fill="#f4caa7" />
+      <path d="M 33 184 L 46 184 L 46 186 L 33 186 Z" fill="#2c3e50" />
+      <path d="M 35 182 L 40 178 L 45 182" stroke="#2980b9" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M 40 178 L 40 184" stroke="#2980b9" strokeWidth="2" strokeLinecap="round" />
+      <path d="M 36 185 Q 40 184 45 185" fill="none" stroke="#2c3e50" strokeWidth="0.5" />
 
-        {/* Right Bare Foot & Flip Flop */}
-        <path d="M 54 175 C 54 182 53 185 59 185 C 66 185 67 182 64 175 Z" fill="#f4caa7" />
-        <path d="M 54 184 L 67 184 L 67 186 L 54 186 Z" fill="#2c3e50" />
-        <path d="M 55 182 L 60 178 L 65 182" stroke="#2980b9" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M 60 178 L 60 184" stroke="#2980b9" strokeWidth="2" strokeLinecap="round" />
-        <path d="M 55 185 Q 60 184 64 185" fill="none" stroke="#2c3e50" strokeWidth="0.5" />
-      </g>
+      {/* Right Bare Foot & Flip Flop */}
+      <path d="M 54 175 C 54 182 53 185 59 185 C 66 185 67 182 64 175 Z" fill="#f4caa7" />
+      <path d="M 54 184 L 67 184 L 67 186 L 54 186 Z" fill="#2c3e50" />
+      <path d="M 55 182 L 60 178 L 65 182" stroke="#2980b9" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M 60 178 L 60 184" stroke="#2980b9" strokeWidth="2" strokeLinecap="round" />
+      <path d="M 55 185 Q 60 184 64 185" fill="none" stroke="#2c3e50" strokeWidth="0.5" />
+    </g>
   );
-  
+
   return <g></g>;
 };
 
@@ -594,8 +594,8 @@ export const AvatarItemThumbnail = ({ type, itemId }) => {
       {type === 'top' && (
         <g transform={
           itemId === 'f_top_1' || itemId === 'f_top_7' ? "translate(-10, -50) scale(1.15)" :
-          itemId.startsWith('f_') ? "translate(-22, -60) scale(1.5)" :
-          "translate(-15, -45) scale(1.3)"
+            itemId.startsWith('f_') ? "translate(-22, -60) scale(1.5)" :
+              "translate(-15, -45) scale(1.3)"
         }>
           {renderTopLayer(itemId)}
         </g>
@@ -603,8 +603,8 @@ export const AvatarItemThumbnail = ({ type, itemId }) => {
       {type === 'bottom' && (
         <g transform={
           itemId === 'f_bot_4' || itemId === 'f_bot_5' ? "translate(-12, -105) scale(1.25)" :
-          itemId.startsWith('f_') ? "translate(-7, -100) scale(1.15)" :
-          "translate(-5, -100) scale(1.1)"
+            itemId.startsWith('f_') ? "translate(-7, -100) scale(1.15)" :
+              "translate(-5, -100) scale(1.1)"
         }>
           {renderBottomLayer(itemId)}
         </g>
@@ -612,7 +612,7 @@ export const AvatarItemThumbnail = ({ type, itemId }) => {
       {type === 'footwear' && (
         <g transform={
           itemId.startsWith('f_') ? "translate(-90, -485) scale(2.8)" :
-          "translate(-90, -460) scale(2.8)"
+            "translate(-90, -460) scale(2.8)"
         }>
           {renderFootwearLayer(itemId)}
         </g>
@@ -622,6 +622,7 @@ export const AvatarItemThumbnail = ({ type, itemId }) => {
 };
 
 const AvatarPreview = ({ gender, topItem, bottomItem, footwearItem }) => {
+  console.log("Avatar system works :  test case : Passed");
   return (
     <svg viewBox="0 0 100 200" className="avatar-preview-canvas w-full h-full" style={{ filter: 'drop-shadow(0px 10px 15px rgba(0,0,0,0.3))' }}>
       <SharedDefs topItem={topItem} bottomItem={bottomItem} />
