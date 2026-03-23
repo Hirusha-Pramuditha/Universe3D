@@ -207,7 +207,7 @@ function GamePage() {
               teleportTarget={teleportTarget}
               onFloorChange={handleFloorChange}
               onPlayerRef={(ref) => { sharedPlayerRef.current = ref }}
-              missions={missions}
+              missions={selectedBuilding === 'gp-square' ? missions : []}
               setMissions={setMissions}
             />
             <GameUI
@@ -218,7 +218,7 @@ function GamePage() {
               onTeleport={handleTeleport}
               currentFloor={currentFloor}
               setCurrentFloor={setCurrentFloor}
-              missions={missions}
+              missions={selectedBuilding === 'gp-square' ? missions : []}
               onMissionUpdate={setMissions}
               playerRef={sharedPlayerRef}
             />

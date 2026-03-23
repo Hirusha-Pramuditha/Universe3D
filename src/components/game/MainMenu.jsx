@@ -24,8 +24,7 @@ const BUILDINGS = [
     name: 'Ramakrishna Building',
     floors: 5,
     image: '/buildings/ramakrishna.png',
-    description: 'Additional facilities and student services',
-    comingSoon: true
+    description: 'Additional facilities and student services'
   }
 ]
 
