@@ -4,6 +4,7 @@ import MissionPanel from './MissionPanel'
 import SearchLocation from './SearchLocation'
 import Feedback from './Feedback'
 import Minimap from './Minimap'
+import QuickQuizModal from './QuickQuizModal'
 
 // Building data for display names
 const BUILDING_INFO = {
@@ -17,6 +18,7 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTryDressCode
   const [showControls, setShowControls] = useState(false)
   const [showMenu, setShowMenu] = useState(false)
   const [showFeedback, setShowFeedback] = useState(false)
+  const [showQuickQuiz, setShowQuickQuiz] = useState(false)
   // currentFloor is now passed as a prop
   const [isMinimapExpanded, setIsMinimapExpanded] = useState(false)
   // missions and onMissionUpdate are passed as props
@@ -316,7 +318,10 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTryDressCode
               </svg>
               University Info
             </button>
-            <button className="menu-item">
+            <button className="menu-item" onClick={() => {
+              setShowMenu(false);
+              setShowQuickQuiz(true);
+            }}>
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -458,6 +463,11 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTryDressCode
           onComplete={handleFeedbackComplete}
           onClose={() => setShowFeedback(false)}
         />
+      )}
+
+      {/* Quick Quiz Modal */}
+      {showQuickQuiz && (
+        <QuickQuizModal onClose={() => setShowQuickQuiz(false)} />
       )}
     </div>
   );
