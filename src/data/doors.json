@@ -339,18 +339,5 @@
             }
         }
     ],
-    "ramakrishna": [
-        {
-            "id": "rk-reception",
-            "name": "Reception",
-            "position": {
-                "x": 0,
-                "y": 2.2,
-                "z": 3
-            },
-            "rotation": {
-                "y": 0
-            }
-        }
-    ]
+    "ramakrishna": []
 }

@@ -373,8 +373,8 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
     // ─── Building Initial Spawn Points ───
     const buildingSpawns = {
       'gp-square': { x: -15, y: 0, z: -4 },
-      'spencer': { x: -10, y: 0, z: -10 }, // Edit Spencer spawn here
-      'ramakrishna': { x: 5, y: 0, z: 5 }  // Edit Ramakrishna spawn here
+      'spencer': { x: -10, y: 0, z: -10 },
+      'ramakrishna': { x: 7.31, y: 2.32, z: -11.28, rotY: Math.PI }
     }
     const spawnPos = buildingSpawns[selectedBuilding] || { x: 0, y: 0, z: 0 }
 
@@ -382,6 +382,7 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
     const player = new THREE.Group()
     playerRef.current = player
     player.position.set(spawnPos.x, spawnPos.y, spawnPos.z)
+    if (spawnPos.rotY !== undefined) player.rotation.y = spawnPos.rotY
     scene.add(player)
 
     // ─── Expose playerRef to parent (for minimap tracking) ───
@@ -413,7 +414,7 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
         distance: 1.9,
         height: 1.3,
         smoothness: 0.5,
-        rotationY: teleportCameraRotationY.current !== null ? teleportCameraRotationY.current : 0,
+        rotationY: teleportCameraRotationY.current !== null ? teleportCameraRotationY.current : (spawnPos.rotY || 0),
         rotationX: 0.1,
         minRotationX: -0.4,
         maxRotationX: 0.4,
@@ -1223,10 +1224,14 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
       )}
 
       {/* ─── Letter Hunt Component ─── */}
-      <LetterHunt scene={sceneInstance} playerRef={playerRef} />
+      {selectedBuilding === 'gp-square' && (
+        <LetterHunt scene={sceneInstance} playerRef={playerRef} />
+      )}
 
       {/* ─── Treasure Hunt Component ─── */}
-      <TreasureHunt scene={sceneInstance} playerRef={playerRef} setMissions={setMissions} />
+      {selectedBuilding === 'gp-square' && (
+        <TreasureHunt scene={sceneInstance} playerRef={playerRef} setMissions={setMissions} />
+      )}
 
       {/* Interaction Prompt */}
       {interactionTarget && !showInfoModal && !showQuizModal && (

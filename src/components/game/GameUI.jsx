@@ -25,6 +25,7 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTryDressCode
   const [displayedMessage, setDisplayedMessage] = useState('')
   const navigationMessageTimeout = useRef(null)
 
+
   // Typewriter effect for navigation message
   useEffect(() => {
     if (!navigationMessage) {
@@ -45,6 +46,8 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTryDressCode
 
     return () => clearInterval(intervalId);
   }, [navigationMessage]);
+
+
 
   // Get building info based on selection
   const buildingInfo = BUILDING_INFO[selectedBuilding] || { name: 'Unknown Building', floors: 1 }
@@ -86,8 +89,8 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTryDressCode
 
   // Building spawn points (x/z) for fast travel and floor navigation
   const BUILDING_SPAWNS = {
-    'spencer': { x: -10, z: -10 }, // Edit Spencer spawn here
-    'ramakrishna': { x: 5, z: 5 }  // Edit Ramakrishna spawn here
+    'spencer': { x: -10, z: -10 },
+    'ramakrishna': { x: 7.31, z: -11.28 }
   }
 
   // Specific spawn points for each floor of GP Square
@@ -181,6 +184,8 @@ function GameUI({ playerNickname, selectedBuilding, onBackToMenu, onTryDressCode
         </div>
 
       </div>
+
+
 
       {/* Right Column Layout */}
       <div className="game-right-panel">
