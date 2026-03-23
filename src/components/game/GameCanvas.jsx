@@ -372,7 +372,7 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
 
     // ─── Building Initial Spawn Points ───
     const buildingSpawns = {
-      'gp-square': { x: -15, y: 0, z: -4 },
+      'gp-square': { x: -15, y: 0, z: -4, rotY: Math.PI / 2 },
       'spencer': { x: -10, y: 0, z: -10 },
       'ramakrishna': { x: 7.31, y: 2.32, z: -11.28, rotY: Math.PI }
     }
