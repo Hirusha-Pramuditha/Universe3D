@@ -1225,7 +1225,7 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
 
       {/* ─── Letter Hunt Component ─── */}
       {selectedBuilding === 'gp-square' && (
-        <LetterHunt scene={sceneInstance} playerRef={playerRef} />
+        <LetterHunt scene={sceneInstance} playerRef={playerRef} setMissions={setMissions} />
       )}
 
       {/* ─── Treasure Hunt Component ─── */}

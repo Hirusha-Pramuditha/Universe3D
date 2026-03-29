@@ -358,7 +358,11 @@ const LetterHunt = ({ scene, playerRef, setMissions }) => {
                                 setCompleted(true);
                                 spawnRewardBook();
                                 // Mark mission as completed
-                                setMissions(prev => prev.map(m => m.id === 'mission-8' ? { ...m, completed: true } : m));
+                                if (typeof setMissions === 'function') {
+                                    setMissions(prev => prev.map(m => m.id === 'mission-8' ? { ...m, completed: true } : m));
+                                } else {
+                                    console.warn("LetterHunt: setMissions is not defined or not a function");
+                                }
                             }
                             return newCount;
                         });
@@ -415,7 +419,7 @@ const LetterHunt = ({ scene, playerRef, setMissions }) => {
                 <div className="interaction-prompt" style={{ zIndex: 9999 }}>
                     <div className="key-hint">E</div>
                     <span>
-                        {activeTarget?.letterType === 'GIFT' ? 'Open Gift' : 'Collect Letter'}
+                        {activeTarget?.letterType === 'GIFT' ? 'Collect Gift' : 'Collect Letter'}
                     </span>
                 </div>
             )}
