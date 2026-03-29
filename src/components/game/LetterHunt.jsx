@@ -228,7 +228,7 @@ const LetterHunt = ({ scene, playerRef, setMissions }) => {
         loop2.scale.set(1, 1, 0.6);
         giftGroup.add(loop2);
 
-        // Light
+
 
 
         scene.add(giftGroup);
@@ -338,7 +338,7 @@ const LetterHunt = ({ scene, playerRef, setMissions }) => {
                         if (giftRef.current) {
                             scene.remove(giftRef.current);
                             giftRef.current = null; // Stops the local animation loop check
-                            // Play particle effect here if available?
+
                         }
 
                         // Reset target

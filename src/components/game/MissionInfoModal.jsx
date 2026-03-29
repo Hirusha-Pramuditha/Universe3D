@@ -44,7 +44,11 @@ function MissionInfoModal({ mission, onContinue, onClose }) {
 
                 {/* Footer */}
                 <div className="mission-modal-footer">
-                    {mission.isMiniGame ? (
+                    {mission.id === 'mission-10' ? (
+                        <button className="mission-modal-continue" onClick={handleClose}>
+                            Interact with the notice board
+                        </button>
+                    ) : mission.isMiniGame ? (
                         <button className="mission-modal-continue" onClick={handleClose}>
                             Start Challenge
                         </button>
