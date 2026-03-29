@@ -154,7 +154,7 @@ const LetterHunt = ({ scene, playerRef, setMissions }) => {
         direction.normalize();
 
         // Spawn 2 units in front, slightly elevated
-        const spawnPos = playerPos.add(direction.multiplyScalar(2.0));
+        const spawnPos = playerPos.add(direction.multiplyScalar(1.0));
         spawnPos.y += 1.0;
 
         const giftGroup = new THREE.Group();
