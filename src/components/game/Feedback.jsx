@@ -12,12 +12,14 @@ const Feedback = ({ onComplete, onClose, playerNickname }) => {
         e.preventDefault();
         setIsSubmitting(true);
         try {
+            const finalReview = comment.trim() === '' ? 'No review added' : comment;
+            const finalNickname = playerNickname || 'Explorer';
             const response = await fetch('https://feedback-production-6600.up.railway.app/api/feedback', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ rating, review: comment, nickname: playerNickname}),
+                body: JSON.stringify({ rating, review: finalReview, nickname: finalNickname}),
             });
 
             if (response.ok) {
@@ -111,7 +113,7 @@ const Feedback = ({ onComplete, onClose, playerNickname }) => {
                         <button
                             type="submit"
                             className="submit-btn"
-                            disabled={(rating === 0 && comment.trim() === '') || isSubmitting}
+                            disabled={rating === 0 || isSubmitting}
                         >
                             {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
                         </button>

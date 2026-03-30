@@ -51,7 +51,7 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
     moveLeft: false,
     moveRight: false,
     sprint: false,
-    speed: 0.06,
+    speed: 0.09,
     sprintMultiplier: 2,
     currentY: 0,
     targetY: 0
@@ -399,7 +399,7 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
       moveLeft: false,
       moveRight: false,
       sprint: false,
-      speed: 0.03,
+      speed: 0.07,
       sprintMultiplier: 2.0,
       currentY: 0,
       targetY: 0,
@@ -1225,7 +1225,7 @@ function GameCanvas({ selectedBuilding, teleportTarget, onFloorChange, missions,
 
       {/* ─── Letter Hunt Component ─── */}
       {selectedBuilding === 'gp-square' && (
-        <LetterHunt scene={sceneInstance} playerRef={playerRef} />
+        <LetterHunt scene={sceneInstance} playerRef={playerRef} setMissions={setMissions} />
       )}
 
       {/* ─── Treasure Hunt Component ─── */}

@@ -76,7 +76,7 @@ const TreasureHunt = ({ scene, playerRef, setMissions }) => {
             shaft.rotation.z = Math.PI / 2;
             group.add(shaft);
 
-            // Head (Bow) - Fancy Design
+            // Head (Bow) 
             const headGroup = new THREE.Group();
             headGroup.position.x = -0.75;
 
@@ -98,7 +98,7 @@ const TreasureHunt = ({ scene, playerRef, setMissions }) => {
             tooth2.position.set(0.7, -0.15, 0);
             group.add(tooth2);
 
-            // Glow
+
 
 
             scene.add(group);
@@ -227,7 +227,7 @@ const TreasureHunt = ({ scene, playerRef, setMissions }) => {
                     const distKey = playerPos.distanceTo(keyRef.current.position);
                     if (distKey < 3.0) {
                         newLabel = "Collect Key";
-                        if ( keys.current.e) {
+                        if (keys.current.e) {
                             // Collect Key
                             scene.remove(keyRef.current);
                             keyRef.current = null;
